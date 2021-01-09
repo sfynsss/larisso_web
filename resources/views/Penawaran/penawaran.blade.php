@@ -1,0 +1,47 @@
+@extends('layouts.app')
+
+@section('content')
+@include('Penawaran.create')
+
+<div class="nk-block nk-block-lg">
+    <div class="nk-block-head nk-block-head-sm">
+        <div class="nk-block-between">
+            <div class="nk-block-head-content">
+                <h3 class="nk-block-title page-title">Data Penawaran</h3>
+            </div><!-- .nk-block-head-content -->
+            <div class="nk-block-head-content">
+                <div class="toggle-wrap nk-block-tools-toggle">
+                    <button type="button" class="btn btn-primary float-right" data-toggle="modal"  data-target=".bs-example-modal-lg">TAMBAH DATA</button> &nbsp
+                    {{-- <a href="{{url('/sinkronisasi')}}"><button type="button" class="btn btn-success float-right" style="margin-right: 10px;">SINKRONISASI</button></a> --}}
+                </div>
+            </div><!-- .nk-block-head-content -->
+        </div><!-- .nk-block-between -->
+    </div><!-- .nk-block-head -->
+    <div class="card card-bordered card-preview">
+        <table class="table table-orders">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID Penawaran</th>
+                    <th scope="col">Nama Penawaran</th>
+                    <th scope="col">Gambar</th>
+                </tr>
+            </thead>
+            <tbody class="tb-odr-body">
+                @foreach($data as $data)
+                <tr class="tb-odr-item">
+                    <td>{{$data->id_penawaran}}</td>
+                    <td>{{$data->penawaran}}</td>
+                    <td>
+                      @if($data->gambar == "")
+          						<span class="badge badge-danger">Data Kosong</span>
+          						@else
+          						<img src="{{asset('storage')}}/{{$data->gambar}}" width="200" height="75">
+          						@endif
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div><!-- .card-preview -->
+</div><!-- nk-block -->
+@endsection

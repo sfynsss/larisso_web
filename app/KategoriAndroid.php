@@ -1,0 +1,14 @@
+<?php
+
+namespace Larisso;
+
+use Illuminate\Database\Eloquent\Model;
+
+class KategoriAndroid extends Model
+{
+    protected $table = "kat_android";
+
+    public $timestamps = false;
+    
+    protected $fillable = ['kd_kat_android', 'nm_kat_android'];
+}
