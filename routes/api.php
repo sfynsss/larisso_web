@@ -103,8 +103,12 @@ Route::middleware('auth:api')->group(function () {
 
 	//Ongkir COD
 	Route::get('getOngkirCod', 'Api\OngkirCodController@getOngkirCod');
- 
- //Penawaran
- Route::get('getPenawaran', 'Api\PenawaranController@index');
- //endOfPenawaran
+
+	//Penawaran
+	Route::get('getPenawaran', 'Api\PenawaranController@index');
+	//endOfPenawaran
+
+	//Outlet
+	Route::get('getKodeOutlet', 'Api\OutletController@getKodeOutlet');
+	//endOfOutlet
 });

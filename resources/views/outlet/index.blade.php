@@ -10,7 +10,7 @@
             </div><!-- .nk-block-head-content -->
             <div class="nk-block-head-content">
                 <div class="toggle-wrap nk-block-tools-toggle">
-                    <button class="btn btn-primary" data-toggle="modal" data-target=".modal_input">Tambah</button> 
+                    <button class="btn btn-primary" data-toggle="modal" data-target=".modal_input" onclick="setKodeOutlet();">Tambah</button> 
                 </div>
             </div><!-- .nk-block-head-content -->
         </div><!-- .nk-block-between -->
@@ -18,7 +18,7 @@
 
     <div class="modal fade modal_input" id="modalku" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-lg">
-            <form action="{{url('/outlet')}}" method="post" id="link_url" class="form-horizontal">
+            <form action="{{url('/tambahOutlet')}}" method="post" id="link_url" class="form-horizontal">
                 {{ csrf_field() }}
                 <div class="modal-content">
                     <div class="modal-header">
@@ -26,38 +26,45 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div class="modal-body">
-                        <div class="card-body">
-                            <div class="form-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="control-label text-left col-md-6">Nama Outlet</label>
-                                            <div class="col-md-6">
-                                                <input type="number" min="0" class="form-control" name="harga_awal" id="harga_awal" required >
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="control-label text-left col-md-6">Keterangan</label>
-                                            <div class="col-md-6">
-                                                <input type="number" min="0" class="form-control" required name="harga_per_km" id="harga_per_km">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label class="control-label text-left col-md-6">Status Aktif</label>
-                                            <div class="col-md-6">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" checked="" id="customCheck2">
-                                                    <label class="custom-control-label" for="customCheck2">Aktif</label>
-                                                </div>
-                                            </div>
+                        <div class="card-inner">
+                            <div class="row g-4">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="full-name-1">Kode Outlet</label>
+                                        <div class="form-control-wrap">
+                                            <input type="text" class="form-control" id="kd_outlet" name="kd_outlet" readonly>
                                         </div>
                                     </div>
                                 </div>
-                                <!--/row-->
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="full-name-1">Nama Outlet</label>
+                                        <div class="form-control-wrap">
+                                            <input type="text" class="form-control" id="nama_outlet" name="nama_outlet">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="email-address-1">Keterangan</label>
+                                        <div class="form-control-wrap">
+                                            <input type="text" class="form-control" id="keterangan" name="keterangan">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Status Aktif</label>
+                                        <ul class="custom-control-group g-3 align-center">
+                                            <li>
+                                                <div class="custom-control custom-control-sm custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="status" name="status" value="1">
+                                                    <label class="custom-control-label" for="status">Aktif</label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -81,19 +88,49 @@
                     <th>Nama Outlet</th>
                     <th>Keterangan</th>
                     <th>Status</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody class="tb-odr-body">
                 <tr class="tb-odr-item">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    @php($i = 1)
+                    @foreach($data as $data)
+                    <td>{{$i++}}</td>
+                    <td>{{$data->kd_outlet}}</td>
+                    <td>{{$data->nama_outlet}}</td>
+                    <td>{{$data->keterangan}}</td>
+                    @if($data->status == 1)
+                    <td>Aktif</td>
+                    @else
+                    <td>Tidak Aktif</td>
+                    @endif
+                    <td>
+                        <button type="submit" class="btn btn-warning">Ubah</button>
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                    </td>
+                    @endforeach
                 </tr>
             </tbody>
         </table>
     </div><!-- .card-preview -->
 </div><!-- nk-block -->
 
+@endsection
+
+@section('script')
+<script>
+    function setKodeOutlet() {
+        $.ajax({
+           type:'GET',
+           url:'/api/getKodeOutlet',
+           headers: {
+            "Accept":"application/json",
+            "Authorization":"Bearer {{Auth::user()->api_token}}"
+        },
+        success:function(data){
+          $("input[name=kd_outlet]").val(data);
+      }
+  });
+    }
+</script>
 @endsection

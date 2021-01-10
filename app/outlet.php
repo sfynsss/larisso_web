@@ -4,7 +4,9 @@ namespace Larisso;
 
 use Illuminate\Database\Eloquent\Model;
 
-class outlet extends Model
+class Outlet extends Model
 {
-    //
+    protected $table = "outlet";
+
+    public $timestamps = false;
 }

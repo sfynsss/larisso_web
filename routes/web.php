@@ -116,3 +116,4 @@ Route::post('/updateOngkirCod/{id}', 'OngkirCodController@updateOngkirCod');
 
 //outlet
 Route::get('/outlet', 'OutletController@index');
+Route::post('/tambahOutlet', 'OutletController@tambahOutlet');
