@@ -6,7 +6,7 @@
     <div class="nk-block-head nk-block-head-sm">
         <div class="nk-block-between">
             <div class="nk-block-head-content">
-                <h3 class="nk-block-title page-title">Master Outlet</h3>
+                <h3 class="nk-block-title page-title">Detail Outlet</h3>
             </div><!-- .nk-block-head-content -->
             <div class="nk-block-head-content">
                 <div class="toggle-wrap nk-block-tools-toggle">
@@ -18,11 +18,11 @@
 
     <div class="modal fade modal_input" id="modalku" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-lg">
-            <form action="{{url('/tambahOutlet')}}" method="post" id="link_url" name="link_url" class="form-horizontal">
+            <form action="{{url('/tambahDetail')}}" method="post" id="link_url" name="link_url" class="form-horizontal">
                 {{ csrf_field() }}
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myLargeModalLabel">Form Outlet</h4>
+                        <h4 class="modal-title" id="myLargeModalLabel">Form Kategori Outlet</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div class="modal-body">
@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-label" for="full-name-1">Nama Outlet</label>
+                                        <label class="form-label" for="full-name-1">Pilih Kategori</label>
                                         <div class="form-control-wrap">
                                             <input type="text" class="form-control" id="nama_outlet" name="nama_outlet">
                                         </div>
