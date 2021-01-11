@@ -18,7 +18,7 @@
 
     <div class="modal fade modal_input" id="modalku" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-lg">
-            <form action="{{url('/tambahOutlet')}}" method="post" id="link_url" class="form-horizontal">
+            <form action="{{url('/tambahOutlet')}}" method="post" id="link_url" name="link_url" class="form-horizontal">
                 {{ csrf_field() }}
                 <div class="modal-content">
                     <div class="modal-header">
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal" onclick="clear();">Close</button>
+                        <button type="button" class="btn btn-danger waves-effect text-left">Close</button>
                         <button type="submit" class="btn btn-success waves-effect text-left">Submit</button>
                     </div>
                 </div>
@@ -92,9 +92,9 @@
                 </tr>
             </thead>
             <tbody class="tb-odr-body">
+                @php($i = 1)
+                @foreach($data as $data)
                 <tr class="tb-odr-item">
-                    @php($i = 1)
-                    @foreach($data as $data)
                     <td>{{$i++}}</td>
                     <td>{{$data->kd_outlet}}</td>
                     <td>{{$data->nama_outlet}}</td>
@@ -105,11 +105,11 @@
                     <td>Tidak Aktif</td>
                     @endif
                     <td>
-                        <button type="submit" class="btn btn-warning">Ubah</button>
-                        <button type="submit" class="btn btn-danger">Hapus</button>
+                        <button type="submit" class="btn btn-warning" data-toggle="modal" data-target=".modal_input" onclick="ubahOutlet('{{$data->kd_outlet}}', '{{$data->nama_outlet}}', '{{$data->keterangan}}', '{{$data->status}}');">Ubah</button>
+                        <a href="{{url('deleteOutlet/')}}/{{$data->kd_outlet}}"><button type="submit" class="btn btn-danger" onclick="alert('Apakah Anda yakin untuk menghapus ?')">Hapus</button></a>
                     </td>
-                    @endforeach
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div><!-- .card-preview -->
@@ -120,17 +120,47 @@
 @section('script')
 <script>
     function setKodeOutlet() {
+        $("#nama_outlet").val("");
+        $("#keterangan").val("");
+        $('#status').removeAttr('checked');
         $.ajax({
-           type:'GET',
-           url:'/api/getKodeOutlet',
-           headers: {
-            "Accept":"application/json",
-            "Authorization":"Bearer {{Auth::user()->api_token}}"
-        },
-        success:function(data){
-          $("input[name=kd_outlet]").val(data);
-      }
-  });
+            type:'GET',
+            url:'/api/getKodeOutlet',
+            headers: {
+                "Accept":"application/json",
+                "Authorization":"Bearer {{Auth::user()->api_token}}"
+            },
+            success:function(data){
+                $("input[name=kd_outlet]").val(data);
+            }
+        });
     }
+
+    function ubahOutlet($a, $b, $c, $d) {
+        $('#link_url').attr('action', '{{url('/ubahOutlet')}}');
+        $("#kd_outlet").val($a);
+        $("#nama_outlet").val($b);
+        $("#keterangan").val($c);
+        if ($d == 1) {
+            $('#status').attr('checked', 'checked');
+        } else {
+            $('#status').removeAttr('checked');
+        }
+    }
+
+    // function alert($kd_outlet) {
+    //     var checkstr =  confirm('Apakah Anda yakin untuk menghapus?');
+    //     if(checkstr == true){
+    //         $.ajax({
+    //             type:'GET',
+    //             url:'/deleteOutlet/{$kd_outlet}',
+    //             success:function(){
+    //                 location.reload();
+    //             }
+    //         });       
+    //     }else{
+    //         return false;
+    //     }
+    // }
 </script>
 @endsection

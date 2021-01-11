@@ -14,7 +14,7 @@ class OutletController extends Controller
 
 		if ($data) {
 			// print_r($data->kd_outlet);
-			$data1 = (int) substr($data->kd_outlet, 2) + 1;
+			$data1 = (int) substr($data->kd_outlet, 3) + 1;
 			$tmp = "O-01".sprintf("%04d", $data1);
 		} else {
 			$tmp = "O-01".sprintf("%04d", 1);
