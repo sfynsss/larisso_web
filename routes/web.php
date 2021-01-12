@@ -119,3 +119,7 @@ Route::get('/outlet', 'OutletController@index');
 Route::post('/tambahOutlet', 'OutletController@tambahOutlet');
 Route::post('/ubahOutlet', 'OutletController@ubahOutlet');
 Route::get('/deleteOutlet/{id}', 'OutletController@deleteOutlet');
+
+Route::get('/detailOutlet/{id}', 'OutletController@detailOutlet');
+Route::post('/tambahKategoriOutlet', 'OutletController@tambahKategoriOutlet');
+Route::get('/deleteKategoriOutlet/{id}', 'OutletController@deleteKategoriOutlet');

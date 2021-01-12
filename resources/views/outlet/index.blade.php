@@ -106,7 +106,7 @@
                     @endif
                     <td>
                         <button type="submit" class="btn btn-warning" data-toggle="modal" data-target=".modal_input" onclick="ubahOutlet('{{$data->kd_outlet}}', '{{$data->nama_outlet}}', '{{$data->keterangan}}', '{{$data->status}}');">Ubah</button>
-                        <a href="{{url('deleteOutlet/')}}/{{$data->kd_outlet}}"><button type="submit" class="btn btn-danger" onclick="alert('Apakah Anda yakin untuk menghapus ?')">Hapus</button></a>
+                        <a href="{{url('deleteOutlet/')}}/{{$data->kd_outlet}}" onclick="if (confirm('Delete selected item?')){return true;}else{event.stopPropagation(); event.preventDefault();};"><button type="submit" class="btn btn-danger">Hapus</button></a>
                         <a href="{{url('detailOutlet/')}}/{{$data->kd_outlet}}"><button type="submit" class="btn btn-success">Detail</button></a>
                     </td>
                 </tr>
