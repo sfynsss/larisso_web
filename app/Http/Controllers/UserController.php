@@ -4,21 +4,27 @@ namespace Larisso\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Larisso\User;
+use Larisso\Outlet;
 use Session;
 use Redirect;
 
 class UserController extends Controller
 {
-	public function index($id)
+	public function index($id, $kd_outlet)
 	{
 		if ($id == "admin") {
-			$data = User::where('otoritas', '!=', 1)->where('otoritas', '=', 4)->get();	
+			if ($kd_outlet == "all") {
+				$data = User::join('outlet', 'outlet.kd_outlet', '=', 'users.kd_outlet')->where('otoritas', '=', 'ADMIN')->get();	
+			} else {
+				$data = User::join('outlet', 'outlet.kd_outlet', '=', 'users.kd_outlet')->where('users.kd_outlet', '=', $kd_outlet)->where('otoritas', '=', 'ADMIN')->get();	
+			}
 		} else if ($id == "sales") {
-			$data = User::where('otoritas', '!=', 1)->where('otoritas', '=', 5)->get();	
+			$data = User::where('otoritas', '=', 'SALES')->get();	
 		}
 
+		$outlet = Outlet::all();
 		$status = $id;
-		return view('User.user', compact('data', 'status'));
+		return view('User.user', compact('data', 'status', 'outlet'));
 	}
 
 	public function tambahUser($id, Request $request)
@@ -33,7 +39,8 @@ class UserController extends Controller
 				'password' => bcrypt($request->password),
 				'api_token' => bin2hex(openssl_random_pseudo_bytes(30)),
 				'email_activation' => '1', 
-				'otoritas'	=> '4'
+				'otoritas'	=> 'ADMIN',
+				'kd_outlet' => $request->kd_outlet
 			]);
 		} else if ($id == "sales") {
 			$insert = User::insert([
@@ -45,7 +52,7 @@ class UserController extends Controller
 				'password' => bcrypt($request->password),
 				'api_token' => bin2hex(openssl_random_pseudo_bytes(30)),
 				'email_activation' => '1', 
-				'otoritas'	=> '5',
+				'otoritas'	=> 'SALES',
 				'kd_peg'	=> $request->kd_peg
 			]);	
 		}

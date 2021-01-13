@@ -78,10 +78,10 @@
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
-                                <a href="{{url('user/admin')}}" class="nk-menu-link"><span class="nk-menu-text">Admin</span></a>
+                                <a href="{{url('user/admin/')}}/{{Auth::user()->kd_outlet}}" class="nk-menu-link"><span class="nk-menu-text">Admin</span></a>
                             </li>
                             <li class="nk-menu-item">
-                                <a href="{{url('user/sales')}}" class="nk-menu-link"><span class="nk-menu-text">Sales</span></a>
+                                <a href="{{url('user/sales/all')}}" class="nk-menu-link"><span class="nk-menu-text">Sales</span></a>
                             </li>
                         </ul>
                     </li>

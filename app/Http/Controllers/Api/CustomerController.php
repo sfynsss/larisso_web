@@ -13,14 +13,14 @@ class CustomerController extends Controller
 
 	public function getKodeCust(Request $request)
 	{
-		$data = Customer::select('kd_cust')->where('kd_kat', '=', $request->kategori)->where('cabang', '=', $request->cabang)->orderBy('kd_cust', 'desc')->get();
+		$data = Customer::select('kd_cust')->where('kategori', '=', $request->kategori)->orderBy('kd_cust', 'desc')->get();
 
 		if (count($data) > 0) {
 			// print_r($data);
-			$data = (int) substr($data[0]->kd_cust, 5, 8) + 1;
-			$tmp = substr($request->cabang, 3, 1)."-".$request->kategori."".sprintf("%'.04d", $data);
+			$data = (int) substr($data[0]->kd_cust, 2) + 1;
+			$tmp = "01".sprintf("%'.06d", $data);
 		} else {
-			$tmp = substr($request->cabang, 3, 1)."-".$request->kategori."".sprintf("%'.04d", 1);
+			$tmp = "01".sprintf("%'.06d", 1);
 		}
 		return response()->json($tmp, 200);
 	}

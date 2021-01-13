@@ -30,6 +30,9 @@
                     @if($status == "sales")
                     <th>Kode Pegawai</th>
                     @endif
+                    @if($status == "admin")
+                    <th>Outlet</th>
+                    @endif
                     <th>Nama</th>
                     <th>Email</th>
                     <th>No Telp</th>
@@ -43,6 +46,9 @@
                     <td>{{$i++}}</td>
                     @if($status == "sales")
                     <td>{{$data->kd_peg}}</td>
+                    @endif
+                    @if($status == "admin")
+                    <td>{{$data->nama_outlet}}</td>
                     @endif
                     <td>{{$data->name}}</td>
                     <td>{{$data->email}}</td>

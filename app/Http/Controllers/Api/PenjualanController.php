@@ -354,4 +354,24 @@ class PenjualanController extends Controller
 		}
 	}
 
+	public function inputPenjualanOffline(Request $request)
+	{
+		$mst = MstJual::insertGetId([
+			'no_ent'			=> $request->no_ent,
+			'tanggal'			=> $request->tanggal,
+			'netto'				=> $request->netto,
+			'kd_cust'			=> $request->kd_cust,
+			'id_user'			=> $request->kd_user,
+			'kd_outlet'			=> $request->kd_outlet,
+			'point'				=> $request->poin,
+			'sts_jual'			=> 'OFFLANE'
+		]);
+
+		if ($mst) {
+			return response()->json('Input Mst Jual Berhasil', 200);
+		} else {
+			return response()->json('Input Mst Jual Gagal', 404);	
+		}
+	}
+
 }

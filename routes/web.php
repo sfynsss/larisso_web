@@ -96,7 +96,7 @@ Route::post('/updateCabang', 'CabangController@updateCabang');
 //endOfUser
 
 //user
-Route::get('/user/{id}', 'UserController@index');
+Route::get('/user/{id}/{kd_outlet}', 'UserController@index');
 Route::post('/tambahUser/{id}', 'UserController@tambahUser');
 //endOfUser
 
