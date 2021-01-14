@@ -13,7 +13,7 @@ class CustomerController extends Controller
 
 	public function getKodeCust(Request $request)
 	{
-		$data = Customer::select('kd_cust')->where('kategori', '=', $request->kategori)->orderBy('kd_cust', 'desc')->get();
+		$data = Customer::select('kd_cust')->orderBy('kd_cust', 'desc')->get();
 
 		if (count($data) > 0) {
 			// print_r($data);
@@ -27,7 +27,7 @@ class CustomerController extends Controller
 
 	public function getCustomer(Request $request)
 	{
-		$data = Customer::where('NM_CUST', 'like', '%'.$request->nm_cust.'%')->where('KD_KAT', '=', '03')->join('users', 'users.id', '=', 'customer.id')->get();
+		$data = Customer::where('NM_CUST', 'like', '%'.$request->nm_cust.'%')->where('KD_KAT', '=', 'GROSIR')->join('users', 'users.id', '=', 'customer.id')->get();
 
 		if ($data) {
 			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);

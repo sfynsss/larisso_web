@@ -59,6 +59,7 @@
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" id="customFile" name="gambar_barang" accept=".jpg, .jpeg, .png">
                     <label class="custom-file-label" for="customFile">Pilih Gambar</label>
+                    <p>*ukuran file maksimal 30kb</p>
                   </div>
                 </div>
               </div>

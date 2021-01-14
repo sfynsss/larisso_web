@@ -14,36 +14,6 @@
                             <hr class="m-t-0 m-b-40">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group has-warning row">
-                                        <label class="control-label text-left col-md-4">Pilih Cabang</label>
-                                        <div class="col-md-8">
-                                            <select id="cabang" name="cabang" onchange="setKdCust();" class="form-control custom-select">
-                                                <option style="display: none;">Select an Option</option>
-                                                @foreach($cabang as $cabang)
-                                                <option value="{{$cabang->cabang}}">{{$cabang->cabang}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group has-warning row">
-                                        <label class="control-label text-left col-md-4">Kategori</label>
-                                        <div class="col-md-8">
-                                            <select id="kategori" name="kategori" onchange="setKdCust();" class="form-control custom-select">
-                                                <option style="display: none;">Select an Option</option>
-                                                @foreach($kategori_customer as $kat)
-                                                <option value="{{$kat->KD_KAT}}">{{$kat->KATEGORI}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
                                     <div class="form-group row">
                                         <label class="control-label text-left col-md-4">Kode Customer</label>
                                         <div class="col-md-8">
@@ -51,17 +21,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--/span-->
                                 <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label class="control-label text-left col-md-4">NIK</label>
+                                    <div class="form-group has-warning row">
+                                        <label class="control-label text-left col-md-4">Kategori</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" min="16" max="16" name="nik" id="nik">
+                                            <select id="kategori" name="kategori" class="form-control custom-select">
+                                                <option style="display: none;">Select an Option</option>
+                                                <option value="RETAIL">Retail</option>
+                                                <option value="GROSIR">Grosir</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 <!--/span-->
                             </div>
+                            <br>
 
                             <h5 class="box-title">Customer Info</h5>
                             <hr class="m-t-0 m-b-40">
@@ -84,6 +58,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <br>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group row">
@@ -96,23 +71,6 @@
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label class="control-label text-left col-md-4">Kota / Wilayah</label>
-                                        <div class="col-md-8">
-                                            <select id="kota" name="kota" class="form-control custom-select">
-                                                <option style="display: none;">Select an Option</option>
-                                                @foreach($wilayah as $wil)
-                                                <option value="{{$wil->KD_WIL}}.{{$wil->WILAYAH}}">{{$wil->WILAYAH}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <!--/row-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group row">
                                         <label class="control-label text-left col-md-4">No Telp / Hp</label>
                                         <div class="col-md-8">
                                             <input type="text" id="no_telp" name="no_telp" class="form-control">
@@ -120,6 +78,9 @@
                                     </div>
                                 </div>
                                 <!--/span-->
+                            </div>
+                            <br>
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <label class="control-label text-left col-md-4">Jenis Kelamin</label>

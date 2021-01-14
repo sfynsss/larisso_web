@@ -128,5 +128,14 @@
 		$('#harga_disc_brg_edit').val($harga_disc);
 	}
 
+	var uploadField = document.getElementById("customFile");
+
+    uploadField.onchange = function() {
+        if(this.files[0].size > 100000){
+         alert("File is too big!");
+         this.value = "";
+     };
+ };
+
 </script>
 @endsection

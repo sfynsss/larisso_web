@@ -65,55 +65,67 @@
                                         </ul>
                                     </div>
                                 </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="email-address-1">Pilih Gambar Outlet</label>
+                                        <div class="form-control-wrap">
+                                          <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile" name="gambar_outlet" accept=".jpg, .jpeg, .png" >
+                                            <label class="custom-file-label" for="customFile">Pilih Gambar</label>
+                                        </div>
+                                        <p>*ukuran file maksimal 30kb</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger waves-effect text-left">Close</button>
-                        <button type="submit" class="btn btn-success waves-effect text-left">Submit</button>
-                    </div>
                 </div>
-            </form>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger waves-effect text-left">Close</button>
+                    <button type="submit" class="btn btn-success waves-effect text-left">Submit</button>
+                </div>
+            </div>
+        </form>
+        <!-- /.modal-content -->
     </div>
+    <!-- /.modal-dialog -->
+</div>
 
-    <div class="card card-bordered card-preview">
-        <table class="table table-orders">
-            <thead class="tb-odr-head">
-                <tr class="tb-odr-item">
-                    <th>No</th>
-                    <th>Kode Outlet</th>
-                    <th>Nama Outlet</th>
-                    <th>Keterangan</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody class="tb-odr-body">
-                @php($i = 1)
-                @foreach($data as $data)
-                <tr class="tb-odr-item">
-                    <td>{{$i++}}</td>
-                    <td>{{$data->kd_outlet}}</td>
-                    <td>{{$data->nama_outlet}}</td>
-                    <td>{{$data->keterangan}}</td>
-                    @if($data->status == 1)
-                    <td>Aktif</td>
-                    @else
-                    <td>Tidak Aktif</td>
-                    @endif
-                    <td>
-                        <button type="submit" class="btn btn-warning" data-toggle="modal" data-target=".modal_input" onclick="ubahOutlet('{{$data->kd_outlet}}', '{{$data->nama_outlet}}', '{{$data->keterangan}}', '{{$data->status}}');">Ubah</button>
-                        <a href="{{url('deleteOutlet/')}}/{{$data->kd_outlet}}" onclick="if (confirm('Delete selected item?')){return true;}else{event.stopPropagation(); event.preventDefault();};"><button type="submit" class="btn btn-danger">Hapus</button></a>
-                        <a href="{{url('detailOutlet/')}}/{{$data->kd_outlet}}"><button type="submit" class="btn btn-success">Detail</button></a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div><!-- .card-preview -->
+<div class="card card-bordered card-preview">
+    <table class="table table-orders">
+        <thead class="tb-odr-head">
+            <tr class="tb-odr-item">
+                <th>No</th>
+                <th>Kode Outlet</th>
+                <th>Nama Outlet</th>
+                <th>Keterangan</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody class="tb-odr-body">
+            @php($i = 1)
+            @foreach($data as $data)
+            <tr class="tb-odr-item">
+                <td>{{$i++}}</td>
+                <td>{{$data->kd_outlet}}</td>
+                <td>{{$data->nama_outlet}}</td>
+                <td>{{$data->keterangan}}</td>
+                @if($data->status == 1)
+                <td>Aktif</td>
+                @else
+                <td>Tidak Aktif</td>
+                @endif
+                <td>
+                    <button type="submit" class="btn btn-warning" data-toggle="modal" data-target=".modal_input" onclick="ubahOutlet('{{$data->kd_outlet}}', '{{$data->nama_outlet}}', '{{$data->keterangan}}', '{{$data->status}}');">Ubah</button>
+                    <a href="{{url('deleteOutlet/')}}/{{$data->kd_outlet}}" onclick="if (confirm('Delete selected item?')){return true;}else{event.stopPropagation(); event.preventDefault();};"><button type="submit" class="btn btn-danger">Hapus</button></a>
+                    <a href="{{url('detailOutlet/')}}/{{$data->kd_outlet}}"><button type="submit" class="btn btn-success">Detail</button></a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div><!-- .card-preview -->
 </div><!-- nk-block -->
 
 @endsection
@@ -148,6 +160,15 @@
             $('#status').removeAttr('checked');
         }
     }
+
+    var uploadField = document.getElementById("customFile");
+
+    uploadField.onchange = function() {
+        if(this.files[0].size > 100000){
+         alert("File is too big!");
+         this.value = "";
+     };
+ };
 
     // function alert($kd_outlet) {
     //     var checkstr =  confirm('Apakah Anda yakin untuk menghapus?');

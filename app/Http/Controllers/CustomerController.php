@@ -4,15 +4,15 @@ namespace Larisso\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Larisso\Customer;
 use Larisso\DetCustomer;
-use Larisso\KategoriCustomer;
 use Larisso\vw_laba_kotor;
 use Larisso\Wilayah;
 use Larisso\User;
 use Larisso\SettingVoucher;
 use Larisso\Voucher;
-use Larisso\Cabang;
+use Larisso\Outlet;
 use Validator;
 use Session;
 use Redirect;
@@ -37,17 +37,15 @@ class CustomerController extends Controller
     public function index()
     {
     	$data = Customer::all();
-    	$kategori_customer = KategoriCustomer::all();
-    	$wilayah = Wilayah::all();
-        if (Auth::user()->cabang == "") {
-            $cabang = Cabang::all();
+        if (Auth::user()->kd_outlet == "") {
+            $outlet = Outlet::all();
         } else {
-            $cabang = Cabang::where('cabang', '=', Auth::user()->cabang)->get();
+            $outlet = Outlet::where('kd_outlet', '=', Auth::user()->kd_outlet)->get();
         }
         
     	// print_r($cabang);
 
-        return view('customer.customer', compact('data', 'kategori_customer', 'wilayah', 'cabang'));
+        return view('customer.customer', compact('data', 'outlet'));
     }
 
     public function tambahCustomer(Request $request)
@@ -66,29 +64,27 @@ class CustomerController extends Controller
     		return Redirect::back();
     	} else {
     		$user = User::insertGetId([
-    			'name' => request('name'),
-    			'email' => request('email'),
-    			'no_telp' => request('no_telp'),
+    			'name' => $request->name,
+    			'email' => $request->email,
+    			'no_telp' => $request->no_telp,
     			'password' => bcrypt(substr($request->tgl_lahir, 8, 2)."".substr($request->tgl_lahir, 5,2)."".substr($request->tgl_lahir, 2,2)),
     			'api_token' => bin2hex(openssl_random_pseudo_bytes(30)),
+                'tanggal_lahir' => $request->tgl_lahir,
                 'email_activation' => '0', 
+                'otoritas' => $request->kategori,
+                'alamat' => $request->alamat,
                 'activation_token' => str_random(255)
             ]);
 
     		$data = Customer::insert([
                 'kd_cust'       => $request->kode_cust,
                 'id'            => $user,
-                'cabang'        => $request->cabang,
-                'kd_kat'        => $request->kategori,
-                'ka_kat'        => $request->kode_aktivasi,
-                'nik'           => $request->nik,
+                'kategori'      => $request->kategori,
                 'nm_cust'       => $request->name,
                 'alm_cust'      => $request->alamat,
                 'krd_limit'     => $request->kredit_limit,
                 'e_mail'        => $request->email,
                 'tgl_lhr'       => $request->tgl_lahir,
-                'kd_wil'        => substr($request->kota, 0,3),
-                'wilayah'       => substr($request->kota, 4),
                 'hp'            => $request->no_telp,
                 'jns_kelamin'   => $request->jenis_kelamin,
                 'top'           => $request->top
