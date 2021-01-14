@@ -21,4 +21,15 @@ class OutletController extends Controller
 		}
 		return response()->json($tmp, 200);
 	}
+
+	public function getOutlet()
+	{
+		$data = Outlet::all();
+
+		if ($data) {
+			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
+		} else {
+			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
+		}	
+	}
 }

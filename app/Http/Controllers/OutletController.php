@@ -25,12 +25,27 @@ class OutletController extends Controller
 			$status = 1	;
 		} 
 
-		$insert = Outlet::insert([
-			'kd_outlet'			=> $request->kd_outlet,
-			'nama_outlet'		=> $request->nama_outlet,
-			'keterangan'		=> $request->keterangan,
-			'status'			=> $status,
-		]);
+		if ($request->gambar_outlet != "") {
+			$path = $request->file('gambar_outlet')->store(
+				'gambar_outlet', 'public'
+			);
+
+			$insert = Outlet::insert([
+				'kd_outlet'			=> $request->kd_outlet,
+				'nama_outlet'		=> $request->nama_outlet,
+				'keterangan'		=> $request->keterangan,
+				'status'			=> $status,
+				'gambar_outlet'		=> $path,
+			]);
+		} else {
+			$insert = Outlet::insert([
+				'kd_outlet'			=> $request->kd_outlet,
+				'nama_outlet'		=> $request->nama_outlet,
+				'keterangan'		=> $request->keterangan,
+				'status'			=> $status,
+				'gambar_outlet'		=> "",
+			]);
+		}
 
 		if ($insert) {
 			Session::flash('success', "Data Berhasil Ditambahkan !!!");
@@ -49,11 +64,26 @@ class OutletController extends Controller
 			$status = 1	;
 		} 
 
-		$insert = Outlet::where('kd_outlet', '=', $request->kd_outlet)->update([
-			'nama_outlet'		=> $request->nama_outlet,
-			'keterangan'		=> $request->keterangan,
-			'status'			=> $status,
-		]);
+		if ($request->gambar_outlet != "") {
+			$path = $request->file('gambar_outlet')->store(
+				'gambar_outlet', 'public'
+			);
+
+			$insert = Outlet::where('kd_outlet', '=', $request->kd_outlet)->update([
+				'nama_outlet'		=> $request->nama_outlet,
+				'keterangan'		=> $request->keterangan,
+				'status'			=> $status,
+				'gambar_outlet'		=> $path,
+			]);
+
+		} else {
+			$insert = Outlet::where('kd_outlet', '=', $request->kd_outlet)->update([
+				'nama_outlet'		=> $request->nama_outlet,
+				'keterangan'		=> $request->keterangan,
+				'status'			=> $status,
+				'gambar_outlet'		=> "",
+			]);
+		}
 
 		if ($insert) {
 			Session::flash('success', "Data Berhasil Diubah !!!");

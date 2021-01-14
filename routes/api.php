@@ -112,5 +112,6 @@ Route::middleware('auth:api')->group(function () {
 
 	//Outlet
 	Route::get('getKodeOutlet', 'Api\OutletController@getKodeOutlet');
+	Route::get('getOutlet', 'Api\OutletController@getOutlet');
 	//endOfOutlet
 });

@@ -18,7 +18,7 @@
 
     <div class="modal fade modal_input" id="modalku" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog modal-lg">
-            <form action="{{url('/tambahOutlet')}}" method="post" id="link_url" name="link_url" class="form-horizontal">
+            <form action="{{url('/tambahOutlet')}}" method="post" id="link_url" name="link_url" class="form-horizontal" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-content">
                     <div class="modal-header">
@@ -73,7 +73,7 @@
                                             <input type="file" class="custom-file-input" id="customFile" name="gambar_outlet" accept=".jpg, .jpeg, .png" >
                                             <label class="custom-file-label" for="customFile">Pilih Gambar</label>
                                         </div>
-                                        <p>*ukuran file maksimal 30kb</p>
+                                        <p>*ukuran file maksimal 50kb</p>
                                     </div>
                                 </div>
                             </div>
@@ -100,6 +100,7 @@
                 <th>Nama Outlet</th>
                 <th>Keterangan</th>
                 <th>Status</th>
+                <th>Gambar Outlet</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -116,6 +117,13 @@
                 @else
                 <td>Tidak Aktif</td>
                 @endif
+                <td>
+                    @if($data->gambar_outlet == "")
+                    <span class="badge badge-danger">Data Kosong</span>
+                    @else
+                    <img src="{{asset('storage')}}/{{$data->gambar_outlet}}" width="100" height="100">
+                    @endif
+                </td>
                 <td>
                     <button type="submit" class="btn btn-warning" data-toggle="modal" data-target=".modal_input" onclick="ubahOutlet('{{$data->kd_outlet}}', '{{$data->nama_outlet}}', '{{$data->keterangan}}', '{{$data->status}}');">Ubah</button>
                     <a href="{{url('deleteOutlet/')}}/{{$data->kd_outlet}}" onclick="if (confirm('Delete selected item?')){return true;}else{event.stopPropagation(); event.preventDefault();};"><button type="submit" class="btn btn-danger">Hapus</button></a>
@@ -164,7 +172,7 @@
     var uploadField = document.getElementById("customFile");
 
     uploadField.onchange = function() {
-        if(this.files[0].size > 100000){
+        if(this.files[0].size > 50000){
          alert("File is too big!");
          this.value = "";
      };

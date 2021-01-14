@@ -53,7 +53,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group row">
-                                        <label class="control-label text-left col-md-4">Ketentuan Minimal</label>
+                                        <label class="control-label text-left col-md-4">Ketentuan Poin</label>
                                         <div class="col-md-8">
                                             <input type="text" class="form-control" name="ketentuan" id="ketentuan">
                                         </div>
@@ -120,7 +120,7 @@
             <th>Nama Voucher</th>
             <th>Gambar</th>
             <th>Nilai Voucher</th>
-            <th>Ketentuan Minimal</th>
+            <th>Ketentuan Poin</th>
             <th>Action</th>
         </tr>
     </thead>
