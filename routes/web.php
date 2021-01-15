@@ -71,12 +71,15 @@ Route::get('/downloadCustomer', 'CustomerController@downloadCustomer');
 //endOfCustomer
 
 //voucher
+Route::get('/settingVoucher', 'VoucherController@settingVoucher');
+Route::get('/settingPoint', 'VoucherController@settingPoint');
+Route::post('/tambahSettingVoucher', 'VoucherController@tambahSettingVoucher');
+Route::post('/tambahSettingPoint', 'VoucherController@tambahSettingPoint');
+
 Route::get('/voucherFisik', 'VoucherController@voucherFisik');
 Route::get('/eVoucher', 'VoucherController@eVoucher');
 Route::get('/voucherGlobal', 'VoucherController@voucherGlobal');
-Route::get('/settingVoucher', 'VoucherController@settingVoucher');
 Route::post('/tambahVoucher', 'VoucherController@tambahVoucher');
-Route::post('/tambahSettingVoucher', 'VoucherController@tambahSettingVoucher');
 Route::get('/tukarVoucher', 'VoucherController@tukarVoucher');
 Route::get('/sinkronisasiVoucher', 'VoucherController@sinkronisasiVoucher');
 Route::get('validasiVoucher', 'VoucherController@validasi');	

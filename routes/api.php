@@ -74,7 +74,8 @@ Route::middleware('auth:api')->group(function () {
 
 	//voucher
 	Route::post('getVoucher', 'Api\VoucherController@getVoucher');
-	Route::post('validasi', 'Api\VoucherController@validasi');	
+	Route::post('validasi', 'Api\VoucherController@validasi');
+	Route::post('countPointVoucher', 'Api\VoucherController@countPointVoucher');
 	//getVoucher
 
 	//cart
@@ -114,4 +115,6 @@ Route::middleware('auth:api')->group(function () {
 	Route::get('getKodeOutlet', 'Api\OutletController@getKodeOutlet');
 	Route::get('getOutlet', 'Api\OutletController@getOutlet');
 	//endOfOutlet
+
+	Route::get('test', 'Api\BarangController@test');
 });

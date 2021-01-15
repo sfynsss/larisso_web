@@ -7,13 +7,14 @@ use Larisso\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Larisso\DetVoucher;
 use Larisso\Customer;
+use Larisso\Voucher;
 
 class VoucherController extends Controller
 {
 	public function getVoucher(Request $request)
 	{
 		$kd_cust = Customer::where('id', '=', $request->id)->first();
-		$data = DetVoucher::select('*')->join('mst_voucher', 'mst_voucher.kd_voucher', '=', 'det_voucher.kd_voucher')->where('det_voucher.kd_cust', '=', $kd_cust['KD_CUST'])->where('status_voucher', '=', "AKTIF")->get();
+		$data = Voucher::where('kd_cust', '=', $kd_cust['KD_CUST'])->where('status_voucher', '=', "AKTIF")->get();
 
 		if (count($data) > 0) {
 			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
@@ -39,6 +40,19 @@ class VoucherController extends Controller
 			} else {
 				return response()->json("Voucher Telah Aktif", 200);
 			}
+		}
+	}
+
+	public function countPointVoucher(Request $request)
+	{
+		$kd_cust = Customer::where('id', '=', $request->id)->first();
+		$data['voucher'] = Voucher::where('kd_cust', '=', $kd_cust['KD_CUST'])->where('status_voucher', '=', "AKTIF")->count();
+		$data['point'] = $kd_cust['POINT_BL_INI'];
+
+		if (count($data) > 0) {
+			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
+		} else {
+			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
 		}
 	}
 

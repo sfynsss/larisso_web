@@ -4,6 +4,7 @@ namespace Larisso\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Larisso\SettingVoucher;
+use Larisso\SettingPoint;
 use Larisso\MstVoucher;
 use Larisso\DetVoucher;
 use Larisso\TukarVoucher;
@@ -37,6 +38,12 @@ class VoucherController extends Controller
 	{
 		$data = SettingVoucher::all();
 		return view('Voucher.settingVoucher', compact('data'));
+	}
+
+	public function settingPoint()
+	{
+		$data = SettingPoint::all();
+		return view('Voucher.settingPoint', compact('data'));
 	}
 
 	public function tukarVoucher()
@@ -99,6 +106,23 @@ class VoucherController extends Controller
 			"ketentuan"			=> $request->ketentuan,
 			"masa_berlaku"		=> $request->masa_berlaku,
 			"sk"				=> $request->sk
+		]);
+
+		if ($insert) {
+			Session::flash('success', "Data Berhasil Ditambahkan !!!");
+			return Redirect::back();
+		} else {
+			Session::flash('error', "Data Gagal Ditambahkan !!!");
+			return Redirect::back();
+		}
+	}
+
+	public function tambahSettingPoint(Request $request)
+	{
+		$insert = SettingPoint::insert([
+			"ketentuan"			=> $request->ketentuan,
+			"nilai_point"		=> $request->nilai_point,
+			"keterangan"		=> $request->keterangan,
 		]);
 
 		if ($insert) {

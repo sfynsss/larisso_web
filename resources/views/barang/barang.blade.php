@@ -75,7 +75,7 @@
 						</span>
 					</td>
 					<td>
-						@if($data->gambar == "")
+						@if($data->gambar == "" or $data->gambar == "kosong")
 						<span class="badge badge-danger">Data Kosong</span>
 						@else
 						<img src="{{asset('storage')}}/{{$data->gambar}}" width="100" height="100">
