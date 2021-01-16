@@ -55,7 +55,6 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('getDataTransaksi', 'Api\PenjualanController@getDataTransaksi');
 	Route::post('getDetailTransaksi', 'Api\PenjualanController@getDetailTransaksi');
 
-	Route::post('inputPenjualanOffline', 'Api\PenjualanController@inputPenjualanOffline');
 
 	Route::post('getNoFaktur', 'Api\PenjualanController@getNoEntOrderJual');
 	Route::post('insertMasterOrderJual', 'Api\PenjualanController@insertMasterOrderJual');
@@ -116,5 +115,8 @@ Route::middleware('auth:api')->group(function () {
 	Route::get('getOutlet', 'Api\OutletController@getOutlet');
 	//endOfOutlet
 
-	Route::get('test', 'Api\BarangController@test');
+	//offline
+	Route::post('inputPenjualanOffline', 'Api\PenjualanController@inputPenjualanOffline');
+	Route::get('getSettingPoint', 'Api\VoucherController@getSettingPoint');
+	//offline
 });

@@ -77,10 +77,4 @@ class BarangController extends Controller
 			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
 		}
 	}
-
-	public function test()
-	{
-		$kd_brg = Barang::select('kd_brg')->whereRaw('length(kd_brg) = ?', [10])->orderBy('kd_brg', 'desc')->get();
-		return response()->json(['message' => 'Data Ditemukan', 'data' => '01'.substr($kd_brg[0]->kd_brg, 2)+1], 200);
-	}
 }

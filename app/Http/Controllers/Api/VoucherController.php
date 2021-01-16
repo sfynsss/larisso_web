@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Larisso\DetVoucher;
 use Larisso\Customer;
 use Larisso\Voucher;
+use Larisso\SettingPoint;
 
 class VoucherController extends Controller
 {
@@ -49,6 +50,17 @@ class VoucherController extends Controller
 		$data['voucher'] = Voucher::where('kd_cust', '=', $kd_cust['KD_CUST'])->where('status_voucher', '=', "AKTIF")->count();
 		$data['point'] = $kd_cust['POINT_BL_INI'];
 
+		if (count($data) > 0) {
+			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
+		} else {
+			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
+		}
+	}
+
+	public function getSettingPoint()
+	{
+		$data = SettingPoint::all();
+		
 		if (count($data) > 0) {
 			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
 		} else {
