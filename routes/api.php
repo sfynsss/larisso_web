@@ -118,5 +118,6 @@ Route::middleware('auth:api')->group(function () {
 	//offline
 	Route::post('inputPenjualanOffline', 'Api\PenjualanController@inputPenjualanOffline');
 	Route::get('getSettingPoint', 'Api\VoucherController@getSettingPoint');
+	Route::post('updateStatusVoucher', 'Api\VoucherController@updateStatusVoucher');
 	//offline
 });
