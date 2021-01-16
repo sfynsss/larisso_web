@@ -119,5 +119,6 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('inputPenjualanOffline', 'Api\PenjualanController@inputPenjualanOffline');
 	Route::get('getSettingPoint', 'Api\VoucherController@getSettingPoint');
 	Route::post('updateStatusVoucher', 'Api\VoucherController@updateStatusVoucher');
+	Route::get('getCustomerOffline', 'Api\CustomerController@getCustomerOffline');
 	//offline
 });

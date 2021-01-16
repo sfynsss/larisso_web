@@ -36,4 +36,23 @@ class CustomerController extends Controller
 		}	
 	}
 
+	public function getCustomerOffline() 
+	{
+		$data = Customer::where(Auth::user()->kd_outlet, '=', '0')->get();
+
+		if ($data) {
+			$update = Customer::where(Auth::user()->kd_outlet, '=', '0')->update([
+				Auth::user()->kd_outlet => '1'
+			]);
+
+			if ($update) {
+				return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
+			} else {
+				return response()->json(['message' => 'Update Customer Gagal'], 401);
+			}
+		} else {
+			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
+		}
+	}
+
 }
