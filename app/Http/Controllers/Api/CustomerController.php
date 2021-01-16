@@ -48,7 +48,7 @@ class CustomerController extends Controller
 			if ($update) {
 				return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
 			} else {
-				return response()->json(['message' => 'Update Customer Gagal'], 401);
+				return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
 			}
 		} else {
 			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
