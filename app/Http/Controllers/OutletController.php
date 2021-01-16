@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Larisso\Outlet;
 use Larisso\KategoriOutlet;
 use Larisso\KategoriAndroid;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 use Session;
 use Redirect;
 
@@ -20,39 +23,47 @@ class OutletController extends Controller
 	public function tambahOutlet(Request $request)
 	{
 		$status = 0;
+		$kd_outlet = "";
 
 		if ($request->status == 1) {
 			$status = 1	;
 		} 
+		$kd_outlet = $request->kd_outlet."";
 
-		if ($request->gambar_outlet != "") {
-			$path = $request->file('gambar_outlet')->store(
-				'gambar_outlet', 'public'
-			);
-
-			$insert = Outlet::insert([
-				'kd_outlet'			=> $request->kd_outlet,
-				'nama_outlet'		=> $request->nama_outlet,
-				'keterangan'		=> $request->keterangan,
-				'status'			=> $status,
-				'gambar_outlet'		=> $path,
-			]);
+		if (! Schema::hasColumn('customer', $kd_outlet)) {
+			Schema::table('customer', function (Blueprint $table) {
+				$table->string($kd_outlet);
+			});
 		} else {
-			$insert = Outlet::insert([
-				'kd_outlet'			=> $request->kd_outlet,
-				'nama_outlet'		=> $request->nama_outlet,
-				'keterangan'		=> $request->keterangan,
-				'status'			=> $status,
-				'gambar_outlet'		=> "",
-			]);
-		}
+			if ($request->gambar_outlet != "") {
+				$path = $request->file('gambar_outlet')->store(
+					'gambar_outlet', 'public'
+				);
 
-		if ($insert) {
-			Session::flash('success', "Data Berhasil Ditambahkan !!!");
-			return Redirect::back();
-		} else {
-			Session::flash('error', "Data Gagal Ditambahkan !!!");
-			return Redirect::back();
+				$insert = Outlet::insert([
+					'kd_outlet'			=> $request->kd_outlet,
+					'nama_outlet'		=> $request->nama_outlet,
+					'keterangan'		=> $request->keterangan,
+					'status'			=> $status,
+					'gambar_outlet'		=> $path,
+				]);
+			} else {
+				$insert = Outlet::insert([
+					'kd_outlet'			=> $request->kd_outlet,
+					'nama_outlet'		=> $request->nama_outlet,
+					'keterangan'		=> $request->keterangan,
+					'status'			=> $status,
+					'gambar_outlet'		=> "",
+				]);
+			}
+
+			if ($insert) {
+				Session::flash('success', "Data Berhasil Ditambahkan !!!");
+				return Redirect::back();
+			} else {
+				Session::flash('error', "Data Gagal Ditambahkan !!!");
+				return Redirect::back();
+			}	
 		}
 	}
 

@@ -12,6 +12,7 @@ use Larisso\Customer;
 use Larisso\VwMstJual;
 use Larisso\MstOrderJual;
 use Larisso\DetOrderJual;
+use Illuminate\Support\Facades\Auth;
 
 class PenjualanController extends Controller
 {
@@ -167,7 +168,7 @@ class PenjualanController extends Controller
 			'ongkir'			=> $request->ongkir,
 			'jns_pengiriman'	=> $request->jns_pengiriman,
 			'no_resi'			=> $request->no_resi,
-			'sts_byr'			=> 0,
+			'sts_byr'			=> $request->sts_bayar,
 			'sts_jual'			=> $request->sts_jual
 		]);
 
@@ -356,21 +357,21 @@ class PenjualanController extends Controller
 
 	public function inputPenjualanOffline(Request $request)
 	{
-		$mst = MstJual::insertGetId([
+		$mst = MstJual::insert([
 			'no_ent'			=> $request->no_ent,
 			'tanggal'			=> $request->tanggal,
 			'netto'				=> $request->netto,
 			'kd_cust'			=> $request->kd_cust,
-			'id_user'			=> $request->kd_user,
-			'kd_outlet'			=> $request->kd_outlet,
-			'point'				=> $request->poin,
-			'sts_jual'			=> 'OFFLANE'
+			'id_user'			=> Auth::user()->id,
+			'kd_outlet'			=> Auth::user()->kd_outlet,
+			'point'				=> $request->point,
+			'sts_jual'			=> 'OFFLINE'
 		]);
 
 		if ($mst) {
-			return response()->json('Input Mst Jual Berhasil', 200);
+			return response()->json(['message' => 'Input Master Jual Berhasil'], 200);
 		} else {
-			return response()->json('Input Mst Jual Gagal', 404);	
+			return response()->json(['message' => 'Input Master Jual Gagal'], 401);
 		}
 	}
 
