@@ -8,12 +8,12 @@
 			<div class="nk-block-head-content">
 				<h3 class="nk-block-title page-title">Master Barang</h3>
 			</div><!-- .nk-block-head-content -->
-			<div class="nk-block-head-content">
+			{{-- <div class="nk-block-head-content">
 				<div class="toggle-wrap nk-block-tools-toggle">
 					<button class="btn btn-primary" data-toggle="modal" data-target=".modal_input">tambah</button> &nbsp
 					<button class="btn btn-success" data-toggle="modal" data-target=".modal_upload">Upload</button>
 				</div>
-			</div><!-- .nk-block-head-content -->
+			</div><!-- .nk-block-head-content --> --}}
 		</div><!-- .nk-block-between -->
 	</div><!-- .nk-block-head -->
 	<div class="card card-bordered card-preview">
@@ -98,6 +98,7 @@
 			</tbody>
 		</table>
 	</div><!-- .card-preview -->
+</div>
 </div><!-- nk-block -->
 
 @include('barang.input_barang')
@@ -130,12 +131,12 @@
 
 	var uploadField = document.getElementById("customFile");
 
-    uploadField.onchange = function() {
-        if(this.files[0].size > 50000){
-         alert("File is too big!");
-         this.value = "";
-     };
- };
+	uploadField.onchange = function() {
+		if(this.files[0].size > 50000){
+			alert("File is too big!");
+			this.value = "";
+		};
+	};
 
 </script>
 @endsection

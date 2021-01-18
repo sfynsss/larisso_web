@@ -2,6 +2,7 @@
 
 namespace Larisso\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Larisso\Imports\ImportBarang;
 use Illuminate\Http\Request;
 use Larisso\KategoriAndroid;
@@ -12,8 +13,13 @@ class BarangController extends Controller
 {
 	public function barang()
 	{
-		$data = Barang::LeftJoin('kat_android', 'barang.kd_kat_android', '=', 'kat_android.kd_kat_android')->get();
-		$kat_barang = KategoriAndroid::all();
+		if (Auth::user()->kd_outlet == 'all') {
+			$data = Barang::LeftJoin('kat_android', 'barang.kd_kat_android', '=', 'kat_android.kd_kat_android')->get();
+			$kat_barang = KategoriAndroid::all();
+		} else {
+			$data = Barang::LeftJoin('kat_android', 'barang.kd_kat_android', '=', 'kat_android.kd_kat_android')->where('barang.kd_outlet', '=', Auth::user()->kd_outlet)->get();
+			$kat_barang = KategoriAndroid::where('kd_outlet', '=', Auth::user()->kd_outlet)->get();
+		}
 
 		return view('barang.barang', compact('data', 'kat_barang'));
 	}
@@ -33,13 +39,32 @@ class BarangController extends Controller
 
 	public function edit_barang(Request $request)
 	{
-		$path = $request->file('gambar_barang')->store(
-			'gambar_barang', 'public'
-		);
+		if ($request->gambar_outlet != "") {
+			$path = $request->file('gambar_barang')->store(
+				'gambar_barang', 'public'
+			);
 
-		if ($path) {
+			if ($path) {
+				$update = Barang::where('kd_brg', '=', $request->kd_brg_edit)->update([
+					"gambar"			=> $path,
+					"kd_kat_android"	=> $request->kat_barang,
+					"nm_brg"			=> $request->nm_brg_edit,
+					"harga_jl"			=> $request->hrg_brg_edit,
+					"disc"				=> $request->disc_brg_edit,
+					"harga_disc"		=> $request->harga_disc_brg_edit
+				]);
+
+				if ($update) {
+					return back()->with('success','Data Barang Berhasil Diubah');
+				} else {
+					return back()->with('error','Data Barang Gagal Diubah');
+				}
+			} else {
+				return back()->with('error','Harap Periksa Kembali file inputan Anda !!!');
+			}
+		} else {
 			$update = Barang::where('kd_brg', '=', $request->kd_brg_edit)->update([
-				"gambar"			=> $path,
+				"gambar"			=> "",
 				"kd_kat_android"	=> $request->kat_barang,
 				"nm_brg"			=> $request->nm_brg_edit,
 				"harga_jl"			=> $request->hrg_brg_edit,
@@ -52,8 +77,6 @@ class BarangController extends Controller
 			} else {
 				return back()->with('error','Data Barang Gagal Diubah');
 			}
-		} else {
-			return back()->with('error','Harap Periksa Kembali file inputan Anda !!!');
 		}
 	}
 
@@ -66,7 +89,11 @@ class BarangController extends Controller
 
 	public function kategori_barang()
 	{
-		$data = KategoriAndroid::all();
+		if (Auth::user()->kd_outlet == "all") {
+			$data = KategoriAndroid::all();
+		} else {
+			$data = KategoriAndroid::where('kd_outlet', '=', Auth::user()->kd_outlet)->get();
+		}
 
 		return view('barang.kategori', compact('data'));
 	}	

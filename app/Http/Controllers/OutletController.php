@@ -28,43 +28,45 @@ class OutletController extends Controller
 		if ($request->status == 1) {
 			$status = 1	;
 		} 
-		$kd_outlet = $request->kd_outlet."";
 
+		$kd_outlet = $request->kd_outlet."";
 		if (! Schema::hasColumn('customer', $kd_outlet)) {
-			Schema::table('customer', function (Blueprint $table) {
-				$table->string($kd_outlet);
+			Schema::table('customer', function (Blueprint $table) use ($kd_outlet) {
+				$table->tinyInteger($kd_outlet)->default(0);
 			});
 		} else {
-			if ($request->gambar_outlet != "") {
-				$path = $request->file('gambar_outlet')->store(
-					'gambar_outlet', 'public'
-				);
-
-				$insert = Outlet::insert([
-					'kd_outlet'			=> $request->kd_outlet,
-					'nama_outlet'		=> $request->nama_outlet,
-					'keterangan'		=> $request->keterangan,
-					'status'			=> $status,
-					'gambar_outlet'		=> $path,
-				]);
-			} else {
-				$insert = Outlet::insert([
-					'kd_outlet'			=> $request->kd_outlet,
-					'nama_outlet'		=> $request->nama_outlet,
-					'keterangan'		=> $request->keterangan,
-					'status'			=> $status,
-					'gambar_outlet'		=> "",
-				]);
-			}
-
-			if ($insert) {
-				Session::flash('success', "Data Berhasil Ditambahkan !!!");
-				return Redirect::back();
-			} else {
-				Session::flash('error', "Data Gagal Ditambahkan !!!");
-				return Redirect::back();
-			}	
+			
 		}
+
+		if ($request->gambar_outlet != "") {
+			$path = $request->file('gambar_outlet')->store(
+				'gambar_outlet', 'public'
+			);
+
+			$insert = Outlet::insert([
+				'kd_outlet'			=> $request->kd_outlet,
+				'nama_outlet'		=> $request->nama_outlet,
+				'keterangan'		=> $request->keterangan,
+				'status'			=> $status,
+				'gambar_outlet'		=> $path,
+			]);
+		} else {
+			$insert = Outlet::insert([
+				'kd_outlet'			=> $request->kd_outlet,
+				'nama_outlet'		=> $request->nama_outlet,
+				'keterangan'		=> $request->keterangan,
+				'status'			=> $status,
+				'gambar_outlet'		=> "",
+			]);
+		}
+
+		if ($insert) {
+			Session::flash('success', "Data Berhasil Ditambahkan !!!");
+			return Redirect::back();
+		} else {
+			Session::flash('error', "Data Gagal Ditambahkan !!!");
+			return Redirect::back();
+		}	
 	}
 
 	public function ubahOutlet(Request $request)
