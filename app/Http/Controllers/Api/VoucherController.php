@@ -9,6 +9,7 @@ use Larisso\DetVoucher;
 use Larisso\Customer;
 use Larisso\Voucher;
 use Larisso\SettingPoint;
+use Larisso\SettingVoucher;
 
 class VoucherController extends Controller
 {
@@ -68,4 +69,14 @@ class VoucherController extends Controller
 		}
 	}
 
+	public function getSettingVoucher()
+	{
+		$data = SettingVoucher::all();
+		
+		if (count($data) > 0) {
+			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
+		} else {
+			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
+		}
+	}
 }
