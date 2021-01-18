@@ -49,6 +49,7 @@ class OutletController extends Controller
 				'keterangan'		=> $request->keterangan,
 				'status'			=> $status,
 				'gambar_outlet'		=> $path,
+				'alamat'			=> $request->alamat
 			]);
 		} else {
 			$insert = Outlet::insert([
@@ -57,6 +58,7 @@ class OutletController extends Controller
 				'keterangan'		=> $request->keterangan,
 				'status'			=> $status,
 				'gambar_outlet'		=> "",
+				'alamat'			=> $request->alamat
 			]);
 		}
 
@@ -87,6 +89,7 @@ class OutletController extends Controller
 				'keterangan'		=> $request->keterangan,
 				'status'			=> $status,
 				'gambar_outlet'		=> $path,
+				'alamat'			=> $request->alamat
 			]);
 
 		} else {
@@ -94,7 +97,7 @@ class OutletController extends Controller
 				'nama_outlet'		=> $request->nama_outlet,
 				'keterangan'		=> $request->keterangan,
 				'status'			=> $status,
-				'gambar_outlet'		=> "",
+				'alamat'			=> $request->alamat
 			]);
 		}
 

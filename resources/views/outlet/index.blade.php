@@ -67,6 +67,14 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
+                                        <label class="form-label" for="email-address-1">Alamat Outlet</label>
+                                        <div class="form-control-wrap">
+                                            <input type="text" class="form-control" id="alamat" name="alamat">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
                                         <label class="form-label" for="email-address-1">Pilih Gambar Outlet</label>
                                         <div class="form-control-wrap">
                                           <div class="custom-file">
@@ -99,6 +107,7 @@
                 <th>Kode Outlet</th>
                 <th>Nama Outlet</th>
                 <th>Keterangan</th>
+                <th>Alamat</th>
                 <th>Status</th>
                 <th>Gambar Outlet</th>
                 <th>Action</th>
@@ -112,6 +121,7 @@
                 <td>{{$data->kd_outlet}}</td>
                 <td>{{$data->nama_outlet}}</td>
                 <td>{{$data->keterangan}}</td>
+                <td>{{$data->alamat}}</td>
                 @if($data->status == 1)
                 <td>Aktif</td>
                 @else
@@ -125,7 +135,7 @@
                     @endif
                 </td>
                 <td>
-                    <button type="submit" class="btn btn-warning" data-toggle="modal" data-target=".modal_input" onclick="ubahOutlet('{{$data->kd_outlet}}', '{{$data->nama_outlet}}', '{{$data->keterangan}}', '{{$data->status}}');">Ubah</button>
+                    <button type="submit" class="btn btn-warning" data-toggle="modal" data-target=".modal_input" onclick="ubahOutlet('{{$data->kd_outlet}}', '{{$data->nama_outlet}}', '{{$data->keterangan}}', '{{$data->status}}', '{{$data->alamat}}');">Ubah</button>
                     <a href="{{url('deleteOutlet/')}}/{{$data->kd_outlet}}" onclick="if (confirm('Delete selected item?')){return true;}else{event.stopPropagation(); event.preventDefault();};"><button type="submit" class="btn btn-danger">Hapus</button></a>
                     {{-- <a href="{{url('detailOutlet/')}}/{{$data->kd_outlet}}"><button type="submit" class="btn btn-success">Detail</button></a> --}}
                 </td>
@@ -143,6 +153,7 @@
     function setKodeOutlet() {
         $("#nama_outlet").val("");
         $("#keterangan").val("");
+        $("#alamat").val("");
         $('#status').removeAttr('checked');
         $.ajax({
             type:'GET',
@@ -157,7 +168,7 @@
         });
     }
 
-    function ubahOutlet($a, $b, $c, $d) {
+    function ubahOutlet($a, $b, $c, $d, $e) {
         $('#link_url').attr('action', '{{url('/ubahOutlet')}}');
         $("#kd_outlet").val($a);
         $("#nama_outlet").val($b);
@@ -167,6 +178,7 @@
         } else {
             $('#status').removeAttr('checked');
         }
+        $("#alamat").val($e);
     }
 
     var uploadField = document.getElementById("customFile");
