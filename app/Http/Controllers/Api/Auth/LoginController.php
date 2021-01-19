@@ -29,7 +29,7 @@ class LoginController extends Controller
 				'api_token' => bin2hex(openssl_random_pseudo_bytes(30))
 			]);
 			if ($data) {
-				$user = User::leftjoin('alamat', 'alamat.id_user', '=', 'users.id')->where('id', '=', Auth::user()->id)->first();
+				$user = User::select('users.id', 'users.name', 'users.email', 'users.api_token', 'users.otoritas', 'users.alamat', 'users.')->leftjoin('alamat', 'alamat.id_user', '=', 'users.id')->join('customer', 'users.id', '=', 'customer.id')->where('users.id', '=', Auth::user()->id)->first();
 				return response()->json(['user'	=> $user], 200);
 			}
 		} else {
