@@ -11,7 +11,7 @@ class BarangController extends Controller
 {
 	public function getBarang(Request $request)
 	{
-		$data = Barang::where('kd_kat_android', '=', $request->kd_kategori)->get();
+		$data = Barang::where('kd_kat_android', '=', $request->kd_kategori)->where('kd_outlet', '=', $request->kd_outlet)->get();
 
 		if (count($data) > 0) {
 			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
@@ -22,7 +22,7 @@ class BarangController extends Controller
 
 	public function getBarangByName(Request $request)
 	{
-		$data = Barang::where('nm_brg', 'like', '%'.$request->nm_brg.'%')->get();
+		$data = Barang::where('nm_brg', 'like', '%'.$request->nm_brg.'%')->where('kd_outlet', '=', $request->kd_outlet)->get();
 
 		if (count($data) > 0) {
 			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
@@ -48,9 +48,9 @@ class BarangController extends Controller
 	public function getKategori(Request $request)
 	{
 		if ($request->filter == "all") {
-			$data = KategoriAndroid::where('sts_tampil', '=', '1')->get();
+			$data = KategoriAndroid::where('sts_tampil', '=', '1')->where('kd_outlet', '=', $request->kd_outlet)->get();
 		} else {
-			$data = KategoriAndroid::take($request->filter)->where('sts_tampil', '=', '1')->get();
+			$data = KategoriAndroid::take($request->filter)->where('sts_tampil', '=', '1')->where('kd_outlet', '=', $request->kd_outlet)->get();
 		}
 
 		if (count($data) > 0) {
