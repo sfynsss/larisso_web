@@ -116,6 +116,7 @@ Route::post('inputPenawaran', 'PenawaranController@inputPenawaran');
 Route::get('/ongkircod', 'OngkirCodController@index');
 Route::post('/tambahOngkirCod', 'OngkirCodController@tambahOngkirCod');
 Route::post('/updateOngkirCod/{id}', 'OngkirCodController@updateOngkirCod');
+Route::post('/deleteOngkirCod/{id}', 'OngkirCodController@deleteOngkirCod');
 
 //outlet
 Route::get('/outlet', 'OutletController@index');

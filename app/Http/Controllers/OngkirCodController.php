@@ -49,4 +49,18 @@ class OngkirCodController extends Controller
 			return Redirect::back();
 		}
 	}
+
+	public function deleteOngkirCod($id)
+	{
+		$delete = OngkirCod::findOrFail($id);
+		$delete->delete();
+		if ($delete) {
+			Session::flash('success', "Data Berhasil Diubah !!!");
+			return Redirect::back();
+		} else {
+			Session::flash('error', "Data Gagal Diubah !!!");
+			return Redirect::back();
+		}
+		return redirect()->route('outlet');
+	}
 }

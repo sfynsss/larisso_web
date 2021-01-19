@@ -29,11 +29,17 @@
                         <div class="card-body">
                             <div class="form-body">
                                 <div class="row">
+
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="control-label text-left col-md-6">Harga 2km Pertama</label>
+                                            <label class="control-label text-left col-md-6">Status Aktif</label>
                                             <div class="col-md-6">
-                                                <input type="number" min="0" class="form-control" name="harga_awal" id="harga_awal" required >
+                                                <div class="form-control-wrap">
+                                                  <select class="form-select" required="" name="sts_aktif">
+                                                    <option value="1">Aktif</option>
+                                                    <option value="0">Non-Aktif</option>
+                                                  </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -47,11 +53,13 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label class="control-label text-left col-md-6"></label>
+                                            <label class="control-label text-left col-md-6">Harga 2km Pertama</label>
                                             <div class="col-md-6">
+                                                <input type="number" min="0" class="form-control" name="harga_awal" id="harga_awal" required >
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label class="control-label text-left col-md-6">Harga per Kilogram</label>
@@ -84,6 +92,7 @@
                     <th>Harga Awal</th>
                     <th>Harga per Km</th>
                     <th>Harga per Kg</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -95,9 +104,15 @@
                     <td>Rp.{{$data->harga_awal}}</td>
                     <td>Rp.{{$data->harga_per_km}}</td>
                     <td>Rp.{{$data->harga_per_kg}}</td>
+                    <td> 
+                        @if($data->sts_aktif == 1)
+                        <span class="amount">Aktif</span>
+                        @elseif($data->sts_aktif == 0)
+                        <span class="amount">Non-Aktif</span>
+                        @endif
                     <td>
                         <button type="submit" class="btn btn-warning">Ubah</button>
-                        <button type="submit" class="btn btn-danger">Hapus</button>
+                        <a href="/deleteOngkirCod/{{ $data->id }}" class="btn btn-danger">Hapus</a>
                     </td>
                 </tr>
                 @endforeach
