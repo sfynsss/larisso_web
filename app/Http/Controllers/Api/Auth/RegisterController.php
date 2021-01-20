@@ -69,10 +69,9 @@ class RegisterController extends Controller
 				'kategori'		=> $request->kd_kat,
 				'nm_cust'		=> $request->name,
 				'alm_cust'		=> $request->alamat,
-				'krd_limit'		=> 1000000,
 				'e_mail'		=> $request->email,
 				'hp'			=> $request->no_telp,
-				'top'			=> 30
+				'JNS_KELAMIN'	=> $request->jenis_kelamin
 			]);
 
 			if ($save) {
