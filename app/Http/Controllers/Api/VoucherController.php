@@ -10,6 +10,7 @@ use Larisso\Customer;
 use Larisso\Voucher;
 use Larisso\SettingPoint;
 use Larisso\SettingVoucher;
+use Illuminate\Support\Str;
 
 class VoucherController extends Controller
 {
@@ -82,30 +83,16 @@ class VoucherController extends Controller
 
 	public function tambahVoucher(Request $request)
 	{
-		$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
-        $randomString = ''; 
-        $index = "";
-
-        if ($('#banyak').val() > 1) {
-            $tmp = 3;
-        } else {
-            $tmp = 6;
-        }
-        for ($i = 0; $i < $tmp; $i++) { 
-            $index = Math.floor(Math.random() * 35) + 1;
-            $randomString += $characters[$index]; 
-        } 
-
 		$insert = Voucher::insert([
-			"kd_voucher"		=> $randomString,
+			"kd_voucher"		=> Str::random(10),
 			"kd_cust"			=> $request->kd_cust,
 			"nama_voucher"		=> $request->nama_voucher,
 			"nilai_voucher"		=> $request->nilai_voucher,
 			"tgl_berlaku_1"		=> $request->tgl_start,
 			"tgl_berlaku_2"		=> $request->tgl_end,
-			"sk"				=> $request->sk,
+			"sk"				=> "Nikmati ".$request->nama_voucher." tanpa minimum pembelian di semua outlet LaRisso",
 			"gambar"			=> $request->gambar,
-			"jenis_voucher"		=> "SEMUA",
+			"jns_voucher"		=> "SEMUA",
 			"status_voucher"	=> "AKTIF"
 		]);
 
