@@ -53,9 +53,6 @@
                             <li class="nk-menu-item">
                                 <a href="{{url('customer')}}" class="nk-menu-link"><span class="nk-menu-text">Customer</span></a>
                             </li>
-                            <li class="nk-menu-item">
-                                <a href="{{url('cabang')}}" class="nk-menu-link"><span class="nk-menu-text">Cabang</span></a>
-                            </li>
                         </ul>
                     </li>
 
@@ -66,9 +63,9 @@
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
-                                {{-- <a href="{{url('voucherGlobal')}}" class="nk-menu-link"><span class="nk-menu-text">E-Voucher</span></a> --}}
                                 <a href="{{url('settingVoucher')}}" class="nk-menu-link"><span class="nk-menu-text">Setting Voucher</span></a>
                                 <a href="{{url('settingPoint')}}" class="nk-menu-link"><span class="nk-menu-text">Setting Poin</span></a>
+                                <a href="{{url('voucherGlobal')}}" class="nk-menu-link"><span class="nk-menu-text">Voucher</span></a>
                             </li>
                         </ul>
                     </li>
