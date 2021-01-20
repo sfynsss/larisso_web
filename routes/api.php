@@ -73,6 +73,7 @@ Route::middleware('auth:api')->group(function () {
 
 	//voucher
 	Route::post('getVoucher', 'Api\VoucherController@getVoucher');
+	Route::post('tambahVoucher', 'Api\VoucherController@tambahVoucher');
 	Route::post('validasi', 'Api\VoucherController@validasi');
 	Route::post('countPointVoucher', 'Api\VoucherController@countPointVoucher');
 	Route::get('getSettingVoucher', 'Api\VoucherController@getSettingVoucher');

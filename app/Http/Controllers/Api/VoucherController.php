@@ -79,4 +79,45 @@ class VoucherController extends Controller
 			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
 		}
 	}
+
+	public function tambahVoucher(Request $request)
+	{
+		$characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
+        $randomString = ''; 
+        $index = "";
+
+        if ($('#banyak').val() > 1) {
+            $tmp = 3;
+        } else {
+            $tmp = 6;
+        }
+        for ($i = 0; $i < $tmp; $i++) { 
+            $index = Math.floor(Math.random() * 35) + 1;
+            $randomString += $characters[$index]; 
+        } 
+
+		$insert = Voucher::insert([
+			"kd_voucher"		=> $randomString,
+			"kd_cust"			=> $request->kd_cust,
+			"nama_voucher"		=> $request->nama_voucher,
+			"nilai_voucher"		=> $request->nilai_voucher,
+			"tgl_berlaku_1"		=> $request->tgl_start,
+			"tgl_berlaku_2"		=> $request->tgl_end,
+			"sk"				=> $request->sk,
+			"gambar"			=> $request->gambar,
+			"jenis_voucher"		=> "SEMUA",
+			"status_voucher"	=> "AKTIF"
+		]);
+
+		if ($insert) {
+			$update = Customer::where('kd_cust', '=', $request->kd_cust)->decrement('POINT_BL_INI', $request->ketentuan);
+			if ($update) {	
+				return response()->json(['message' => 'Voucher Berhasil Ditambahkan'], 200);
+			} else {	
+				return response()->json(['message' => 'Voucher Gagal Ditambahkan'], 401);
+			}
+		} else {
+			return response()->json(['message' => 'Voucher Gagal Ditambahkan'], 401);
+		}
+	}
 }
