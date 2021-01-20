@@ -37,7 +37,8 @@ class PenjualanController extends Controller
 				"harga_jl"			=> $request->harga_jl,
 				"qty"				=> $request->qty,
 				"gambar"			=> $request->gambar,
-				"kategori_barang"	=> $request->kategori
+				"kategori_barang"	=> $request->kategori, 
+				"kd_outlet"			=> $request->kd_outlet
 			]);
 
 			if ($insert) {
