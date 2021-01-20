@@ -82,12 +82,10 @@ class CustomerController extends Controller
                 'kategori'      => $request->kategori,
                 'nm_cust'       => $request->name,
                 'alm_cust'      => $request->alamat,
-                'krd_limit'     => $request->kredit_limit,
                 'e_mail'        => $request->email,
                 'tgl_lhr'       => $request->tgl_lahir,
                 'hp'            => $request->no_telp,
-                'jns_kelamin'   => $request->jenis_kelamin,
-                'top'           => $request->top
+                'jns_kelamin'   => $request->jenis_kelamin
             ]);
 
             if ($data) {

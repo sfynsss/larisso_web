@@ -32,7 +32,7 @@ class OutletController extends Controller
 		$kd_outlet = $request->kd_outlet."";
 		if (! Schema::hasColumn('customer', $kd_outlet)) {
 			Schema::table('customer', function (Blueprint $table) use ($kd_outlet) {
-				$table->tinyInteger($kd_outlet)->default(0);
+				$table->tinyInteger($kd_outlet)->default(1);
 			});
 		} else {
 			

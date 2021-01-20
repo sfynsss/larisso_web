@@ -107,7 +107,7 @@
                                     </div>
                                 </div>
                                 <!--/span-->
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="form-group row">
                                         <label class="control-label text-left col-md-4">Kredit Limit</label>
                                         <div class="col-md-8">
@@ -115,9 +115,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--/span-->
+                                <!--/span--> --}}
                             </div>
-                            <!--/row-->
+                            {{-- <!--/row-->
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group row">
@@ -129,7 +129,7 @@
                                 </div>
                                 <!--/span-->
                             </div>
-                            <!--/row-->
+                            <!--/row--> --}}
                         </div>
                     </div>
                 </div>
