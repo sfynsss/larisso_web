@@ -17,3 +17,4 @@ class KategoriAndroid extends Model
 	{
 		return $this->belongsTo(KategoriOutlet::class, 'kd_kat_android', 'id');
 	}
+}
