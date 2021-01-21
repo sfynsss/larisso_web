@@ -65,9 +65,8 @@
 							<a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown" data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>
 							<div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
 								<ul class="link-list-plain">
-									<li><a href="#" class="text-primary">Edit</a></li>
-									<li><a href="{{url('detail_barang')}}/{{$data->kd_kat_android}}" class="text-primary">View</a></li>
-									<li><a href="#" class="text-danger">Remove</a></li>
+									<li><a href="#" class="text-primary">Ubah</a></li>
+									<li><a href="#" class="text-danger">Hapus</a></li>
 								</ul>
 							</div>
 						</div>
