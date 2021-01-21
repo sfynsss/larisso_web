@@ -7,6 +7,7 @@ use Larisso\Imports\ImportBarang;
 use Illuminate\Http\Request;
 use Larisso\KategoriAndroid;
 use Larisso\Barang;
+use Larisso\Outlet;
 use Excel;
 
 class BarangController extends Controller
@@ -91,11 +92,13 @@ class BarangController extends Controller
 	{
 		if (Auth::user()->kd_outlet == "all") {
 			$data = KategoriAndroid::all();
+			$outlet = Outlet::all();
 		} else {
 			$data = KategoriAndroid::where('kd_outlet', '=', Auth::user()->kd_outlet)->get();
+			$outlet = Outlet::where('kd_outlet', '=', Auth::user()->kd_outlet)->get();
 		}
 
-		return view('barang.kategori', compact('data'));
+		return view('barang.kategori', compact('data', 'outlet'));
 	}	
 
 	public function edit_kategori(Request $request)

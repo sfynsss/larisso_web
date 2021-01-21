@@ -17,9 +17,9 @@
                 <div class="form-control-wrap">
                   <select class="form-select" required name="kd_outlet">
                     <option disabled="true" selected="none">Pilih Salah Satu</option>
-                    <option value="OU010001">LaRisso Ambulu</option>
-                    <option value="OU010002">Bellio</option>
-                    <option value="OU010003">Labaku</option>
+                    @foreach($outlet as $outlet)
+                    <option value="{{$outlet->kd_outlet}}">{{$outlet->nama_outlet}}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>
