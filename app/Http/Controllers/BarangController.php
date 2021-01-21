@@ -103,51 +103,75 @@ class BarangController extends Controller
 
 	public function edit_kategori(Request $request)
 	{
-		$path = $request->file('gambar')->store(
-			'kategori_barang', 'public'
-		);
+		if ($request->gambar != "") {
+			$path = $request->file('gambar')->store(
+				'kategori_barang', 'public'
+			);
 
-		if ($path) {
+			if ($path) {
+				$update = KategoriAndroid::where('kd_kat_android', '=', $request->kd_kategori_edit)->update([
+					"nm_kat_android"	=> $request->nm_kategori_edit,
+					"sts_tampil"		=> $request->status,
+					"gbr_kat_android"	=> $path,
+					"kd_outlet"			=> $request->kd_outlet
+				]);
+			} else {
+				return back()->with('error','Harap Periksa Kembali file inputan Anda !!!');
+			}
+		} else {
 			$update = KategoriAndroid::where('kd_kat_android', '=', $request->kd_kategori_edit)->update([
 				"nm_kat_android"	=> $request->nm_kategori_edit,
 				"sts_tampil"		=> $request->status,
-				"gbr_kat_android"	=> $path,
 				"kd_outlet"			=> $request->kd_outlet
 			]);
-
-			if ($update) {
-				return back()->with('success','Data Barang Berhasil Diubah');
-			} else {
-				return back()->with('error','Data Barang Gagal Diubah');
-			}
+		}
+		if ($update) {
+			return back()->with('success','Data Barang Berhasil Diubah');
 		} else {
-			return back()->with('error','Harap Periksa Kembali file inputan Anda !!!');
+			return back()->with('error','Data Barang Gagal Diubah');
 		}
 	}
 
 	public function inputKategori(Request $request)
 	{
-		$path = $request->file('gambar')->store(
-			'kategori_barang', 'public'
-		);
+		if ($request->gambar != "") {
+			$path = $request->file('gambar')->store(
+				'kategori_barang', 'public'
+			);
 
-		if ($path) {
+			if ($path) {
+				$insert = KategoriAndroid::insert([
+					"kd_outlet"			=> $request->kd_outlet,
+					"kd_kat_android"	=> $request->kd_kategori,
+					"nm_kat_android"	=> $request->nm_kategori,
+					"sts_tampil"		=> $request->status,
+					"sts_point"			=> 0,
+					"gbr_kat_android"	=> $path
+				]);
+
+				if ($insert) {
+					return back()->with('success','Data Kategori Berhasil Disimpan');
+				} else {
+					return back()->with('error','Data Kategori Gagal Disimpan');
+				}
+			} else {
+				return back()->with('error','Harap Periksa Kembali file inputan Anda !!!');
+			}
+		} else {
 			$insert = KategoriAndroid::insert([
 				"kd_outlet"			=> $request->kd_outlet,
 				"kd_kat_android"	=> $request->kd_kategori,
 				"nm_kat_android"	=> $request->nm_kategori,
 				"sts_tampil"		=> $request->status,
 				"sts_point"			=> 0,
-				"gbr_kat_android"	=> $path
+				"gbr_kat_android"	=> ""
 			]);
+		}
 
-			if ($insert) {
-				return back()->with('success','Data Kategori Berhasil Disimpan');
-			} else {
-				return back()->with('error','Data Kategori Gagal Disimpan');
-			}
+		if ($insert) {
+			return back()->with('success','Data Kategori Berhasil Disimpan');
 		} else {
-			return back()->with('error','Harap Periksa Kembali file inputan Anda !!!');
+			return back()->with('error','Data Kategori Gagal Disimpan');
 		}
 
 	}
