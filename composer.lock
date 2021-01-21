@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6697e3849fb0db1460f87399f6b9c593",
+    "content-hash": "ea389dfa87d18a5fefed8a2c3766ccbd",
     "packages": [
         {
             "name": "brozot/laravel-fcm",

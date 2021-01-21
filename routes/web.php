@@ -131,3 +131,6 @@ Route::get('/deleteOutlet/{id}', 'OutletController@deleteOutlet');
 Route::get('/detailOutlet/{id}', 'OutletController@detailOutlet');
 Route::post('/tambahKategoriOutlet', 'OutletController@tambahKategoriOutlet');
 Route::get('/deleteKategoriOutlet/{id}', 'OutletController@deleteKategoriOutlet');
+
+//pembayaran
+Route::get('/getStatusPembayaran/{id}', 'PembayaranController@completed');

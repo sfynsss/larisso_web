@@ -20,52 +20,17 @@ class PembayaranController extends Controller
 		}
 	}
 
-	public function completed(Request $request)
+	public function completed($id)
 	{
-		// $order_id = $request->query('order_id');
-		// $save = MstJual::where('no_ent', '=', $order_id)->update([
-		// 	"sts_byr"	=> 1,
-		// ]);
+		// $data = str_replace('-', '/', $id);
+		// print_r($data);
+        // try {
+        // } catch (\Exception $e) {
+        //     return 'error';
+        // }
+        $get_transaction_status = \Midtrans\Transaction::status("INVJ0121/00004/00000001");
+        var_dump($get_transaction_status);
 
-		// if ($save) {
-		// 	return response()->json(['message' => 'Ubah Status MST Jual Berhasil'], 200);
-		// } else {
-		// 	return response()->json(['message' => 'Ubah Status MST Jual Gagal'], 401);
-		// }
-
-		$notif = new \Midtrans\Notification();
-
-		$transaction = $notif->transaction_status;
-		$fraud = $notif->fraud_status;
-
-		error_log("Order ID $notif->order_id: "."transaction status = $transaction, fraud staus = $fraud");
-
-		if ($transaction == 'capture') {
-			if ($fraud == 'challenge') {
-      // TODO Set payment status in merchant's database to 'challenge'
-			}
-			else if ($fraud == 'accept') {
-      // TODO Set payment status in merchant's database to 'success'
-				$save = MstJual::where('no_ent', '=', $notif->order_id)->update([
-					"sts_byr"	=> 1,
-				]);
-			}
-		}else if ($transaction == 'settlement') {
-			// TODO set payment status in merchant's database to 'Settlement'
-			$save = MstJual::where('no_ent', '=', $notif->order_id)->update([
-				"sts_byr"	=> 1,
-			]);
-		} 
-		else if ($transaction == 'cancel') {
-			if ($fraud == 'challenge') {
-      // TODO Set payment status in merchant's database to 'failure'
-			}
-			else if ($fraud == 'accept') {
-      // TODO Set payment status in merchant's database to 'failure'
-			}
-		}
-		else if ($transaction == 'deny') {
-      // TODO Set payment status in merchant's database to 'failure'
-		}
+        // return $get_transaction_status;
 	}
 }

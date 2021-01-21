@@ -6,6 +6,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Veritrans\Veritrans;
 
 class Controller extends BaseController
 {
@@ -14,7 +15,7 @@ class Controller extends BaseController
 	protected function initPaymentGateway()
 	{
     	// Set your Merchant Server Key
-		\Midtrans\Config::$serverKey = env('MIDTRANS_SERVERKEY');
+		\Midtrans\Config::$serverKey = 'SB-Mid-server-R42h7zBQZua-ZwUg_PqPX9eX';
 // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
 		\Midtrans\Config::$isProduction = false;
 // Set sanitization on (default)
