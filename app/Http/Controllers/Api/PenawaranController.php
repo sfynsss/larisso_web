@@ -8,7 +8,7 @@ use Larisso\Penawaran;
 
 class PenawaranController extends Controller
 {
-  public function index(Request $request)
+  public function getPenawaran(Request $request)
  	{
  		$data = Penawaran::all();
  

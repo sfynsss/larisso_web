@@ -11,7 +11,7 @@
             </div><!-- .nk-block-head-content -->
             <div class="nk-block-head-content">
                 <div class="toggle-wrap nk-block-tools-toggle">
-                    <button type="button" class="btn btn-primary float-right" data-toggle="modal"  data-target=".bs-example-modal-lg">TAMBAH DATA</button> &nbsp
+                    <button type="button" class="btn btn-primary float-right" data-toggle="modal"  data-target=".bs-example-modal-lg" onclick="setPenawaran();">TAMBAH DATA</button> &nbsp
                     {{-- <a href="{{url('/sinkronisasi')}}"><button type="button" class="btn btn-success float-right" style="margin-right: 10px;">SINKRONISASI</button></a> --}}
                 </div>
             </div><!-- .nk-block-head-content -->
@@ -24,19 +24,24 @@
                     <th scope="col">ID Penawaran</th>
                     <th scope="col">Nama Penawaran</th>
                     <th scope="col">Gambar</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody class="tb-odr-body">
                 @foreach($data as $data)
                 <tr class="tb-odr-item">
-                    <td>{{$data->id_penawaran}}</td>
+                    <td>{{$data->id}}</td>
                     <td>{{$data->penawaran}}</td>
                     <td>
                       @if($data->gambar == "")
-          						<span class="badge badge-danger">Data Kosong</span>
-          						@else
-          						<img src="{{asset('storage')}}/{{$data->gambar}}" width="200" height="75">
-          						@endif
+                                <span class="badge badge-danger">Data Kosong</span>
+                                @else
+                                <img src="{{asset('storage')}}/{{$data->gambar}}" width="200" height="75">
+                                @endif
+                    </td>
+                    <td>
+                    <button type="submit" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="updatePenawaran('{{$data->id}}', '{{$data->penawaran}}','{{$data->gambar_penawaran}}');">Ubah</button>
+                        <a href="/deletePenawaran/{{ $data->id }}" class="btn btn-danger">Hapus</a>
                     </td>
                 </tr>
                 @endforeach
@@ -44,4 +49,38 @@
         </table>
     </div><!-- .card-preview -->
 </div><!-- nk-block -->
+@endsection
+
+@section('script')
+<script>
+    function setPenawaran() {
+        $("#penawaran").val("");
+        $.ajax({
+            type:'GET',
+            url:'/api/getPenawaran',
+            headers: {
+                "Accept":"application/json",
+                "Authorization":"Bearer {{Auth::user()->api_token}}"
+            },
+            success:function(data){
+                $("input[name=id]").val(data);
+            }
+        });
+    }
+
+    function updatePenawaran($a, $b) {
+        $('#link_url').attr('action', '{{url('/updatePenawaran')}}');
+        $("#id_penawaran").val($a);
+        $("#penawaran").val($b);
+    }
+
+    var uploadField = document.getElementById("customFile");
+
+    uploadField.onchange = function() {
+        if(this.files[0].size > 50000){
+         alert("File is too big!");
+         this.value = "";
+     };
+ };
+</script>
 @endsection

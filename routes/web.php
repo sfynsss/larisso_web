@@ -110,6 +110,8 @@ Route::get('/send/email', 'HomeController@mail');
 //setting
 Route::get('/penawaran', 'PenawaranController@index');
 Route::post('inputPenawaran', 'PenawaranController@inputPenawaran');
+Route::post('/updatePenawaran', 'PenawaranController@updatePenawaran');
+Route::get('/deletePenawaran/{id}', 'PenawaranController@deletePenawaran');
 //endofSetting
 
 //ongkir cod

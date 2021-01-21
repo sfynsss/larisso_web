@@ -1,21 +1,22 @@
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-dialog-top modal-lg">
-        <form action="{{url('/inputPenawaran')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+        <form action="{{url('/inputPenawaran')}}" id="link_url" name="link_url" method="post" class="form-horizontal" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myLargeModalLabel">Form Tambah Penawaran</h4>
+                    <h4 class="modal-title" id="myLargeModalLabel">Form Penawaran</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="form-body">
+                             <input type="text" name="id_penawaran" id="id_penawaran" hidden>
                             <div class="row gy-4">
                                 <div class="col-sm-6">
                                   <div class="form-group">
                                     <label class="form-label" for="default-01">Nama Penawaran</label>
                                     <div class="form-control-wrap">
-                                        <input type="text" class="form-control" id="penawaran" name="penawaran">
+                                        <input type="text" class="form-control" required id="penawaran" name="penawaran">
                                   </div>
                               </div>
                           </div>
