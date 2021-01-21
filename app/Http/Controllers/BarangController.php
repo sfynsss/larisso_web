@@ -111,7 +111,8 @@ class BarangController extends Controller
 			$update = KategoriAndroid::where('kd_kat_android', '=', $request->kd_kategori_edit)->update([
 				"nm_kat_android"	=> $request->nm_kategori_edit,
 				"sts_tampil"		=> $request->status,
-				"gbr_kat_android"	=> $path
+				"gbr_kat_android"	=> $path,
+				"kd_outlet"			=> $request->kd_outlet
 			]);
 
 			if ($update) {
