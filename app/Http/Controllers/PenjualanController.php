@@ -19,7 +19,7 @@ class PenjualanController extends Controller
 
     public function index()
     {
-    	$data = VwMstJual::join('customer', 'customer.id', '=', 'id_user')->get();
+    	$data = MstJual::join('customer', 'customer.id', '=', 'id_user')->get();
     	// dd($data);
     	return view('penjualan.penjualan', compact('data'));
     }
