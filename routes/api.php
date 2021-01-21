@@ -123,4 +123,7 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('updateStatusVoucher', 'Api\VoucherController@updateStatusVoucher');
 	Route::get('getCustomerOffline', 'Api\CustomerController@getCustomerOffline');
 	//offline
+
+	//pembayaran
+	Route::get('getStatusPembayaran/{id}', 'Api\PembayaranController@get_transaction_status_midtrans');
 });
