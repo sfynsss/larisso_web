@@ -91,10 +91,10 @@ class BarangController extends Controller
 	public function kategori_barang()
 	{
 		if (Auth::user()->kd_outlet == "all") {
-			$data = KategoriAndroid::all();
+			$data = KategoriAndroid::join('outlet', 'outlet.kd_outlet', '=', 'kat_android.kd_outlet')->get();
 			$outlet = Outlet::all();
 		} else {
-			$data = KategoriAndroid::where('kd_outlet', '=', Auth::user()->kd_outlet)->get();
+			$data = KategoriAndroid::join('outlet', 'outlet.kd_outlet', '=', 'kat_android.kd_outlet')->where('kat_android.kd_outlet', '=', Auth::user()->kd_outlet)->get();
 			$outlet = Outlet::where('kd_outlet', '=', Auth::user()->kd_outlet)->get();
 		}
 

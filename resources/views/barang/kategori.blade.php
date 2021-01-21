@@ -32,6 +32,9 @@
 						<span class="tb-odr-total">Status Tampil</span>
 					</th>
 					<th>
+						<span class="tb-odr-total">Outlet</span>
+					</th>
+					<th>
 						<span class="tb-odr-total">Gambar</span>
 					</th>
 					<th class="tb-odr-action">&nbsp;</th>
@@ -56,6 +59,9 @@
 							<span class="amount">Tidak Tampil</span>
 							@endif
 						</span>
+					</td>
+					<td>
+						<span class="tb-odr-date">{{$data->nama_outlet}}</span>
 					</td>
 					<td>
 						<img src="{{asset('storage')}}/{{$data->gbr_kat_android}}" width="100" height="100">
