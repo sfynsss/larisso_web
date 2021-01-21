@@ -35,10 +35,11 @@ class OngkirCodController extends Controller
 
 	public function updateOngkirCod(Request $request)
 	{
-		$save = OngkirCod::where('id', '=', $request->id)->update([
+		$save = OngkirCod::where('id', '=', $request->id_ongkir)->update([
 			"harga_awal"	=> $request->harga_awal,
 			"harga_per_km"	=> $request->harga_per_km,
-			"harga_per_kg"	=> $request->harga_per_kg
+			"harga_per_kg"	=> $request->harga_per_kg,
+			"sts_aktif"		=> $request->sts_aktif
  		]);
 
 		if ($save) {
@@ -61,6 +62,6 @@ class OngkirCodController extends Controller
 			Session::flash('error', "Data Gagal Diubah !!!");
 			return Redirect::back();
 		}
-		return redirect()->route('outlet');
+		return redirect()->route('ongkircod');
 	}
 }

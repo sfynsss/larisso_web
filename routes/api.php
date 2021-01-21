@@ -105,7 +105,7 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('getNotif', 'Api\NotificationController@getNotif');
 	//endOfNotification
 
-	//Ongkir COD
+	//OngkirCod
 	Route::get('getOngkirCod', 'Api\OngkirCodController@getOngkirCod');
 
 	//Penawaran

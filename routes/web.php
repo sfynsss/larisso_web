@@ -115,8 +115,10 @@ Route::post('inputPenawaran', 'PenawaranController@inputPenawaran');
 //ongkir cod
 Route::get('/ongkircod', 'OngkirCodController@index');
 Route::post('/tambahOngkirCod', 'OngkirCodController@tambahOngkirCod');
-Route::post('/updateOngkirCod/{id}', 'OngkirCodController@updateOngkirCod');
-Route::post('/deleteOngkirCod/{id}', 'OngkirCodController@deleteOngkirCod');
+Route::get('/editOngkirCod/{id}', 'OngkirCodController@editOngkirCod');
+Route::post('/updateOngkirCod', 'OngkirCodController@updateOngkirCod');
+Route::get('/deleteOngkirCod/{id}', 'OngkirCodController@deleteOngkirCod');
+
 
 //outlet
 Route::get('/outlet', 'OutletController@index');
