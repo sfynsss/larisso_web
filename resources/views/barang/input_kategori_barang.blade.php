@@ -11,6 +11,21 @@
         </div>
         <div class="modal-body">
           <div class="row gy-4">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="form-label" for="default-01">Outlet</label>
+                <div class="form-control-wrap">
+                  <select class="form-select" required name="kd_outlet">
+                    <option disabled="true" selected="none">Pilih Salah Satu</option>
+                    <option value="OU010001">LaRisso Ambulu</option>
+                    <option value="OU010002">Bellio</option>
+                    <option value="OU010003">Labaku</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row gy-4">
             <div class="col-sm-6">
               <div class="form-group">
                 <label class="form-label" for="default-01">Kode Kategori</label>

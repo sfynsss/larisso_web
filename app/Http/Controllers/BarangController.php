@@ -129,9 +129,11 @@ class BarangController extends Controller
 
 		if ($path) {
 			$insert = KategoriAndroid::insert([
+				"kd_outlet"			=> $request->kd_outlet,
 				"kd_kat_android"	=> $request->kd_kategori,
 				"nm_kat_android"	=> $request->nm_kategori,
 				"sts_tampil"		=> $request->status,
+				"sts_point"			=> 0,
 				"gbr_kat_android"	=> $path
 			]);
 
