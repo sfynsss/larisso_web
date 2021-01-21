@@ -133,4 +133,7 @@ Route::post('/tambahKategoriOutlet', 'OutletController@tambahKategoriOutlet');
 Route::get('/deleteKategoriOutlet/{id}', 'OutletController@deleteKategoriOutlet');
 
 //pembayaran
-Route::get('/getStatusPembayaran/{id}', 'PembayaranController@completed');
+Route::post('/getStatusPembayaran', 'PembayaranController@get_transaction_status');
+
+// Cron job Get Paid
+Route::get('/cronjob_pembayaran', 'PembayaranController@get_paid')->name('getpaid');

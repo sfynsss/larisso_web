@@ -170,7 +170,8 @@ class PenjualanController extends Controller
 			'jns_pengiriman'	=> $request->jns_pengiriman,
 			'no_resi'			=> $request->no_resi,
 			'sts_byr'			=> $request->sts_bayar,
-			'sts_jual'			=> $request->sts_jual
+			'sts_jual'			=> $request->sts_jual,
+			'transaction_id'	=> $request->transaction_id
 		]);
 
 		$tmp_kd_brg			= explode(";", $request->kd_brg);

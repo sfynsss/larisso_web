@@ -125,5 +125,5 @@ Route::middleware('auth:api')->group(function () {
 	//offline
 
 	//pembayaran
-	Route::get('getStatusPembayaran/{id}', 'Api\PembayaranController@get_transaction_status_midtrans');
+	Route::get('getStatusPembayaran', 'PembayaranController@get_transaction_status');
 });
