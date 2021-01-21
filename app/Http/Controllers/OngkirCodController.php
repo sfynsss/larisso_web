@@ -21,7 +21,8 @@ class OngkirCodController extends Controller
 		$save = OngkirCod::insert([
 			"harga_awal"		=> $request->harga_awal,
 			"harga_per_km"		=> $request->harga_per_km,
-			"harga_per_kg"		=> $request->harga_per_kg
+			"harga_per_kg"		=> $request->harga_per_kg,
+			"sts_aktif"			=> $request->sts_aktif
 		]);
 
 		if ($save) {
