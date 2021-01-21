@@ -111,7 +111,7 @@
                 </td>
                 <td>
                     <button type="submit" class="btn btn-warning" data-toggle="modal" data-target=".modal_input" onclick="updateOngkirCod('{{$data->id}}', '{{$data->sts_aktif}}','{{$data->harga_awal}}', '{{$data->harga_per_km}}', '{{$data->harga_per_kg}}');">Ubah</button>
-                    <a href="/deleteOngkirCod/{{ $data->id }}" class="btn btn-danger">Hapus</a>
+                    <a href="/deleteOngkirCod/{{ $data->id }}" class="btn btn-danger" onclick="if (confirm('Hapus Item Terpilih?')){return true;}else{event.stopPropagation(); event.preventDefault();};">Hapus</a>
                 </td>
             </tr>
             @endforeach
