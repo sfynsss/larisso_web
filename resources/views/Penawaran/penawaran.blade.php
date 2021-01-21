@@ -41,7 +41,7 @@
                     </td>
                     <td>
                     <button type="submit" class="btn btn-warning" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="updatePenawaran('{{$data->id}}', '{{$data->penawaran}}','{{$data->gambar_penawaran}}');">Ubah</button>
-                        <a href="/deletePenawaran/{{ $data->id }}" class="btn btn-danger">Hapus</a>
+                        <a href="/deletePenawaran/{{ $data->id }}" class="btn btn-danger" onclick="if (confirm('Hapus Item Terpilih?')){return true;}else{event.stopPropagation(); event.preventDefault();};">Hapus</a>
                     </td>
                 </tr>
                 @endforeach
