@@ -13,6 +13,7 @@ use Larisso\VwMstJual;
 use Larisso\MstOrderJual;
 use Larisso\DetOrderJual;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class PenjualanController extends Controller
 {
@@ -207,7 +208,7 @@ class PenjualanController extends Controller
 
 	public function getDataTransaksi(Request $request)
 	{
-		$data = VwMstJual::where('id_user', '=', $request->id)->get();
+		$data = MstJual::select('mst_jual.no_ent', 'mst_jual.id_user', 'mst_jual.sts_byr', 'mst_jual.tanggal', 'mst_jual.jns_pengiriman', 'mst_jual.total', DB::raw('SUM(det_jual.jumlah) AS jumlah'))->join('det_jual', 'det_jual.no_ent', '=', 'mst_jual.no_ent')->where('mst_jual.id_user', '=', $request->id)->groupby('mst_jual.no_ent', 'mst_jual.id_user', 'mst_jual.sts_byr', 'mst_jual.tanggal', 'mst_jual.jns_pengiriman', 'mst_jual.total')->get();
 
 		if (count($data) > 0) {
 			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
