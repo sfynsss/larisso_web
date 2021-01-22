@@ -12,6 +12,7 @@ use Larisso\Customer;
 use Larisso\VwMstJual;
 use Larisso\MstOrderJual;
 use Larisso\DetOrderJual;
+use Larisso\Voucher;
 use Illuminate\Support\Facades\Auth;
 use DB;
 
@@ -174,6 +175,12 @@ class PenjualanController extends Controller
 			'sts_jual'			=> $request->sts_jual,
 			'transaction_id'	=> $request->transaction_id
 		]);
+
+		if ($request->kd_voucher != "") {
+			$update = Voucher::where('kd_voucher', '=', $request->kd_voucher)->update([
+				'status_voucher'	=> 'DIGUNAKAN'
+			]);
+		}
 
 		$tmp_kd_brg			= explode(";", $request->kd_brg);
 		$tmp_nm_brg			= explode(";", $request->nm_brg);
