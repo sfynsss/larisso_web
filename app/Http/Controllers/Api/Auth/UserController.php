@@ -5,6 +5,7 @@ namespace Larisso\Http\Controllers\Api\Auth;
 use Illuminate\Http\Request;
 use Larisso\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use Larisso\Mail\EmailActivation;
 use Larisso\Mail\ForgetPassword;
 use Larisso\User;
 use Larisso\Alamat;
@@ -105,6 +106,21 @@ class UserController extends Controller
 		}
 		// print_r($tmp);
 		return response()->json($tmp, 200);
+	}
+
+	public function resendAktifasi(Request $request)
+	{
+		$user = User::where('email', '=', $request->email)->first();
+
+		if ($user) {
+			$name = $user['name'];
+			$token = $user['activation_token'];
+			Mail::to($user['email'])->send(new EmailActivation($name, $token));
+
+			return response()->json(['message' => 'Silahkan cek email Anda untuk mendapatkan password terbaru'], 200);
+		} else {
+			return response()->json(['message' => 'Reset password gagal'], 401);
+		}
 	}
 
 }

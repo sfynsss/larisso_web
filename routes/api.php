@@ -20,6 +20,8 @@ Route::post('registrasi', 'Api\RegistrasiController@registrasi');
 Route::post('validator', 'Api\Auth\RegisterController@validator');
 Route::post('aktifasi', 'Api\Auth\RegisterController@aktifasi');
 Route::post('forgetPassword', 'Api\Auth\UserController@forgetPassword');
+//resend kode aktifasi
+Route::post('resendAktifasi', 'Api\Auth\UserController@resendAktifasi');	
 
 Route::put('putStatusMstJual/{no_ent}', 'Api\PenjualanController@putStatusMstJual');
 
@@ -127,6 +129,4 @@ Route::middleware('auth:api')->group(function () {
 	//pembayaran
 	Route::get('getStatusPembayaran', 'PembayaranController@get_transaction_status');
 
-	//resend kode aktifasi
-	Route::post('resendAktifasi', 'Api\Auth\UserController@resendAktifasi');	
 });

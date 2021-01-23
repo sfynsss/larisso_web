@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'mail.larisso.co.id'),
+    'host' => env('MAIL_HOST', 'medusa.jagoanhosting.com'),
 
     /*
     |--------------------------------------------------------------------------
