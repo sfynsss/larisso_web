@@ -41,6 +41,10 @@ class PembayaranController extends Controller
 					$update = MstJual::where('no_ent', $value->no_ent)->update([
 						'sts_byr'	=> 1
 					]);
+				} else if ($return->transaction_status == "failur") {
+					$update = MstJual::where('no_ent', $value->no_ent)->update([
+						'sts_byr'	=> 2
+					]);
 				}
 			}
 		}
