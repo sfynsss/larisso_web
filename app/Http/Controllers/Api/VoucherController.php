@@ -84,7 +84,7 @@ class VoucherController extends Controller
 	public function tambahVoucher(Request $request)
 	{
 		$insert = Voucher::insert([
-			"kd_voucher"		=> strtoupper(Str::random(10)),
+			"kd_voucher"		=> substr(str_shuffle("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 6),
 			"kd_cust"			=> $request->kd_cust,
 			"nama_voucher"		=> $request->nama_voucher,
 			"nilai_voucher"		=> $request->nilai_voucher,

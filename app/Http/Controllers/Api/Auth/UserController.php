@@ -9,6 +9,7 @@ use Larisso\Mail\EmailActivation;
 use Larisso\Mail\ForgetPassword;
 use Larisso\User;
 use Larisso\Alamat;
+use DB;
 
 class UserController extends Controller
 {
@@ -110,12 +111,14 @@ class UserController extends Controller
 
 	public function resendAktifasi(Request $request)
 	{
-		$user = User::where('email', '=', $request->email)->first();
+		$user = tap(DB::table('users')->where('email', '=', $request->email))->update([
+			'activation_token' => substr(str_shuffle("0123456789"), 0, 4)
+		])->first();
 
 		if ($user) {
-			$name = $user['name'];
-			$token = $user['activation_token'];
-			Mail::to($user['email'])->send(new EmailActivation($name, $token));
+			$name = $user->name;
+			$token = $user->activation_token;
+			Mail::to($user->email)->send(new EmailActivation($name, $token));
 
 			return response()->json(['message' => 'Silahkan cek email Anda untuk mendapatkan OTP terbaru'], 200);
 		} else {
