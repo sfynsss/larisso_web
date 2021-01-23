@@ -173,7 +173,10 @@ class PenjualanController extends Controller
 			'no_resi'			=> $request->no_resi,
 			'sts_byr'			=> $request->sts_bayar,
 			'sts_jual'			=> $request->sts_jual,
-			'transaction_id'	=> $request->transaction_id
+			'transaction_id'	=> $request->transaction_id,
+			'va_number'			=> $request->no_va,
+			'bank_name'			=> $request->payment_bank,
+			'payment_type'		=> $request->payment_type
 		]);
 
 		if ($request->kd_voucher != "") {
