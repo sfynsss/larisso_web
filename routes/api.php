@@ -126,4 +126,7 @@ Route::middleware('auth:api')->group(function () {
 
 	//pembayaran
 	Route::get('getStatusPembayaran', 'PembayaranController@get_transaction_status');
+
+	//resend kode aktifasi
+	Route::post('resendAktifasi', 'Api\Auth\UserController@resendAktifasi');	
 });

@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'mail.asarasa.id'),
+    'host' => env('MAIL_HOST', 'mail.larisso.co.id'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'no_reply@asarasa.id'),
+        'address' => env('MAIL_FROM_ADDRESS', 'no_reply@larisso.co.id'),
         'name' => env('MAIL_FROM_NAME', 'Larisso Grup'),
     ],
 
