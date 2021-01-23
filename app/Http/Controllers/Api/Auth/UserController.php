@@ -117,7 +117,7 @@ class UserController extends Controller
 			$token = $user['activation_token'];
 			Mail::to($user['email'])->send(new EmailActivation($name, $token));
 
-			return response()->json(['message' => 'Silahkan cek email Anda untuk mendapatkan password terbaru'], 200);
+			return response()->json(['message' => 'Silahkan cek email Anda untuk mendapatkan OTP terbaru'], 200);
 		} else {
 			return response()->json(['message' => 'Reset password gagal'], 401);
 		}
