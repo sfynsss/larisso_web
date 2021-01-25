@@ -36,10 +36,10 @@
 						<span class="tb-odr-total">Stok</span>
 					</th>
 					<th>
-						<span class="tb-odr-status d-none d-md-inline-block">Harga Jual</span>
+						<span class="tb-odr-status d-none d-md-inline-block">Harga Beli</span>
 					</th>
 					<th>
-						<span class="tb-odr-status d-none d-md-inline-block">Harga Beli</span>
+						<span class="tb-odr-status d-none d-md-inline-block">Harga Jual</span>
 					</th>
 					<th>
 						<span class="tb-odr-status d-none d-md-inline-block">Gambar</span>
