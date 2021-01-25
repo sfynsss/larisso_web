@@ -132,7 +132,7 @@
 	var uploadField = document.getElementById("customFile");
 
 	uploadField.onchange = function() {
-		if(this.files[0].size > 50000){
+		if(this.files[0].size > 200000){
 			alert("File is too big!");
 			this.value = "";
 		};
