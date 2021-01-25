@@ -40,7 +40,7 @@ class BarangController extends Controller
 
 	public function edit_barang(Request $request)
 	{
-		if ($request->gambar != "") {
+		if ($request->gambar_barang != "") {
 			$path = $request->file('gambar_barang')->store(
 				'gambar_barang', 'public'
 			);
