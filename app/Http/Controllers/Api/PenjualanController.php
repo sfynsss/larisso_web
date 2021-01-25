@@ -31,17 +31,31 @@ class PenjualanController extends Controller
 				return response()->json(['message' => 'Update Jumlah Barang Gagal'], 401);
 			}	
 		} else {
-			$insert = Cart::insert([
-				"id_user"			=> $request->id_user,
-				"kd_brg"			=> $request->kd_brg,
-				"nm_brg"			=> $request->nm_brg,
-				"satuan1"			=> $request->satuan1,
-				"harga_jl"			=> $request->harga_jl,
-				"qty"				=> $request->qty,
-				"gambar"			=> $request->gambar,
-				"kategori_barang"	=> $request->kategori, 
-				"kd_outlet"			=> $request->kd_outlet
-			]);
+			if ($request->gambar == "") {
+				$insert = Cart::insert([
+					"id_user"			=> $request->id_user,
+					"kd_brg"			=> $request->kd_brg,
+					"nm_brg"			=> $request->nm_brg,
+					"satuan1"			=> $request->satuan1,
+					"harga_jl"			=> $request->harga_jl,
+					"qty"				=> $request->qty,
+					"gambar"			=> "",
+					"kategori_barang"	=> $request->kategori, 
+					"kd_outlet"			=> $request->kd_outlet
+				]);
+			} else {
+				$insert = Cart::insert([
+					"id_user"			=> $request->id_user,
+					"kd_brg"			=> $request->kd_brg,
+					"nm_brg"			=> $request->nm_brg,
+					"satuan1"			=> $request->satuan1,
+					"harga_jl"			=> $request->harga_jl,
+					"qty"				=> $request->qty,
+					"gambar"			=> $request->gambar,
+					"kategori_barang"	=> $request->kategori, 
+					"kd_outlet"			=> $request->kd_outlet
+				]);
+			}
 
 			if ($insert) {
 				return response()->json(['message' => 'Input Data Berhasil'], 200);
