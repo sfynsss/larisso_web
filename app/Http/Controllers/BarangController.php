@@ -65,7 +65,6 @@ class BarangController extends Controller
 			}
 		} else {
 			$update = Barang::where('kd_brg', '=', $request->kd_brg_edit)->update([
-				"gambar"			=> "",
 				"kd_kat_android"	=> $request->kat_barang,
 				"nm_brg"			=> $request->nm_brg_edit,
 				"harga_jl"			=> $request->hrg_brg_edit,
