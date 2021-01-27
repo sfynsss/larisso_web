@@ -67,7 +67,7 @@ class PenjualanController extends Controller
 
 	public function getDataCart(Request $request)
 	{
-		$data = Cart::where('id_user', '=', $request->id_user)->get();
+		$data = Cart::where('id_user', '=', $request->id_user)->join('barang', 'barang.kd_brg', '=', 'cart.kd_brg')->get();
 
 		if (count($data) > 0) {
 			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
