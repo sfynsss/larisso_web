@@ -75,7 +75,7 @@ class RegisterController extends Controller
 			]);
 
 			if ($save) {
-				$register = User::where('id', '=', $user)->first();
+				$register = User::select('users.*', 'customer.JNS_KELAMIN')->where('id', '=', $user)->join('customer', 'customer.id', '=', 'users.id')->first();
 
 				$name = $register['name'];
 				$token = $register['activation_token'];
