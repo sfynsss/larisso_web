@@ -31,6 +31,18 @@ class BarangController extends Controller
 		}
 	}
 
+	public function getBarangDiskon(Request $request)
+	{
+		$data = Barang::where('disc', '>', '0')->where('kd_outlet', '=', $request->kd_outlet)->get();
+
+		if (count($data) > 0) {
+			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
+		} else {
+			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
+		}
+
+	}
+
 	public function getKodeKategori(Request $request)
 	{
 		$data = KategoriAndroid::select('kd_kat_android')->orderBy('kd_kat_android', 'desc')->get();
