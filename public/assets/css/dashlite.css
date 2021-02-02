@@ -2452,6 +2452,28 @@ a.bg-lighter:hover, a.bg-lighter:focus, button.bg-lighter:hover, button.bg-light
   .d-print-flex { display: flex !important; }
   .d-print-inline-flex { display: inline-flex !important; } }
 
+  @media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #printPageButton {
+    display: none;
+  }
+
+  #not-print * {
+    display: none;
+  }
+
+  #to-print, #to-print * {
+    visibility: visible;
+  }
+
+  #to-print {
+    display: block !important;
+  }
+}
+
 .embed-responsive { position: relative; display: block; width: 100%; padding: 0; overflow: hidden; }
 
 .embed-responsive::before { display: block; content: ""; }

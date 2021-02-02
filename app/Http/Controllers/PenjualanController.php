@@ -24,6 +24,16 @@ class PenjualanController extends Controller
     	return view('penjualan.penjualan', compact('data'));
     }
 
+    public function detailJual($id)
+    {
+        $barang = Barang::All();
+        $data = DetJual::where('no_ent', '=', str_replace('-', '/', $id))->get();
+        $mst = MstJual::join('customer', 'customer.kd_cust', '=', 'mst_jual.kd_cust')->where('no_ent', '=', str_replace('-', '/', $id))->first();
+        // print_r($data);
+        // print_r($mst);
+        return view('penjualan.detailJual', compact('data', 'mst', 'barang'));
+    }
+
     public function detPenjualan($no_ent)
     {
     	$data = DetJual::where('no_ent', '=', str_replace('-', '/', $no_ent))->get();

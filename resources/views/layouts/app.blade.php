@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx" class="js">
 
-<head>
+<head id="not-print">
     <base href="{{url('/')}}">
     <meta charset="utf-8">
     <meta name="author" content="Softnio">
@@ -17,7 +17,7 @@
 
 </head>
 
-<body class="nk-body bg-lighter npc-general has-sidebar ">
+<body class="nk-body bg-lighter npc-general has-sidebar">
     <div class="nk-app-root">
         <!-- main @s -->
         <div class="nk-main ">
@@ -89,7 +89,7 @@
                     </div>
                 </div>
 
-                <div class="nk-footer">
+                <div class="nk-footer" id="not-print">
                     <div class="container-fluid">
                         <div class="nk-footer-wrap">
                             <div class="nk-footer-copyright"> 2020 Asa Mutiara Informa

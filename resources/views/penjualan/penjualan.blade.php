@@ -158,6 +158,7 @@
 									<ul class="link-list-plain">
 										<li><a class="dropdown-item" onclick="setId('{{$data->no_ent}}');" data-toggle="modal" data-target="#exampleModal">View</a></li>
 										<li><a class="text-primary" onclick="setNoEnt('{{$data->no_ent}}');" data-toggle="modal" data-target=".modal_edit">Resi</a></li>
+										<li><a class="text-primary" href="{{url('invoice')}}/{!! str_replace('/', '-', $data->no_ent) !!}">Invoice</a></li>
 									</ul>
 								</div>
 							</div>
