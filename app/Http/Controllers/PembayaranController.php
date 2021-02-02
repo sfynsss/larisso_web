@@ -22,6 +22,20 @@ class PembayaranController extends Controller
 		\Midtrans\Config::$is3ds = true;
 	}
 
+	public function notification(Request $request)
+	{
+		$paymentNotification = \Midtrans\Notification();
+
+		$transaction = $paymentNotification->transaction_status;
+		$orderId = $paymentNotification->order_id;
+
+		if ($transaction == 'settlement') {
+			$update = MstJual::where('transaction_id', $orderId)->update([
+				'sts_byr'	=> 1
+			]);
+		} 
+	}
+
 	public function get_transaction_status($order_id){
 		try {
 			$get_transaction_status = \Midtrans\Transaction::status($order_id);
