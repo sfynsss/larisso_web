@@ -43,6 +43,39 @@ class BarangController extends Controller
 
 	}
 
+	public function getBarangHargaRendah(Request $request)
+	{
+		$data = Barang::where('kd_kat_android', '=', $request->kd_kategori)->where('kd_outlet', '=', $request->kd_outlet)->orderBy('harga_jl', 'asc')->get();
+
+		if (count($data) > 0) {
+			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
+		} else {
+			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
+		}
+	}
+
+	public function getBarangHargaTinggi(Request $request)
+	{
+		$data = Barang::where('kd_kat_android', '=', $request->kd_kategori)->where('kd_outlet', '=', $request->kd_outlet)->orderBy('harga_jl', 'desc')->get();
+
+		if (count($data) > 0) {
+			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
+		} else {
+			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
+		}
+	}
+
+	public function getBarangHargaDiskon(Request $request)
+	{
+		$data = Barang::where('kd_kat_android', '=', $request->kd_kategori)->where('disc', '>', '0')->where('kd_outlet', '=', $request->kd_outlet)->get();
+
+		if (count($data) > 0) {
+			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
+		} else {
+			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
+		}
+	}
+
 	public function getKodeKategori(Request $request)
 	{
 		$data = KategoriAndroid::select('kd_kat_android')->orderBy('kd_kat_android', 'desc')->get();
