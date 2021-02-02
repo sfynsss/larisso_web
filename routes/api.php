@@ -50,6 +50,9 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('getBarangByName', 'Api\BarangController@getBarangByName');
 	Route::post('getBarangSales', 'Api\BarangController@getBarangSales');
 	Route::post('getBarangDiskon', 'Api\BarangController@getBarangDiskon');
+	Route::post('getBarangHargaRendah', 'Api\BarangController@getBarangHargaRendah');	
+	Route::post('getBarangHargaTinggi', 'Api\BarangController@getBarangHargaTinggi');
+	Route::post('getBarangHargaDiskon', 'Api\BarangController@getBarangHargaDiskon');
 	//EndOfBarang
 
 	//Transaksi
