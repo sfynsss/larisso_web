@@ -48,9 +48,10 @@ class BarangController extends Controller
 		$data = KategoriAndroid::select('kd_kat_android')->orderBy('kd_kat_android', 'desc')->get();
 
 		if (count($data) > 0) {
-			// print_r($data);
-			$data = (int) substr($data[0]->kd_kat_android, 5, 8) + 1;
-			$tmp = "A".sprintf("%'.05d", $data);
+			// print_r("masuk sini");
+			$kd_kat = (int) substr($data[0]->kd_kat_android, 1) + 1;
+			$tmp = "A".sprintf("%'.05d", $kd_kat);
+			// print_r($kd_kat." | ".$data[0]->kd_kat_android);
 		} else {
 			$tmp = "A".sprintf("%'.05d", 1);
 		}

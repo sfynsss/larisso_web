@@ -82,7 +82,7 @@
 <script>
   $(document).ready(function() {
     $.ajax({
-      type:'POST',
+      type:'GET',
       url:'/api/getKodeKategori',
       headers: {
         "Accept":"application/json",

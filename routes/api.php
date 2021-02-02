@@ -71,7 +71,7 @@ Route::middleware('auth:api')->group(function () {
 	//kategori barang android
 	Route::post('getKategori', 'Api\BarangController@getKategori');
 	Route::post('getKategoriAll', 'Api\BarangController@getKategoriAll');
-	Route::post('getKodeKategori', 'Api\BarangController@getKodeKategori');
+	Route::get('getKodeKategori', 'Api\BarangController@getKodeKategori');
 	//endOfkategori
 
 	//voucher
