@@ -24,7 +24,7 @@ class PembayaranController extends Controller
 
 	public function notification(Request $request)
 	{
-		$paymentNotification = \Midtrans\Notification();
+		$paymentNotification = new \Midtrans\Notification();
 
 		$transaction = $paymentNotification->transaction_status;
 		$orderId = $paymentNotification->order_id;
