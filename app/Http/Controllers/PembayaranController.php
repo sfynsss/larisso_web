@@ -27,7 +27,7 @@ class PembayaranController extends Controller
 		$paymentNotification = new \Midtrans\Notification();
 
 		$transaction = $paymentNotification->transaction_status;
-		$orderId = $paymentNotification->order_id;
+		$orderId = $paymentNotification->transaction_id;
 
 		if ($transaction == 'settlement') {
 			$update = MstJual::where('transaction_id', $orderId)->update([
