@@ -31,7 +31,7 @@ Auth::routes([
   	'verify' => false, // Email Verification Routes...
 ]);
 
-Route::get('notifPembayaran', 'PembayaranController@notification');
+Route::post('notifPembayaran', 'PembayaranController@notification');
 Route::get('/midtrans/pay','PembayaranController@getPayment');
 Route::get('/coba', "MidtransController@getSnapToken");
 Route::post('/coba/charge', "MidtransController@getSnapToken");
