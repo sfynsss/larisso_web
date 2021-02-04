@@ -86,7 +86,7 @@
 							<a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown" data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>
 							<div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
 								<ul class="link-list-plain">
-									<li><a onclick="editBarang('{{$data->nm_brg}}', '{{$data->kd_brg}}', '{{$data->harga_jl}}', '{{$data->disc}}', '{{$data->harga_disc}}')" class="text-primary" data-toggle="modal" data-target=".modal_edit">Edit</a></li>
+									<li><a onclick="editBarang('{{$data->nm_brg}}', '{{$data->kd_brg}}', '{{$data->harga_jl}}', '{{$data->disc}}', '{{$data->harga_disc}}', '{{$data->kd_kat_android}}')" class="text-primary" data-toggle="modal" data-target=".modal_edit">Edit</a></li>
 									<li><a href="{{url('detail_barang')}}/{{$data->kd_brg}}" class="text-primary">View</a></li>
 									<li><a href="#" class="text-danger">Remove</a></li>
 								</ul>
@@ -121,12 +121,13 @@
 		source.addEventListener('propertychange', inputHandler);
 	});
 
-	function editBarang($nm_brg, $id, $hrg, $disc, $harga_disc) {
+	function editBarang($nm_brg, $id, $hrg, $disc, $harga_disc, $kd_kat_android) {
 		$('#nm_brg_edit').val($nm_brg);
 		$('#kd_brg_edit').val($id);
 		$('#hrg_brg_edit').val($hrg);
 		$('#disc_brg_edit').val($disc);
 		$('#harga_disc_brg_edit').val($harga_disc);
+		$("#kat_barang").val($kd_kat_android).trigger('change');
 	}
 
 	var uploadField = document.getElementById("customFile");
