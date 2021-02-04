@@ -121,9 +121,11 @@
 <script src="{{url('assets/js/charts/gd-general.js?ver=1.4.0')}}"></script>
 
 <script>
-    function setKategori($a, $b) {
+    function setKategori($a, $b, $c, $d) {
         $('#kd_kategori_edit').val($a);
         $('#nm_kategori_edit').val($b);
+        $('#status').select2('val', $c);
+        $("#kd_outlet").val($d).trigger('change');
     }
 </script>
 @yield('script')

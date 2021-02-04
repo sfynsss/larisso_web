@@ -15,7 +15,7 @@
               <div class="form-group">
                 <label class="form-label" for="default-01">Outlet</label>
                 <div class="form-control-wrap">
-                  <select class="form-select" required name="kd_outlet">
+                  <select class="form-select" required name="kd_outlet" id="kd_outlet">
                     <option disabled="true" selected="none">Pilih Salah Satu</option>
                     @foreach($outlet as $outlet)
                     <option value="{{$outlet->kd_outlet}}">{{$outlet->nama_outlet}}</option>
@@ -48,7 +48,7 @@
               <div class="form-group">
                 <label class="form-label" for="default-01">Status Tampil</label>
                 <div class="form-control-wrap">
-                  <select class="form-select" name="status">
+                  <select class="form-select" name="status" id="status">
                     <option disabled="true" selected="none">Pilih Salah Satu</option>
                     <option value="1">Tampil</option>
                     <option value="0">Tidak Tampil</option>
