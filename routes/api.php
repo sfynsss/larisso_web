@@ -67,7 +67,7 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('insertDetailOrderJual', 'Api\PenjualanController@insertDetailOrderJual');
 	Route::post('insertDetailOrderJual1', 'Api\PenjualanController@insertDetailOrderJual1');
 	Route::post('getDataOrderJual', 'Api\PenjualanController@getDataOrderJual');
-
+	Route::post('getNoResi', 'Api\PenjualanController@getNoResi');
 
 	//endOfTransaksi
 

@@ -402,4 +402,16 @@ class PenjualanController extends Controller
 		}
 	}
 
+	public function getNoResi(Request $request)
+	{
+		$data = MstJual::select('no_resi')->where('no_ent', '=', $request->no_ent)->get();
+		
+		if ($data) {
+			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
+		} else {
+			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
+		}	
+
+	}
+
 }
