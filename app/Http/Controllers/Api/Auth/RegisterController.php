@@ -58,9 +58,9 @@ class RegisterController extends Controller
 			if ($data) {
             // print_r($data);
 				$data = (int) substr($data, 2) + 1;
-				$tmp = "01".sprintf("%'.06d", $data);
+				$tmp = "99".sprintf("%'.06d", $data);
 			} else {
-				$tmp = "01".sprintf("%'.06d", 1);
+				$tmp = "99".sprintf("%'.06d", 1);
 			}
 
 			$save = Customer::insert([
