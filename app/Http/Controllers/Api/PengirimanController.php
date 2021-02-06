@@ -95,4 +95,17 @@ class PengirimanController extends Controller
 		// 	return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
 		// }
 	}
+
+	public function lacakResi(Request $request)
+	{
+		$rajaongkir = new Rajaongkir('51c18ce3b552d19636e6e1b1f371fdef', Rajaongkir::ACCOUNT_PRO);
+		$data = $rajaongkir->getWaybill('000817954445', 'sicepat');
+
+		if(false === ($waybill = $rajaongkir->getWaybill($request->resi, $request->kurir))) {
+			print_r($rajaongkir->getErrors());
+		} else {
+			return response()->json(['message' => 'Data Ditemukan', compact('data')], 200);
+		}
+	}
+
 }

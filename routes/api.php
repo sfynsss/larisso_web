@@ -105,6 +105,7 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('cekOngkir', 'Api\PengirimanController@cekOngkir');
 	Route::post('cekOngkirCod', 'Api\PengirimanController@cekOngkirCod');
 	Route::post('lacakPengiriman', 'Api\PengirimanController@lacakPengiriman');
+	Route::post('lacakResi', 'Api\PengirimanController@lacakResi');
 	//EndOfRajaOngkir
 
 	//Notification
