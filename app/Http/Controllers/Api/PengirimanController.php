@@ -99,12 +99,23 @@ class PengirimanController extends Controller
 	public function lacakResi(Request $request)
 	{
 		$rajaongkir = new Rajaongkir('51c18ce3b552d19636e6e1b1f371fdef', Rajaongkir::ACCOUNT_PRO);
-		$data = $rajaongkir->getWaybill('000817954445', 'sicepat');
+		$status = $rajaongkir->getWaybill($request->resi, $request->kurir);
 
 		if(false === ($waybill = $rajaongkir->getWaybill($request->resi, $request->kurir))) {
-			print_r($rajaongkir->getErrors());
+			// print_r("disini");
+			return response()->json(['message' => 'Data Tidak Ditemukan'], 400);
 		} else {
-			return response()->json(['message' => 'Data Ditemukan', compact('data')], 200);
+			// print_r($status);	
+			// print_r($status['summary']);	
+			// $data['status_terkirim'] = $status['delivered'];
+			// $data['kode_kurir'] = $status['summary']['courier_code'];
+			// $data['nama_kurir'] = $status['summary']['courier_name'];
+			// $data['resi'] = $status['summary']['waybill_number'];
+			// $data['tipe_pengiriman'] = $status['summary']['service_code'];
+			// $data['tgl_kirim'] = $status['summary']['waybill_date'];
+			$data = $status['manifest'];
+			// print_r($data);
+			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
 		}
 	}
 
