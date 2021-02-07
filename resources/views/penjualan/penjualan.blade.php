@@ -157,7 +157,7 @@
 								<div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
 									<ul class="link-list-plain">
 										<li><a class="dropdown-item" onclick="setId('{{$data->no_ent}}');" data-toggle="modal" data-target="#exampleModal">View</a></li>
-										@if($data->sts_byr == 0)
+										@if($data->sts_byr == 0 && $data->jns_pengiriman != 'cod')
 										<li><a class="text-primary" onclick="alert('Belum Terbayar !!!');">Resi</a></li>
 										@else
 										<li><a class="text-primary" onclick="setNoEnt('{{$data->no_ent}}');" data-toggle="modal" data-target=".modal_edit">Resi</a></li>
