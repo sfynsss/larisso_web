@@ -46,8 +46,8 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label class="form-label" for="default-01">No Resi</label>
-                <div class="form-control-wrap">
-                  <input type="text" class="form-control" id="no_resi" name="no_resi">
+                <div class="form-control-wrap" id="input_resi">
+                  {{-- <input type="text" class="form-control" id="no_resi" name="no_resi"> --}}
                 </div>
               </div>
             </div>
