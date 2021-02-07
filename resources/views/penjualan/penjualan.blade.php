@@ -117,6 +117,7 @@
 						<div class="nk-tb-col"><span>Total</span></div>
 						<div class="nk-tb-col"><span class="d-none d-sm-inline">Status</span></div>
 						<div class="nk-tb-col"><span class="d-none d-sm-inline">Pengiriman</span></div>
+						<div class="nk-tb-col"><span class="d-none d-sm-inline">Resi</span></div>
 						<div class="nk-tb-col"><span>&nbsp;</span></div>
 					</div>
 					@foreach($data as $data)
@@ -143,6 +144,9 @@
 							@elseif($data->sts_byr == 1)
 							<span class="badge badge-dot badge-dot-xs badge-success">Terbayar</span>
 							@endif
+						</div>
+						<div class="nk-tb-col">
+							<span class="tb-sub tb-amount">{{$data->jns_pengiriman}}</span>
 						</div>
 						<div class="nk-tb-col">
 							@if($data->no_resi == "")
