@@ -107,15 +107,15 @@ class PengirimanController extends Controller
 		} else {
 			// print_r($status);	
 			// print_r($status['summary']);	
-			// $data['status_terkirim'] = $status['delivered'];
-			// $data['kode_kurir'] = $status['summary']['courier_code'];
-			// $data['nama_kurir'] = $status['summary']['courier_name'];
-			// $data['resi'] = $status['summary']['waybill_number'];
-			// $data['tipe_pengiriman'] = $status['summary']['service_code'];
-			// $data['tgl_kirim'] = $status['summary']['waybill_date'];
-			$data = $status['manifest'];
+			$data['status_terkirim'] = $status['delivered'];
+			$data['kode_kurir'] = $status['summary']['courier_code'];
+			$data['nama_kurir'] = $status['summary']['courier_name'];
+			$data['resi'] = $status['summary']['waybill_number'];
+			$data['tipe_pengiriman'] = $status['summary']['service_code'];
+			$data['tgl_kirim'] = $status['summary']['waybill_date'];
+			$manifest = $status['manifest'];
 			// print_r($data);
-			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
+			return response()->json(['message' => 'Data Ditemukan', 'lacak' => $data, 'manifest' => $manifest], 200);
 		}
 	}
 
