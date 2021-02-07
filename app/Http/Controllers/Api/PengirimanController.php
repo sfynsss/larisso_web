@@ -98,29 +98,39 @@ class PengirimanController extends Controller
 
 	public function lacakResi(Request $request)
 	{
-		$rajaongkir = new Rajaongkir('51c18ce3b552d19636e6e1b1f371fdef', Rajaongkir::ACCOUNT_PRO);
-		$status = $rajaongkir->getWaybill($request->resi, $request->kurir);
+		$client = new \GuzzleHttp\Client();
+		$response = $client->request('POST', "https://pro.rajaongkir.com/api/waybill", [
+			'form_params'       => [
+				'waybill'       	=> $request->resi,
+				'courier'       	=> $request->kurir
+			], 
+			'headers'			=> [
+				'key'				=> '51c18ce3b552d19636e6e1b1f371fdef'
+			]
+		]);
 
-		if(false === ($waybill = $rajaongkir->getWaybill($request->resi, $request->kurir))) {
-			// print_r("disini");
-			return response()->json(['message' => 'Data Tidak Ditemukan'], 400);
-		} else {
-			// print_r($status);	
-			// print_r($status['summary']);	
-			$data['status_terkirim'] = $status['delivered'];
-			$data['kode_kurir'] = $status['summary']['courier_code'];
-			$data['nama_kurir'] = $status['summary']['courier_name'];
-			$data['resi'] = $status['summary']['waybill_number'];
-			$data['tipe_pengiriman'] = $status['summary']['service_code'];
-			$data['tgl_kirim'] = $status['summary']['waybill_date'];
-			$data['pengirim'] = $status['summary']['shipper_name'];
-			$data['penerima'] = $status['summary']['receiver_name'];
-			$data['dari'] = $status['summary']['origin'];
-			$data['tujuan'] = $status['summary']['destination'];
-			$data['status'] = $status['summary']['status'];
-			$manifest = $status['manifest'];
+		$body = json_decode($response->getBody(), true);
+		// print_r($body['rajaongkir']['result']['summary']);
+		// $rajaongkir = new Rajaongkir('51c18ce3b552d19636e6e1b1f371fdef', Rajaongkir::ACCOUNT_PRO);
+		// $status = $rajaongkir->getWaybill($request->resi, $request->kurir);
+
+		if(!empty($body['rajaongkir']['result']['summary'])) {
+			$data['status_terkirim'] = $body['rajaongkir']['result']['delivered'];
+			$data['kode_kurir'] = $body['rajaongkir']['result']['summary']['courier_code'];
+			$data['nama_kurir'] = $body['rajaongkir']['result']['summary']['courier_name'];
+			$data['resi'] = $body['rajaongkir']['result']['summary']['waybill_number'];
+			$data['tipe_pengiriman'] = $body['rajaongkir']['result']['summary']['service_code'];
+			$data['tgl_kirim'] = $body['rajaongkir']['result']['summary']['waybill_date'];
+			$data['pengirim'] = $body['rajaongkir']['result']['summary']['shipper_name'];
+			$data['penerima'] = $body['rajaongkir']['result']['summary']['receiver_name'];
+			$data['dari'] = $body['rajaongkir']['result']['summary']['origin'];
+			$data['tujuan'] = $body['rajaongkir']['result']['summary']['destination'];
+			$data['status'] = $body['rajaongkir']['result']['summary']['status'];
+			$manifest = $body['rajaongkir']['result']['manifest'];
 			// print_r($data);
 			return response()->json(['message' => 'Data Ditemukan', 'lacak' => $data, 'manifest' => $manifest], 200);
+		} else {
+			return response()->json(['message' => 'Data Tidak Ditemukan'], 400);
 		}
 	}
 
