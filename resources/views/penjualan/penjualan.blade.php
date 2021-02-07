@@ -157,7 +157,11 @@
 								<div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
 									<ul class="link-list-plain">
 										<li><a class="dropdown-item" onclick="setId('{{$data->no_ent}}');" data-toggle="modal" data-target="#exampleModal">View</a></li>
+										@if($data->sts_byr == 0)
+										<li><a class="text-primary" onclick="alert('Belum Terbayar !!!');">Resi</a></li>
+										@else
 										<li><a class="text-primary" onclick="setNoEnt('{{$data->no_ent}}');" data-toggle="modal" data-target=".modal_edit">Resi</a></li>
+										@endif
 										<li><a class="text-primary" href="{{url('invoice')}}/{!! str_replace('/', '-', $data->no_ent) !!}">Invoice</a></li>
 									</ul>
 								</div>
