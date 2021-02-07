@@ -13,7 +13,7 @@ class PembayaranController extends Controller
 	{
 		$this->request = $request;
         // Set your Merchant Server Key
-		\Midtrans\Config::$serverKey = 'SB-Mid-server-R42h7zBQZua-ZwUg_PqPX9eX';
+		\Midtrans\Config::$serverKey = 'Mid-server-xTaMzZDeY2QEujZxMmpTXxIW';
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
 		\Midtrans\Config::$isProduction = false;
         // Set sanitization on (default)
