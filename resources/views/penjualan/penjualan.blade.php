@@ -164,7 +164,7 @@
 										@if($data->sts_byr == 0 && $data->jns_pengiriman != 'cod')
 										<li><a class="text-primary" onclick="alert('Belum Terbayar !!!');">Resi</a></li>
 										@else
-										<li><a class="text-primary" onclick="setNoEnt('{{$data->no_ent}}');" data-toggle="modal" data-target=".modal_edit">Resi</a></li>
+										<li><a class="text-primary" onclick="setNoEnt('{{$data->no_ent}}', '{{$data->jns_pengiriman}}');" data-toggle="modal" data-target=".modal_edit">Resi</a></li>
 										@endif
 										<li><a class="text-primary" href="{{url('invoice')}}/{!! str_replace('/', '-', $data->no_ent) !!}">Invoice</a></li>
 									</ul>
@@ -216,8 +216,13 @@
      });
 	};
 
-	function setNoEnt($id) {
+	function setNoEnt($id, $jns_pengiriman) {
 		$('#no_ent').val($id);
+		if ($jenis_pengiriman == "cod") {
+			$("#input_resi").append("<select class='form-select' name='sopir' id='sopir'><option disabled='true' selected='none'>Pilih Salah Satu</option></select>")
+		} else {
+			$("#input_resi").append("<input type='text' class='form-control' id='no_resi' name='no_resi'>")
+		}
 	};
 </script>
 @endsection
