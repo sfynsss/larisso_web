@@ -113,6 +113,11 @@ class PengirimanController extends Controller
 			$data['resi'] = $status['summary']['waybill_number'];
 			$data['tipe_pengiriman'] = $status['summary']['service_code'];
 			$data['tgl_kirim'] = $status['summary']['waybill_date'];
+			$data['pengirim'] = $status['summary']['shipper_name'];
+			$data['penerima'] = $status['summary']['receiver_name'];
+			$data['dari'] = $status['summary']['origin'];
+			$data['tujuan'] = $status['summary']['destination'];
+			$data['status'] = $status['summary']['status'];
 			$manifest = $status['manifest'];
 			// print_r($data);
 			return response()->json(['message' => 'Data Ditemukan', 'lacak' => $data, 'manifest' => $manifest], 200);
