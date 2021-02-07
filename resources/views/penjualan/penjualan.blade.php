@@ -219,7 +219,10 @@
 	function setNoEnt($id, $jns_pengiriman) {
 		$('#no_ent').val($id);
 		if ($jns_pengiriman == "cod") {
-			$("#input_resi").append("<select class='form-select' name='sopir' id='sopir'><option disabled='true' selected='none'>Pilih Salah Satu</option></select>")
+			$("#input_resi").append("<select class='form-select' name='sopir' id='sopir'>"
+				+"<option disabled='true' selected='none'>Pilih Salah Satu</option>"
+				+"<option value='samidi'>Samidi</option>"
+				+"</select>")
 		} else {
 			$("#input_resi").append("<input type='text' class='form-control' id='no_resi' name='no_resi'>")
 		}
