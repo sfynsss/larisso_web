@@ -24,7 +24,7 @@ class OutletController extends Controller
 
 	public function getOutlet()
 	{
-		$data = Outlet::all();
+		$data = Outlet::where('status', '0')->get();
 
 		if ($data) {
 			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
