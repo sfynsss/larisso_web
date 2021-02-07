@@ -24,42 +24,42 @@
 
 <!-- Large modal -->
 <div class="modal fade modal_edit" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-top modal-lg">
-    <div class="modal-content">
-      <form method="post" action="{{url('inputResi')}}">
-        {{csrf_field()}}
-        <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Masukkan Resi</h4>
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row gy-4">
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label class="form-label" for="default-01">No Invoice</label>
-                <div class="form-control-wrap">
-                  <input type="text" class="form-control" readonly="true" id="no_ent" name="no_ent">
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label class="form-label" for="default-01">No Resi</label>
-                <div class="form-control-wrap" id="input_resi">
-                  {{-- <input type="text" class="form-control" id="no_resi" name="no_resi"> --}}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
-        </div>
-      </form>
-    </div>
-  </div>
+	<div class="modal-dialog modal-dialog-top modal-lg">
+		<div class="modal-content">
+			<form method="post" action="{{url('inputResi')}}">
+				{{csrf_field()}}
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">Masukkan Resi</h4>
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row gy-4">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="form-label" for="default-01">No Invoice</label>
+								<div class="form-control-wrap">
+									<input type="text" class="form-control" readonly="true" id="no_ent" name="no_ent">
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="form-label" for="default-01" id="judul">No Resi</label>
+								<div class="form-control-wrap">
+									<input type=text class="form-control" id="no_resi" name="no_resi">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Save changes</button>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
 
 <div class="nk-block nk-block-lg">
@@ -161,8 +161,10 @@
 								<div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
 									<ul class="link-list-plain">
 										<li><a class="dropdown-item" onclick="setId('{{$data->no_ent}}');" data-toggle="modal" data-target="#exampleModal">View</a></li>
-										@if($data->sts_byr == 0 && $data->jns_pengiriman != 'cod')
+										@if($data->sts_byr == 0 && $data->jns_pengiriman != 'cod' && $data->no_resi == "")
 										<li><a class="text-primary" onclick="alert('Belum Terbayar !!!');">Resi</a></li>
+										@elseif($data->no_resi != "")
+										<li><a class="text-primary" onclick="if (confirm('Apakah Anda akan mengganti resi?')){return setNoEnt('{{$data->no_ent}}', '{{$data->jns_pengiriman}}');;}else{event.stopPropagation(); event.preventDefault();};" data-toggle="modal" data-target=".modal_edit">Resi</a></li>
 										@else
 										<li><a class="text-primary" onclick="setNoEnt('{{$data->no_ent}}', '{{$data->jns_pengiriman}}');" data-toggle="modal" data-target=".modal_edit">Resi</a></li>
 										@endif
@@ -219,14 +221,27 @@
 	function setNoEnt($id, $jns_pengiriman) {
 		$('#no_ent').val($id);
 		if ($jns_pengiriman == "cod") {
-			alert("masuk sini");
-			$("#input_resi").append("<select class='form-select' name='sopir' id='sopir'>"
-				+"<option disabled='true' selected='none'>Pilih Salah Satu</option>"
-				+"<option value='samidi'>Samidi</option>"
-				+"</select>")
+			// alert("masuk sini");
+			// $("#input_resi").empty().append('<select class="form-select" name="status" id="status">'
+			// 	+'<option disabled="true" selected="none">Pilih Salah Satu</option>'
+			// 	+'<option value="1">Tampil</option>'
+			// 	+'<option value="0">Tidak Tampil</option>'
+			// 	+'</select>');
+			// $("#input_resi").empty().append(function() {
+			// 	return $("<select name='sopir' id='sopir'>")
+			// 	.append("<option disabled='true' selected='none'>Pilih Salah Satu</option>")
+			// 	.append("<option value='budi'>Budi</option>")
+			// 	.append("<option value='dani'>Dani</option>");
+			// });
+			// var element = document.getElementById("sopir");
+			// element.classList.add("form-group");
+			$("#judul").empty();
+			$("#judul").append("Nama Sopir");
 		} else {
-			alert("masuk sana");
-			$("#input_resi").append("<input type='text' class='form-control' id='no_resi' name='no_resi'>")
+			// alert("masuk sana");
+			// $("#input_resi").empty().append("<input type='text' class='form-control' id='no_resi' name='no_resi'>");
+			$("#judul").empty();
+			$("#judul").append("No Resi");
 		}
 	};
 </script>
