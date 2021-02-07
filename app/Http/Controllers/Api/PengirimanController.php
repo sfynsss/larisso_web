@@ -125,7 +125,11 @@ class PengirimanController extends Controller
 			$data['penerima'] = $body['rajaongkir']['result']['summary']['receiver_name'];
 			$data['dari'] = $body['rajaongkir']['result']['summary']['origin'];
 			$data['tujuan'] = $body['rajaongkir']['result']['summary']['destination'];
-			$data['status'] = $body['rajaongkir']['result']['summary']['status'];
+			if ($body['rajaongkir']['result']['summary']['status'] == "DELIVERED") {
+				$data['status'] = $body['rajaongkir']['result']['delivery_status']['pod_receiver'];
+			} else {
+				$data['status'] = $body['rajaongkir']['result']['summary']['status'];
+			}
 			$manifest = $body['rajaongkir']['result']['manifest'];
 			// print_r($data);
 			return response()->json(['message' => 'Data Ditemukan', 'lacak' => $data, 'manifest' => $manifest], 200);
