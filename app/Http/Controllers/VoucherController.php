@@ -63,7 +63,8 @@ class VoucherController extends Controller
 			"tgl_berlaku_1"		=> $request->tgl_start,
 			"tgl_berlaku_2"		=> $request->tgl_end,
 			"sk"				=> $request->sk,
-			"status_voucher"	=> "AKTIF"
+			"status_voucher"	=> "AKTIF",
+			"kd_cust"			=> $request->user[$i]
 		]);
 
 		// if ($request->user[0] == "semua") {
@@ -83,7 +84,7 @@ class VoucherController extends Controller
 		// 	}
 		// }
 
-		if ($save2) {
+		if ($insert) {
 			Session::flash('success', "Data Berhasil Ditambahkan !!!");
 			return Redirect::back();
 		} else {
