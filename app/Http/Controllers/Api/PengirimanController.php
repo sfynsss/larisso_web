@@ -126,7 +126,7 @@ class PengirimanController extends Controller
 			$data['dari'] = $body['rajaongkir']['result']['summary']['origin'];
 			$data['tujuan'] = $body['rajaongkir']['result']['summary']['destination'];
 			if ($body['rajaongkir']['result']['summary']['status'] == "DELIVERED") {
-				$data['status'] = $body['rajaongkir']['result']['delivery_status']['pod_receiver'];
+				$data['status'] = "Delivered to ".$body['rajaongkir']['result']['delivery_status']['pod_receiver'];
 			} else {
 				$data['status'] = $body['rajaongkir']['result']['summary']['status'];
 			}
