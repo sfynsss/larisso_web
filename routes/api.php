@@ -53,6 +53,8 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('getBarangHargaRendah', 'Api\BarangController@getBarangHargaRendah');	
 	Route::post('getBarangHargaTinggi', 'Api\BarangController@getBarangHargaTinggi');
 	Route::post('getBarangHargaDiskon', 'Api\BarangController@getBarangHargaDiskon');
+
+	Route::post('getBarangByNameByCategory', 'Api\BarangController@getBarangByNameByCategory');
 	//EndOfBarang
 
 	//Transaksi

@@ -43,6 +43,17 @@ class BarangController extends Controller
 
 	}
 
+	public function getBarangByNameByCategory(Request $request)
+	{
+		$data = Barang::where('nm_brg', 'like', '%'.$request->nm_brg.'%')->where('kd_kat_android', '=', $request->kd_kategori)->where('kd_outlet', '=', $request->kd_outlet)->get();
+
+		if (count($data) > 0) {
+			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
+		} else {
+			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
+		}
+	}
+
 	public function getBarangHargaRendah(Request $request)
 	{
 		$data = Barang::where('kd_kat_android', '=', $request->kd_kategori)->where('kd_outlet', '=', $request->kd_outlet)->orderBy('harga_jl', 'asc')->get();
