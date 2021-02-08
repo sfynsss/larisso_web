@@ -56,33 +56,45 @@ class VoucherController extends Controller
 	public function tambahVoucher(Request $request)
 	{
 		// if ($request->banyak != "") {
-		$insert = Voucher::insert([
-			"kd_voucher"		=> $request->kode_voucher,
-			"nama_voucher"		=> $request->nama_voucher,
-			"nilai_voucher"		=> $request->nilai_voucher,
-			"tgl_berlaku_1"		=> $request->tgl_start,
-			"tgl_berlaku_2"		=> $request->tgl_end,
-			"sk"				=> $request->sk,
-			"status_voucher"	=> "AKTIF",
-			"kd_cust"			=> $request->user[0]
-		]);
 
-		// if ($request->user[0] == "semua") {
-		// 	$user = User::join('customer', 'customer.id', '=', 'users.id')->get();
-		// 	foreach ($user as $data) {
+		if ($request->user[0] == "semua") {
+			$user = User::join('customer', 'customer.id', '=', 'users.id')->get();
+			$i = 1;
+			foreach ($user as $data) {
 		// 		$save2 = DetVoucher::insert([
 		// 			"kd_voucher"	=> $request->kode_voucher,
 		// 			"kd_cust"		=> $data->KD_CUST
 		// 		]);
-		// 	}
-		// } else {
-		// 	for ($i=0; $i < count($request->user); $i++) { 
+				$insert = Voucher::insert([
+					"kd_voucher"		=> $request->kode_voucher.'00'.$i,
+					"nama_voucher"		=> $request->nama_voucher,
+					"nilai_voucher"		=> $request->nilai_voucher,
+					"tgl_berlaku_1"		=> $request->tgl_start,
+					"tgl_berlaku_2"		=> $request->tgl_end,
+					"sk"				=> $request->sk,
+					"status_voucher"	=> "AKTIF",
+					"kd_cust"			=> $data->KD_CUST
+				]);
+				$i+=;
+			}
+		} else {
+			for ($i=0; $i < count($request->user); $i++) { 
 		// 		$save2 = DetVoucher::insert([
 		// 			"kd_voucher"	=> $request->kode_voucher,
 		// 			"kd_cust"		=> $request->user[$i]
 		// 		]);
-		// 	}
-		// }
+				$insert = Voucher::insert([
+					"kd_voucher"		=> $request->kode_voucher.'00'.$i+1,
+					"nama_voucher"		=> $request->nama_voucher,
+					"nilai_voucher"		=> $request->nilai_voucher,
+					"tgl_berlaku_1"		=> $request->tgl_start,
+					"tgl_berlaku_2"		=> $request->tgl_end,
+					"sk"				=> $request->sk,
+					"status_voucher"	=> "AKTIF",
+					"kd_cust"			=> $request->user[$i]
+				]);
+			}
+		}
 
 		if ($insert) {
 			Session::flash('success', "Data Berhasil Ditambahkan !!!");
