@@ -63,7 +63,6 @@ class VoucherController extends Controller
 			"tgl_berlaku_1"		=> $request->tgl_start,
 			"tgl_berlaku_2"		=> $request->tgl_end,
 			"sk"				=> $request->sk,
-			"jenis_voucher"		=> "ELEKTRONIK",
 			"status_voucher"	=> "AKTIF"
 		]);
 
