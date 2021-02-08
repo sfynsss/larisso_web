@@ -5,6 +5,7 @@ namespace Larisso\Http\Controllers;
 use Illuminate\Http\Request;
 use Larisso\SettingVoucher;
 use Larisso\SettingPoint;
+use Larisso\Voucher;
 use Larisso\MstVoucher;
 use Larisso\DetVoucher;
 use Larisso\TukarVoucher;
