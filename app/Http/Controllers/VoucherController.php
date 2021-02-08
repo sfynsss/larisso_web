@@ -17,7 +17,7 @@ class VoucherController extends Controller
 {
 	public function voucherFisik()
 	{
-		$data = MstVoucher::where('jenis_voucher', '=', 'FISIK')->get();
+		$data = MstVoucher::all();
 		return view('Voucher.voucherFisik', compact('data'));
 	}
 
@@ -55,7 +55,7 @@ class VoucherController extends Controller
 	public function tambahVoucher(Request $request)
 	{
 		// if ($request->banyak != "") {
-		$insert = MstVoucher::insert([
+		$insert = Voucher::insert([
 			"kd_voucher"		=> $request->kode_voucher,
 			"nama_voucher"		=> $request->nama_voucher,
 			"nilai_voucher"		=> $request->nilai_voucher,
@@ -66,22 +66,22 @@ class VoucherController extends Controller
 			"status_voucher"	=> "AKTIF"
 		]);
 
-		if ($request->user[0] == "semua") {
-			$user = User::join('customer', 'customer.id', '=', 'users.id')->get();
-			foreach ($user as $data) {
-				$save2 = DetVoucher::insert([
-					"kd_voucher"	=> $request->kode_voucher,
-					"kd_cust"		=> $data->KD_CUST
-				]);
-			}
-		} else {
-			for ($i=0; $i < count($request->user); $i++) { 
-				$save2 = DetVoucher::insert([
-					"kd_voucher"	=> $request->kode_voucher,
-					"kd_cust"		=> $request->user[$i]
-				]);
-			}
-		}
+		// if ($request->user[0] == "semua") {
+		// 	$user = User::join('customer', 'customer.id', '=', 'users.id')->get();
+		// 	foreach ($user as $data) {
+		// 		$save2 = DetVoucher::insert([
+		// 			"kd_voucher"	=> $request->kode_voucher,
+		// 			"kd_cust"		=> $data->KD_CUST
+		// 		]);
+		// 	}
+		// } else {
+		// 	for ($i=0; $i < count($request->user); $i++) { 
+		// 		$save2 = DetVoucher::insert([
+		// 			"kd_voucher"	=> $request->kode_voucher,
+		// 			"kd_cust"		=> $request->user[$i]
+		// 		]);
+		// 	}
+		// }
 
 		if ($save2) {
 			Session::flash('success', "Data Berhasil Ditambahkan !!!");
