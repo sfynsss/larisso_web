@@ -29,7 +29,7 @@ class VoucherController extends Controller
 
 	public function voucherGlobal()
 	{
-		$data = MstVoucher::where('jenis_voucher', '=', 'ELEKTRONIK')->get();
+		$data = Voucher::all();
 		$user = User::join('customer', 'customer.id', '=', 'users.id')->where('otoritas', '>', '0')->where('email_activation', '<>', '0')->get();
 		return view('Voucher.voucherGlobal', compact('data', 'user'));
 	}
