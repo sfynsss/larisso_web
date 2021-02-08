@@ -64,7 +64,7 @@ class VoucherController extends Controller
 			"tgl_berlaku_2"		=> $request->tgl_end,
 			"sk"				=> $request->sk,
 			"status_voucher"	=> "AKTIF",
-			"kd_cust"			=> $request->user[$i]
+			"kd_cust"			=> $request->user[0]
 		]);
 
 		// if ($request->user[0] == "semua") {
