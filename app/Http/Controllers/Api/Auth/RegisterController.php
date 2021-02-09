@@ -75,7 +75,7 @@ class RegisterController extends Controller
 			]);
 
 			if ($save) {
-				$register = User::select('users.*', 'customer.JNS_KELAMIN')->where('users.id', '=', $user)->join('customer', 'customer.id', '=', 'users.id')->first();
+				$register = User::select('users.*', 'customer.JNS_KELAMIN', 'customer.KD_CUST')->where('users.id', '=', $user)->join('customer', 'customer.id', '=', 'users.id')->first();
 
 				return response()->json(compact('register'), 200);
 

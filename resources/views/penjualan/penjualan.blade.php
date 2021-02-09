@@ -199,8 +199,10 @@
 						<div class="nk-tb-col">
 							@if($data->sts_transaksi == "BATAL")
 							<span class="badge badge-dot badge-dot-xs badge-danger">Transaksi Batal</span>
+							@elseif($data->sts_transaksi == "MASUK")
+							<span class="badge badge-dot badge-dot-xs badge-warning">Baru</span>
 							@elseif($data->sts_transaksi == "PROSES")
-							<span class="badge badge-dot badge-dot-xs badge-primary">Proses</span>
+							<span class="badge badge-dot badge-dot-xs badge-success">Proses</span>
 							@elseif($data->sts_transaksi == "SIAP DIAMBIL")
 							<span class="badge badge-dot badge-dot-xs badge-primary">Siap Diambil</span>
 							@elseif($data->sts_transaksi == "SELESAI")
