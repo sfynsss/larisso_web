@@ -9,6 +9,7 @@ use Larisso\Mail\EmailActivation;
 use Larisso\Mail\ForgetPassword;
 use Larisso\User;
 use Larisso\Alamat;
+use Larisso\Update;
 use DB;
 
 class UserController extends Controller
@@ -123,6 +124,16 @@ class UserController extends Controller
 			return response()->json(['message' => 'Silahkan cek email Anda untuk mendapatkan OTP terbaru'], 200);
 		} else {
 			return response()->json(['message' => 'Reset password gagal'], 401);
+		}
+	}
+
+	public function getStatusUpdate(Request $request)
+	{
+		$data = User::where('id', $request->id)->first('sts_update');
+		if ($data != "0") {
+			return response()->json(['message' => "update"], 200);	
+		} else {
+			return response()->json(['message' => "not update"], 200);	
 		}
 	}
 

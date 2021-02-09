@@ -62,6 +62,52 @@
 	</div>
 </div>
 
+<!-- Large modal -->
+<div class="modal fade modal_edit_status" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-top modal-lg">
+		<div class="modal-content">
+			<form method="post" action="{{url('gantiStatusTransaksi')}}">
+				{{csrf_field()}}
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">Ganti Status Transaksi</h4>
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row gy-4">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="form-label" for="default-01">No Invoice</label>
+								<div class="form-control-wrap">
+									<input type="text" class="form-control" readonly="true" id="no_ent1" name="no_ent1">
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="form-label" for="default-01" id="judul">Status Transaksi</label>
+								<div class="form-control-wrap">
+									<select class="form-select" name="status" id="status">
+										<option disabled="true" selected="none">Pilih Salah Satu</option>
+										<option value="PROSES">PROSES</option>
+										<option value="SIAP DIAMBIL">SIAP DIAMBIL</option>
+										<option value="SELESAI">SELESAI</option>
+										<option value="BATAL">BATAL</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Save changes</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
 <div class="nk-block nk-block-lg">
 	<div class="nk-block-head nk-block-head-sm">
 		<div class="nk-block-between">
@@ -153,10 +199,14 @@
 						<div class="nk-tb-col">
 							@if($data->sts_transaksi == "BATAL")
 							<span class="badge badge-dot badge-dot-xs badge-danger">Transaksi Batal</span>
+							@elseif($data->sts_transaksi == "SIAP DIAMBIL")
+							<span class="badge badge-dot badge-dot-xs badge-primary">Siap Diambil</span>
+							@elseif($data->sts_transaksi == "SELESAI")
+							<span class="badge badge-dot badge-dot-xs badge-success">Transksi Selesai</span>
 							@elseif($data->no_resi == "")
 							<span class="badge badge-dot badge-dot-xs badge-danger">Belum Dikirim</span>
 							@elseif($data->no_resi != "")
-							<span class="badge badge-dot badge-dot-xs badge-success">{{$data->no_resi}}</span>
+							<span class="badge badge-dot badge-dot-xs badge-warning">{{$data->no_resi}}</span>
 							@endif
 						</div>
 						<div class="nk-tb-col nk-tb-col-action">
@@ -172,6 +222,7 @@
 										@else
 										<li><a class="text-primary" onclick="setNoEnt('{{$data->no_ent}}', '{{$data->jns_pengiriman}}');" data-toggle="modal" data-target=".modal_edit">Resi</a></li>
 										@endif
+										<li><a class="text-primary" onclick="setNoEnt1('{{$data->no_ent}}');" data-toggle="modal" data-target=".modal_edit_status">Edit Status</a></li>
 										<li><a class="text-primary" href="{{url('invoice')}}/{!! str_replace('/', '-', $data->no_ent) !!}">Invoice</a></li>
 									</ul>
 								</div>
@@ -247,6 +298,10 @@
 			$("#judul").empty();
 			$("#judul").append("No Resi");
 		}
+	};
+
+	function setNoEnt1($id) {
+		$('#no_ent1').val($id);
 	};
 </script>
 @endsection

@@ -136,5 +136,6 @@ Route::middleware('auth:api')->group(function () {
 
 	//pembayaran
 	Route::get('getStatusPembayaran', 'PembayaranController@get_transaction_status');
+	Route::post('getStatusUpdate', 'Api\Auth\UserController@getStatusUpdate');
 
 });

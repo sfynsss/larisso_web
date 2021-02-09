@@ -50,6 +50,21 @@ class PenjualanController extends Controller
     	return back();	
     }
 
+    public function gantiStatusTransaksi(Request $request)
+    {
+        $data = MstJual::where('no_ent', '=', $request->no_ent1)->update([
+            "sts_transaksi" => $request->status
+        ]);
+
+        if ($data) {
+            Session::flash('success', "Data Berhasil Diupdate !!!");
+            return Redirect::back();
+        } else {
+            Session::flash('error', "Data Gagal Diupdate !!!");
+            return Redirect::back();
+        }
+    }    
+
     public function orderPenjualan()
     {
         $data = MstOrderJual::join('customer', 'customer.KD_CUST', '=', 'mst_ord_jual_mob.KD_CUST')->get();
