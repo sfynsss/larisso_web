@@ -217,6 +217,8 @@
 										<li><a class="dropdown-item" onclick="setId('{{$data->no_ent}}');" data-toggle="modal" data-target="#exampleModal">View</a></li>
 										@if($data->sts_byr == 0 && $data->jns_pengiriman != 'cod' && $data->no_resi == "")
 										<li><a class="text-primary" onclick="alert('Belum Terbayar !!!');">Resi</a></li>
+										@elseif($data->jns_pengiriman == 'cod' || $data->jns_pengiriman == 'pickup')
+
 										@elseif($data->no_resi != "")
 										<li><a class="text-primary" onclick="if (confirm('Apakah Anda akan mengganti resi?')){return setNoEnt('{{$data->no_ent}}', '{{$data->jns_pengiriman}}');;}else{event.stopPropagation(); event.preventDefault();};" data-toggle="modal" data-target=".modal_edit">Resi</a></li>
 										@else
