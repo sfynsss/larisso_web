@@ -77,11 +77,11 @@ class RegisterController extends Controller
 			if ($save) {
 				$register = User::select('users.*', 'customer.JNS_KELAMIN')->where('users.id', '=', $user)->join('customer', 'customer.id', '=', 'users.id')->first();
 
+				return response()->json(compact('register'), 200);
+
 				$name = $register['name'];
 				$token = $register['activation_token'];
 				Mail::to($register['email'])->send(new EmailActivation($name, $token));
-
-				return response()->json(compact('register'), 200);
 			} else {
 				return response()->json(['error' => 'Registration Failed'], 401);
 			}
