@@ -67,7 +67,7 @@ class PenjualanController extends Controller
 
 	public function getDataCart(Request $request)
 	{
-		$data = Cart::select('cart.*', 'barang.gambar')->where('id_user', '=', $request->id_user)->join('barang', 'barang.kd_brg', '=', 'cart.kd_brg')->get();
+		$data = Cart::select('cart.*', 'barang.gambar', 'barang.sts_point')->where('id_user', '=', $request->id_user)->join('barang', 'barang.kd_brg', '=', 'cart.kd_brg')->get();
 
 		if (count($data) > 0) {
 			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
@@ -168,6 +168,11 @@ class PenjualanController extends Controller
 	public function inputPenjualan(Request $request)
 	{
 		$kd_cust = Customer::where('id', '=', $request->kd_cust)->get();
+		if ($request->point == 0) {
+			$point = 0;
+		} else {
+			$point = $request->point;
+		}
 		if ($request->jns_pengiriman == "pickup") {
 			$mst = MstJual::insertGetId([
 				'no_ent'			=> $request->no_ent,
@@ -190,7 +195,8 @@ class PenjualanController extends Controller
 				'transaction_id'	=> "",
 				'va_number'			=> "",
 				'bank_name'			=> "",
-				'payment_type'		=> ""
+				'payment_type'		=> "",
+				'point'				=> $point
 			]);
 		} else {
 			$mst = MstJual::insertGetId([
@@ -214,7 +220,8 @@ class PenjualanController extends Controller
 				'transaction_id'	=> $request->transaction_id,
 				'va_number'			=> $request->no_va,
 				'bank_name'			=> $request->payment_bank,
-				'payment_type'		=> $request->payment_type
+				'payment_type'		=> $request->payment_type,
+				'point'				=> $point
 			]);
 		}
 		
@@ -258,7 +265,7 @@ class PenjualanController extends Controller
 
 	public function getDataTransaksi(Request $request)
 	{
-		$data = MstJual::select('mst_jual.no_ent', 'mst_jual.id_user', 'mst_jual.sts_byr', 'mst_jual.tanggal', 'mst_jual.jns_pengiriman', 'mst_jual.netto as total', 'mst_jual.ongkir', 'mst_jual.disc_value', DB::raw('count(det_jual.no_ent) AS jumlah'), 'mst_jual.payment_type', 'mst_jual.bank_name', 'mst_jual.va_number')->join('det_jual', 'det_jual.no_ent', '=', 'mst_jual.no_ent')->where('mst_jual.id_user', '=', $request->id)->where('mst_jual.sts_transaksi', '=', 'PROSES')->groupby('mst_jual.no_ent', 'mst_jual.id_user', 'mst_jual.sts_byr', 'mst_jual.tanggal', 'mst_jual.jns_pengiriman', 'mst_jual.ongkir', 'mst_jual.disc_value', 'mst_jual.netto', 'mst_jual.payment_type', 'mst_jual.bank_name', 'mst_jual.va_number')->get();
+		$data = MstJual::select('mst_jual.no_ent', 'mst_jual.id_user', 'mst_jual.sts_byr', 'mst_jual.tanggal', 'mst_jual.jns_pengiriman', 'mst_jual.netto as total', 'mst_jual.ongkir', 'mst_jual.disc_value', DB::raw('count(det_jual.no_ent) AS jumlah'), 'mst_jual.payment_type', 'mst_jual.bank_name', 'mst_jual.va_number', 'mst_jual.sts_transaksi')->join('det_jual', 'det_jual.no_ent', '=', 'mst_jual.no_ent')->where('mst_jual.id_user', '=', $request->id)->where('mst_jual.sts_transaksi', '!=', 'BATAL')->where('mst_jual.sts_transaksi', '!=', 'SELESAI')->groupby('mst_jual.no_ent', 'mst_jual.id_user', 'mst_jual.sts_byr', 'mst_jual.tanggal', 'mst_jual.jns_pengiriman', 'mst_jual.ongkir', 'mst_jual.disc_value', 'mst_jual.netto', 'mst_jual.payment_type', 'mst_jual.bank_name', 'mst_jual.va_number', 'mst_jual.sts_transaksi')->orderBy('mst_jual.no_ent')->get();
 
 		if (count($data) > 0) {
 			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
@@ -273,6 +280,17 @@ class PenjualanController extends Controller
 
 		if (count($data) > 0) {
 			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
+		} else {
+			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
+		}
+	}
+
+	public function getStatusTransaksi(Request $request)
+	{
+		$data = MstJual::select('sts_transaksi')->where('no_ent', '=', $request->no_ent)->get();
+
+		if (count($data) > 0) {
+			return response()->json(['message' => 'Data Ditemukan', 'data' => $data[0]], 200);
 		} else {
 			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
 		}

@@ -61,7 +61,7 @@ class VoucherController extends Controller
 
 	public function getSettingPoint()
 	{
-		$data = SettingPoint::all();
+		$data = SettingPoint::orderBy('nmr', 'desc')->get();
 		
 		if (count($data) > 0) {
 			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);

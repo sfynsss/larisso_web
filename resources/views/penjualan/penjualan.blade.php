@@ -143,13 +143,17 @@
 							<span class="badge badge-dot badge-dot-xs badge-danger">Belum Terbayar</span>
 							@elseif($data->sts_byr == 1)
 							<span class="badge badge-dot badge-dot-xs badge-success">Terbayar</span>
+							@elseif($data->sts_byr == 2 || $data->sts_transaksi == "BATAL")
+							<span class="badge badge-dot badge-dot-xs badge-danger">Transaksi Batal</span>
 							@endif
 						</div>
 						<div class="nk-tb-col">
 							<span class="tb-sub tb-amount">{{$data->jns_pengiriman}}</span>
 						</div>
 						<div class="nk-tb-col">
-							@if($data->no_resi == "")
+							@if($data->sts_transaksi == "BATAL")
+							<span class="badge badge-dot badge-dot-xs badge-danger">Transaksi Batal</span>
+							@elseif($data->no_resi == "")
 							<span class="badge badge-dot badge-dot-xs badge-danger">Belum Dikirim</span>
 							@elseif($data->no_resi != "")
 							<span class="badge badge-dot badge-dot-xs badge-success">{{$data->no_resi}}</span>
