@@ -108,18 +108,29 @@ class VoucherController extends Controller
 
 	public function tambahSettingVoucher(Request $request)
 	{
-		$path = $request->file('gambar')->store(
-			'voucher', 'public'
-		);
+		if ($request->gambar == "") {
+			$insert = SettingVoucher::insert([
+				"nama_voucher"		=> $request->nama_voucher,
+				"gambar_voucher"	=> "",
+				"nilai_voucher"		=> $request->nilai_voucher,
+				"ketentuan"			=> $request->ketentuan,
+				"masa_berlaku"		=> $request->masa_berlaku,
+				"sk"				=> $request->sk
+			]);			
+		} else {
+			$path = $request->file('gambar')->store(
+				'voucher', 'public'
+			);
 
-		$insert = SettingVoucher::insert([
-			"nama_voucher"		=> $request->nama_voucher,
-			"gambar_voucher"	=> $path,
-			"nilai_voucher"		=> $request->nilai_voucher,
-			"ketentuan"			=> $request->ketentuan,
-			"masa_berlaku"		=> $request->masa_berlaku,
-			"sk"				=> $request->sk
-		]);
+			$insert = SettingVoucher::insert([
+				"nama_voucher"		=> $request->nama_voucher,
+				"gambar_voucher"	=> $path,
+				"nilai_voucher"		=> $request->nilai_voucher,
+				"ketentuan"			=> $request->ketentuan,
+				"masa_berlaku"		=> $request->masa_berlaku,
+				"sk"				=> $request->sk
+			]);
+		}
 
 		if ($insert) {
 			Session::flash('success', "Data Berhasil Ditambahkan !!!");
