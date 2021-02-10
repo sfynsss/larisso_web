@@ -129,8 +129,8 @@ class UserController extends Controller
 
 	public function getStatusUpdate(Request $request)
 	{
-		$data = User::where('id', $request->id)->first('sts_update');
-		if ($data != "0") {
+		$data = Update::where('sts_update', $request->id)->get();
+		if (count($data) > 0) {
 			return response()->json(['message' => "update"], 200);	
 		} else {
 			return response()->json(['message' => "not update"], 200);	
