@@ -59,6 +59,7 @@ class PenjualanController extends Controller
     {
         $data = MstJual::join('customer', 'customer.id', '=', 'id_user')
             ->where('sts_jual', '!=', 'OFFLINE')
+            ->where('sts_transaksi', '=', 'SELESAI')
             ->whereDate('tanggal', Carbon::today())
             ->orderBy('mst_jual.tanggal', 'desc')
             ->get();
