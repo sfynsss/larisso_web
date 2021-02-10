@@ -131,9 +131,9 @@ class UserController extends Controller
 	{
 		$data = Update::where('sts_update', $request->id)->get();
 		if (count($data) > 0) {
-			return response()->json(['message' => "update"], 200);	
-		} else {
 			return response()->json(['message' => "not update"], 200);	
+		} else {
+			return response()->json(['message' => "update"], 200);	
 		}
 	}
 
