@@ -75,7 +75,7 @@ class VoucherController extends Controller
 					"status_voucher"	=> "AKTIF",
 					"kd_cust"			=> $data->KD_CUST
 				]);
-				$i+=;
+				$i ++;
 			}
 		} else {
 			for ($i=0; $i < count($request->user); $i++) { 
