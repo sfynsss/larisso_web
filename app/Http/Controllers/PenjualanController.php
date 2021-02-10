@@ -12,6 +12,7 @@ use Larisso\Barang;
 use Larisso\Customer;
 use Session;
 use Redirect;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\URL;
 
 class PenjualanController extends Controller
@@ -22,6 +23,46 @@ class PenjualanController extends Controller
     	$data = MstJual::join('customer', 'customer.id', '=', 'id_user')->where('sts_jual', '!=', 'OFFLINE')->orderBy('mst_jual.tanggal', 'desc')->get();
     	// dd($data);
     	return view('penjualan.penjualan', compact('data'));
+    }
+
+    public function penjualanPickup()
+    {
+        $data = MstJual::join('customer', 'customer.id', '=', 'id_user')->where('sts_jual', '!=', 'OFFLINE')->orderBy('mst_jual.tanggal', 'desc')->where('jns_pengiriman', '=', 'pickup')->get();
+        return view('penjualan.penjualan', compact('data'));
+    }
+
+    public function penjualanCOD()
+    {
+        $data = MstJual::join('customer', 'customer.id', '=', 'id_user')->where('sts_jual', '!=', 'OFFLINE')->orderBy('mst_jual.tanggal', 'desc')->where('jns_pengiriman', '=', 'cod')->get();
+        return view('penjualan.penjualan', compact('data'));
+    }
+
+    public function penjualanJNE()
+    {
+        $data = MstJual::join('customer', 'customer.id', '=', 'id_user')->where('sts_jual', '!=', 'OFFLINE')->orderBy('mst_jual.tanggal', 'desc')->where('jns_pengiriman', '=', 'jne')->get();
+        return view('penjualan.penjualan', compact('data'));
+    }
+
+    public function penjualanJNT()
+    {
+        $data = MstJual::join('customer', 'customer.id', '=', 'id_user')->where('sts_jual', '!=', 'OFFLINE')->orderBy('mst_jual.tanggal', 'desc')->where('jns_pengiriman', '=', 'jnt')->get();
+        return view('penjualan.penjualan', compact('data'));
+    }
+
+    public function penjualanPOS()
+    {
+        $data = MstJual::join('customer', 'customer.id', '=', 'id_user')->where('sts_jual', '!=', 'OFFLINE')->orderBy('mst_jual.tanggal', 'desc')->where('jns_pengiriman', '=', 'pos')->get();
+        return view('penjualan.penjualan', compact('data'));
+    }
+
+    public function laporanPenjualan()
+    {
+        $data = MstJual::join('customer', 'customer.id', '=', 'id_user')
+            ->where('sts_jual', '!=', 'OFFLINE')
+            ->whereDate('tanggal', Carbon::today())
+            ->orderBy('mst_jual.tanggal', 'desc')
+            ->get();
+        return view('penjualan.laporan_penjualan', compact('data'));
     }
 
     public function detailJual($id)

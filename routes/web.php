@@ -63,6 +63,14 @@ Route::get('detailOrder/{id}', 'PenjualanController@detailOrder');
 Route::post('inputResi', 'PenjualanController@inputResi');
 Route::post('simpanPenjualan', 'PenjualanController@simpanPenjualan');
 Route::post('gantiStatusTransaksi', 'PenjualanController@gantiStatusTransaksi');
+
+Route::get('penjualanPickup', 'PenjualanController@penjualanPickup');
+Route::get('penjualanCOD', 'PenjualanController@penjualanCOD');
+Route::get('penjualanJNE', 'PenjualanController@penjualanJNE');
+Route::get('penjualanJNT', 'PenjualanController@penjualanJNT');
+Route::get('penjualanPOS', 'PenjualanController@penjualanPOS');
+
+Route::get('laporanPenjualan', 'PenjualanController@laporanPenjualan');
 //endOfPenjualan
 
 //customer

@@ -95,10 +95,28 @@
                         </a>
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
-                                <a href="{{url('penjualan')}}" class="nk-menu-link"><span class="nk-menu-text">Penjualan</span></a>
+                                <a href="{{url('penjualan')}}" class="nk-menu-link"><span class="nk-menu-text">Semua Penjualan</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{url('penjualanPickup')}}" class="nk-menu-link"><span class="nk-menu-text">Ambil di Tempat</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{url('penjualanCOD')}}" class="nk-menu-link"><span class="nk-menu-text">Larisso Courier</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{url('penjualanJNE')}}" class="nk-menu-link"><span class="nk-menu-text">JNE</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{url('penjualanJNT')}}" class="nk-menu-link"><span class="nk-menu-text">JNT</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{url('penjualanPOS')}}" class="nk-menu-link"><span class="nk-menu-text">POS</span></a>
                             </li>
                             <li class="nk-menu-item">
                                 <a href="{{url('orderPenjualan')}}" class="nk-menu-link"><span class="nk-menu-text">Order Penjualan</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{{url('laporanPenjualan')}}" class="nk-menu-link"><span class="nk-menu-text">Laporan Penjualan</span></a>
                             </li>
                         </ul>
                     </li>
