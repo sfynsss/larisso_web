@@ -285,6 +285,19 @@ class PenjualanController extends Controller
 		}
 	}
 
+	public function batalkanTransaksi(Request $request)
+	{
+		$data = MstJual::where('no_ent', '=', $request->no_ent)->update([
+			'sts_transaksi' => 'BATAL'
+		]);
+
+		if ($data) {
+			return response()->json(['message' => 'Data Berhasil Dirubah'], 200);
+		} else {
+			return response()->json(['message' => 'Data Gagal Dirubah'], 401);
+		}
+	}
+
 	public function getStatusTransaksi(Request $request)
 	{
 		$data = MstJual::select('sts_transaksi')->where('no_ent', '=', $request->no_ent)->get();
