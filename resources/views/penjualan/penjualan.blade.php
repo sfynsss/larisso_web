@@ -109,7 +109,7 @@
 </div>
 
 <div class="nk-block nk-block-lg">
-	<div class="nk-block-head nk-block-head-sm">
+	<div class="nk-block-head nk-block-head col-xxl-12">
 		<div class="nk-block-between">
 			<div class="nk-block-head-content">
 				<h3 class="nk-block-title page-title">Penjualan</h3>
@@ -121,17 +121,19 @@
 						<ul class="nk-block-tools g-3">
 							<li>
 								<div class="drodown">
-									<a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-toggle="dropdown"><em class="d-none d-sm-inline icon ni ni-calender-date"></em><span><span class="d-none d-md-inline">Last</span> 30 Days</span><em class="dd-indc icon ni ni-chevron-right"></em></a>
+									<a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-toggle="dropdown"><em class="d-none d-sm-inline icon ni ni-truck"></em><span><span class="d-none d-md-inline">Sortir</span> Berdasarkan Pengiriman</span><em class="dd-indc icon ni ni-chevron-right"></em></a>
 									<div class="dropdown-menu dropdown-menu-right">
 										<ul class="link-list-opt no-bdr">
-											<li><a href="#"><span>Last 30 Days</span></a></li>
-											<li><a href="#"><span>Last 6 Months</span></a></li>
-											<li><a href="#"><span>Last 1 Years</span></a></li>
+											<li><a href="{{url('penjualan')}}"><span>Semua Pengiriman</span></a></li>
+											<li><a href="{{url('penjualanPickup')}}"><span>Ambil di Tempat</span></a></li>
+											<li><a href="{{url('penjualanCOD')}}"><span>Larisso Courier (COD)</span></a></li>
+											<li><a href="{{url('penjualanJNE')}}"><span>JNE</span></a></li>
+											<li><a href="{{url('penjualanJNT')}}"><span>J&T</span></a></li>
+											<li><a href="{{url('penjualanPOS')}}"><span>POS</span></a></li>
 										</ul>
 									</div>
 								</div>
 							</li>
-							<li class="nk-block-tools-opt"><a href="#" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Reports</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -143,7 +145,7 @@
 			<div class="card-inner">
 				<div class="card-title-group">
 					<div class="card-title">
-						<h6 class="title"><span class="mr-2">Transaction</span> <a href="#" class="link d-none d-sm-inline">See History</a></h6>
+						<h6 class="title"><span class="mr-2">Transaction</span></h6>
 					</div>
 					<div class="card-tools">
 						<ul class="card-tools-nav">
