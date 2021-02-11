@@ -21,7 +21,8 @@ Route::post('validator', 'Api\Auth\RegisterController@validator');
 Route::post('aktifasi', 'Api\Auth\RegisterController@aktifasi');
 Route::post('forgetPassword', 'Api\Auth\UserController@forgetPassword');
 //resend kode aktifasi
-Route::post('resendAktifasi', 'Api\Auth\UserController@resendAktifasi');	
+Route::post('resendAktifasi', 'Api\Auth\UserController@resendAktifasi');
+Route::post('getOtp', 'Api\Auth\UserController@getOtp');
 
 Route::put('putStatusMstJual/{no_ent}', 'Api\PenjualanController@putStatusMstJual');
 

@@ -123,7 +123,22 @@ class UserController extends Controller
 
 			return response()->json(['message' => 'Silahkan cek email Anda untuk mendapatkan OTP terbaru'], 200);
 		} else {
-			return response()->json(['message' => 'Reset password gagal'], 401);
+			return response()->json(['message' => 'Request kode OTP gagal'], 401);
+		}
+	}
+
+	public function getOtp(Request $request)
+	{
+		$user = User::where('email', '=', $request->email)->get();
+
+		if ($user) {
+			$name = $user->name;
+			$token = $user->activation_token;
+			Mail::to($user->email)->send(new EmailActivation($name, $token));
+
+			return response()->json(['message' => 'Kode OTP berhasil dikirimkan, silahkan cek email Anda'], 200);
+		} else {
+			return response()->json(['message' => 'Reset kode OTP gagal'], 401);
 		}
 	}
 

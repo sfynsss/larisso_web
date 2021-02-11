@@ -75,10 +75,6 @@ class RegisterController extends Controller
 			]);
 
 			if ($save) {
-				$name = $register['name'];
-				$token = $register['activation_token'];
-				Mail::to($register['email'])->send(new EmailActivation($name, $token));
-
 				$register = User::select('users.*', 'customer.JNS_KELAMIN', 'customer.KD_CUST')->where('users.id', '=', $user)->join('customer', 'customer.id', '=', 'users.id')->first();
 
 				return response()->json(compact('register'), 200);
