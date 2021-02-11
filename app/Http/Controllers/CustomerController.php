@@ -36,7 +36,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-    	$data = Customer::all();
+    	$data = Customer::join('users', 'users.id', '=', 'customer.id')->get();
         if (Auth::user()->kd_outlet == "") {
             $outlet = Outlet::all();
         } else {

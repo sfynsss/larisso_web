@@ -29,6 +29,7 @@
                     <th scope="col">No Hp</th>
                     <th scope="col">Email</th>
                     <th scope="col">Kategori</th>
+                    <th scope="col">OTP</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -43,6 +44,11 @@
                     <td class="tb-status text-warning">{{$data->HP}}</td>
                     <td class="tb-status text-primary">{{$data->E_MAIL}}</td>
                     <td>{{$data->KATEGORI}}</td>
+                    @if($data->email_activation == 1)
+                    <td class="tb-status text-success">Aktif</td>
+                    @elseif($data->email_activation == 0)
+                    <td class="tb-status text-danger">{{$data->activation_token}}</td>
+                    @endif
                     <td>
                         <a class="label label-info m-r-10" href="" data-toggle="modal"  data-target=".modal_detail"><i class="icon ni ni-eye-fill"></i></a>
                         <a class="label label-primary m-r-10" href="" data-toggle="modal"  data-target=".bs-example-modal-lg" onclick="setIsi({{$data->KATEGORI}}, {{$data->KD_CUST}}, {{$data->NIK}}, {{$data->NM_CUST}});"><i class="icon ni ni-pen-alt-fill"></i></a>
