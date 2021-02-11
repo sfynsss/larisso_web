@@ -129,7 +129,7 @@ class UserController extends Controller
 
 	public function getOtp(Request $request)
 	{
-		$user = User::where('email', '=', $request->email)->get();
+		$user = User::where('email', '=', $request->email)->first();
 
 		if ($user) {
 			$name = $user->name;
