@@ -62,6 +62,9 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('getNoEnt', 'Api\PenjualanController@getNoEnt');
 	Route::post('inputPenjualan', 'Api\PenjualanController@inputPenjualan');
 	Route::post('getDataTransaksi', 'Api\PenjualanController@getDataTransaksi');
+	Route::post('getDataTransaksiSukses', 'Api\PenjualanController@getDataTransaksiSukses');
+	Route::post('getDataTransaksiPending', 'Api\PenjualanController@getDataTransaksiPending');
+	Route::post('getDataTransaksiBatal', 'Api\PenjualanController@getDataTransaksiBatal');
 	Route::post('getDetailTransaksi', 'Api\PenjualanController@getDetailTransaksi');
 	Route::post('getStatusTransaksi', 'Api\PenjualanController@getStatusTransaksi');
 	Route::post('batalkanTransaksi', 'Api\PenjualanController@batalkanTransaksi');
