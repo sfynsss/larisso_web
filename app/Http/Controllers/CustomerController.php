@@ -48,6 +48,20 @@ class CustomerController extends Controller
         return view('customer.customer', compact('data', 'outlet'));
     }
 
+    public  function pointCustomer()
+    {
+        $data = Customer::join('users', 'users.id', '=', 'customer.id')->orderby('customer.POINT_BL_INI', 'desc')->get();
+        if (Auth::user()->kd_outlet == "") {
+            $outlet = Outlet::all();
+        } else {
+            $outlet = Outlet::where('kd_outlet', '=', Auth::user()->kd_outlet)->get();
+        }
+        
+        // print_r($cabang);
+
+        return view('customer.point_customer', compact('data', 'outlet'));
+    }
+
     public function tambahCustomer(Request $request)
     {
         // print_r($request->tgl_lahir."<br>");

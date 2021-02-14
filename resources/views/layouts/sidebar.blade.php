@@ -53,6 +53,9 @@
                             <li class="nk-menu-item">
                                 <a href="{{url('customer')}}" class="nk-menu-link"><span class="nk-menu-text">Customer</span></a>
                             </li>
+                            <li class="nk-menu-item">
+                                <a href="{{url('pointCustomer')}}" class="nk-menu-link"><span class="nk-menu-text">Perolehan Point</span></a>
+                            </li>
                         </ul>
                     </li>
 
