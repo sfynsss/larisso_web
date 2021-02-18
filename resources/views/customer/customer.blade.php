@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@include('customer.create')
+@include('customer.edit')
 {{-- @include('customer.detail') --}}
 
 <div class="nk-block nk-block-lg">
@@ -12,10 +12,9 @@
             </div><!-- .nk-block-head-content -->
             <div class="nk-block-head-content">
                 <div class="toggle-wrap nk-block-tools-toggle">
-                    <button type="button" class="btn btn-primary float-right" data-toggle="modal" onclick="setKdCust();" data-target=".bs-example-modal-lg">TAMBAH DATA</button> &nbsp
-                    {{-- <a href="{{url('/sinkronisasi')}}"><button type="button" class="btn btn-success float-right" style="margin-right: 10px;">SINKRONISASI</button></a> --}}
+                    {{-- <button type="button" class="btn btn-primary float-right" data-toggle="modal" onclick="setKdCust();" data-target=".bs-example-modal-lg">TAMBAH DATA</button> &nbsp --}}
                 </div>
-            </div><!-- .nk-block-head-content -->
+            </div>
         </div><!-- .nk-block-between -->
     </div><!-- .nk-block-head -->
     <div class="card card-bordered card-preview">
@@ -52,8 +51,8 @@
                     <td class="tb-status text-danger">{{$data->activation_token}}</td>
                     @endif
                     <td>
-                        <a class="label label-info m-r-10" href="" data-toggle="modal"  data-target=".modal_detail"><i class="icon ni ni-eye-fill"></i></a>
-                        <a class="label label-primary m-r-10" href="" data-toggle="modal"  data-target=".bs-example-modal-lg" onclick="setIsi({{$data->KATEGORI}}, {{$data->KD_CUST}}, {{$data->NIK}}, {{$data->NM_CUST}});"><i class="icon ni ni-pen-alt-fill"></i></a>
+                        {{-- <a class="label label-info m-r-10" href="" data-toggle="modal"  data-target=".modal_detail"><i class="icon ni ni-eye-fill"></i></a> --}}
+                        <a class="label label-primary m-r-10" href="" data-toggle="modal"  data-target=".bs-example-modal-lg" onclick="setIsi('{{$data->KD_CUST}}', '{{$data->E_MAIL}}', '{{$data->id}}');"><i class="icon ni ni-pen-alt-fill"></i></a>
                     </td>
                 </tr>
                 @endforeach
@@ -81,8 +80,10 @@
         });
     }
 
-    function setIsi() {
-
+    function setIsi($kd_cust, $email, $id) {
+        $("#kode_cust").val($kd_cust);
+        $("#email").val($email);
+        $("#id_user").val($id);
     }
 
     // window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;//compatibility for Firefox and chrome

@@ -118,6 +118,28 @@ class CustomerController extends Controller
         }
     }
 
+    public function editCustomer(Request $request)
+    {
+        $cek = User::where('email', $request->email)->get();
+
+        if (count($cek) > 0) {
+            Session::flash('error', "Alamat Email Sudah Terdaftar !!!");
+            return Redirect::back();
+        } else {
+            $update = User::where('id', $request->id_user)->update([
+                'email'     => $request->email
+            ]);
+
+            if ($update) {
+                Session::flash('success', "Alamat Email Berhasil Dirubah !!!");
+                return Redirect::back();
+            } else {
+                Session::flash('error', "Alamat Email Gagal Dirubah !!!");
+                return Redirect::back();
+            }
+        }
+    }
+
     public function downloadCustomer()
     {
         $data = Customer::all();
