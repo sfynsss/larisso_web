@@ -51,7 +51,7 @@
                     <td class="tb-status text-danger">{{$data->activation_token}}</td>
                     @endif
                     <td>
-                        {{-- <a class="label label-info m-r-10" href="" data-toggle="modal"  data-target=".modal_detail"><i class="icon ni ni-eye-fill"></i></a> --}}
+                        <a class="label label-info m-r-10" href="{{url('aktifasiAkun')}}/{{$data->E_MAIL}}"><i class="icon ni ni-unlock"></i></a>
                         <a class="label label-primary m-r-10" href="" data-toggle="modal"  data-target=".bs-example-modal-lg" onclick="setIsi('{{$data->KD_CUST}}', '{{$data->E_MAIL}}', '{{$data->id}}');"><i class="icon ni ni-pen-alt-fill"></i></a>
                     </td>
                 </tr>

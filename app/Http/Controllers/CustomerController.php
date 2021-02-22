@@ -266,4 +266,32 @@ class CustomerController extends Controller
 
         return view('customer.cabang', compact('data'));
     }
+
+    public function aktifasiAkun($email)
+    {
+        $cek = User::where('email', $email)->where('email_activation', '1')->get();
+        $update1 = false;
+        if (count($cek) > 0) {
+            $update1 = User::where('email', '=', $email)->update([
+                'activation_token' => substr(str_shuffle("0123456789"), 0, 4), 
+                'email_activation' => '0'
+            ]);
+        } else {
+            $update = User::where('email', $email)->update([
+                'email_activation'      => '1',
+                'activation_token'      => ""
+            ]);
+        }
+
+        if ($update1) {
+            Session::flash('warning', "Akun berhasil di nonaktifkan !!!");
+            return Redirect::back();
+        } else if ($update) {
+            Session::flash('success', "Akun berhasil di aktifkan !!!");
+            return Redirect::back();
+        } else {
+            Session::flash('error', "Operasi Gagal !!!");
+            return Redirect::back();
+        }
+    }
 }
