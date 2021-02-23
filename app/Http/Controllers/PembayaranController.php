@@ -51,7 +51,7 @@ class PembayaranController extends Controller
 		if(!empty($data)){
 			foreach ($data as $value) {
 				$return = $this->get_transaction_status($value->transaction_id);
-				print_r($return->transaction_status);
+				print_r($return);
 			// 	if ($return->transaction_status == "settlement") {
 			// 		$update = MstJual::where('no_ent', $value->no_ent)->update([
 			// 			'sts_byr'	=> 1
