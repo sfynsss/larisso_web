@@ -38,7 +38,7 @@ class PembayaranController extends Controller
 
 	public function get_transaction_status($order_id){
 		try {
-			$get_transaction_status = new \Midtrans\Transaction::status($order_id);
+			$get_transaction_status = \Midtrans\Transaction::status($order_id);
 		} catch (\Exception $e) {
 			return 'error';
 		}
