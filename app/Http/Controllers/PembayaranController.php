@@ -43,7 +43,7 @@ class PembayaranController extends Controller
 			return 'error';
 		}
 
-		return $get_transaction_status;
+		return $get_transaction_status->transaction_status;
 	}
 
 	public function get_paid(){
@@ -51,16 +51,20 @@ class PembayaranController extends Controller
 		if(!empty($data)){
 			foreach ($data as $value) {
 				$return = $this->get_transaction_status($value->transaction_id);
-				print_r($return['transaction_status']);
-			// 	if ($return->transaction_status == "settlement") {
-			// 		$update = MstJual::where('no_ent', $value->no_ent)->update([
-			// 			'sts_byr'	=> 1
-			// 		]);
-			// 	} else if ($return->transaction_status == "failur") {
-			// 		$update = MstJual::where('no_ent', $value->no_ent)->update([
-			// 			'sts_byr'	=> 2
-			// 		]);
-			// 	}
+				// dd($return);
+				if ($return == "settlement") {
+					$update = MstJual::where('no_ent', $value->no_ent)->update([
+						'sts_byr'	=> 1
+					]);
+				} else if ($return == "failur") {
+					$update = MstJual::where('no_ent', $value->no_ent)->update([
+						'sts_byr'	=> 2
+					]);
+				} else if ($return == "expire") {
+					$update = MstJual::where('no_ent', $value->no_ent)->update([
+						'sts_byr'	=> 2
+					]);
+				}
 			}
 		}
 	}
