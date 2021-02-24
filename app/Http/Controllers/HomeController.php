@@ -38,11 +38,13 @@ class HomeController extends Controller
 
         $barang = Barang::count();
         $kategori = KategoriAndroid::count();
+        $outlet = outlet::where('status', '=', '1')->count();
 
-        $total_retail = MstJual::where('sts_jual', '=', 'RETAIL')->sum('netto');
-        $total_grosir = MstJual::where('sts_jual', '=', 'GROSIR')->sum('netto');
+        $total_retail = MstJuaL::where('sts_jual', '=', 'RETAIL')->sum('netto');
+        $total_grosir = MstJuaL::where('sts_jual', '=', 'GROSIR')->sum('netto');
+        $total_offline = MstJuaL::where('sts_jual', '=', 'OFFLINE')->sum('netto'); 
 
-        return view('home', compact('retail', 'grosir', 'barang', 'kategori', 'total_retail', 'total_grosir'));
+        return view('home', compact('retail', 'grosir', 'barang', 'kategori', 'outlet', 'total_retail', 'total_grosir', 'total_offline'));
     }
 
     public function mail()
