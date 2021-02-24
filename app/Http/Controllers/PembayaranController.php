@@ -30,9 +30,18 @@ class PembayaranController extends Controller
 		$orderId = $paymentNotification->transaction_id;
 
 		if ($transaction == 'settlement') {
-			$update = MstJual::where('transaction_id', $orderId)->update([
+			$update = MstJual::where('transaction_id', '=', $orderId)->update([
 				'sts_byr'	=> 1
 			]);
+
+			if ($update) {
+				return 'berhasil';
+			} else {
+				return 'error';
+			}
+
+			// $data = MstJual::where('transaction_id', '=', $orderId)->get();
+			// dd($data);
 		} 
 	}
 
