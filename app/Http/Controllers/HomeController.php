@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Mail;
 use Larisso\Mail\SendMailable;
 use Session;
 use Redirect;
-use Larisso\Customer;
-use Larisso\Voucher;
-use Larisso\Barang;
-use Larisso\KategoriAndroid;
-use Larisso\MstJuaL;
+use Customer;
+use Voucher;
+use Barang;
+use KategoriAndroid;
+use MstJuaL;
 
 class HomeController extends Controller
 {
