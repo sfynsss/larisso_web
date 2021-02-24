@@ -12,6 +12,7 @@ use Larisso\Voucher;
 use Larisso\Barang;
 use Larisso\KategoriAndroid;
 use Larisso\MstJual;
+use Larisso\outlet;
 
 class HomeController extends Controller
 {
