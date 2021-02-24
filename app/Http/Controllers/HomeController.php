@@ -11,7 +11,7 @@ use Larisso\Customer;
 use Larisso\Voucher;
 use Larisso\Barang;
 use Larisso\KategoriAndroid;
-use Larisso\MstJuaL;
+use Larisso\MstJual;
 
 class HomeController extends Controller
 {
