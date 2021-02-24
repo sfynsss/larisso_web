@@ -9,6 +9,9 @@ use Session;
 use Redirect;
 use Larisso\Customer;
 use Larisso\Voucher;
+use Larisso\Barang;
+use Larisso\KategoriAndroid;
+use Larisso\MstJuaL;
 
 class HomeController extends Controller
 {
@@ -29,7 +32,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $retail = Customer::where('KATEGORI', '=', 'RETAIL')->count();
+        $grosir = Customer::where('KATEGORI', '=', 'GROSIR')->count();
+
+        $barang = Barang::count();
+        $kategori = KategoriAndroid::count();
+
+        $total_retail = MstJuaL::where('sts_jual', '=', 'RETAIL')->sum('netto');
+        $total_grosir = MstJuaL::where('sts_jual', '=', 'GROSIR')->sum('netto');
+
+        return view('home', compact('retail', 'grosir', 'barang', 'kategori', 'total_retail', 'total_grosir'));
     }
 
     public function mail()
