@@ -13,151 +13,102 @@
   </div><!-- .nk-block-between -->
 </div><!-- .nk-block-head -->
 <div class="nk-block">
-  <div class="row g-gs">
-    <div class="col-xxl-8">
-      <div class="card card-bordered card-full">
-        <div class="card-inner">
-          <div class="card-title-group">
-            <div class="card-title">
-              <h6 class="title"><span class="mr-2">Transaksi</span></h6>
-            </div>
-          </div>
-        </div>
-        <div class="card-inner p-0 border-top">
-          <div class="nk-tb-list nk-tb-orders">
-            <div class="nk-tb-item nk-tb-head">
-              <div class="nk-tb-col"><span>Order No.</span></div>
-              <div class="nk-tb-col tb-col-sm"><span>Customer</span></div>
-              <div class="nk-tb-col tb-col-md"><span>Date</span></div>
-              <div class="nk-tb-col tb-col-lg"><span>Ref</span></div>
-              <div class="nk-tb-col"><span>Amount</span></div>
-              <div class="nk-tb-col"><span class="d-none d-sm-inline">Status</span></div>
-              <div class="nk-tb-col"><span>&nbsp;</span></div>
-            </div>
-            <div class="nk-tb-item">
-              <div class="nk-tb-col">
-                <span class="tb-lead"><a href="#">#95954</a></span>
-              </div>
-              <div class="nk-tb-col tb-col-sm">
-                <div class="user-card">
-                  <div class="user-avatar user-avatar-sm bg-purple">
-                    <span>AB</span>
-                  </div>
-                  <div class="user-name">
-                    <span class="tb-lead">Abu Bin Ishtiyak</span>
-                  </div>
+    <div class="row g-gs">
+        <div class="col-md-4">
+            <div class="card card-bordered card-full">
+                <div class="card-inner">
+                    <div class="card-title-group align-start mb-0">
+                        <div class="card-title">
+                            <h6 class="subtitle">Total Member Terdaftar</h6>
+                        </div>
+                        <div class="card-tools">
+                            <em class="card-hint icon ni ni-help-fill" data-toggle="tooltip" data-placement="left" title="Seluruh Member Retail & Grosir"></em>
+                        </div>
+                    </div>
+                    <div class="card-amount">
+                        <span class="amount">{{$retail + $grosir}}<span class="currency currency-usd"> Member</span>
+                        </span>
+                    </div>
+                    <div class="invest-data">
+                        <div class="invest-data-amount g-2">
+                            <div class="invest-data-history">
+                                <div class="title">Retail</div>
+                                <div class="amount">{{$retail}}</div>
+                            </div>
+                            <div class="invest-data-history">
+                                <div class="title">Grosir</div>
+                                <div class="amount">{{$grosir}}</div>
+                            </div>
+                        </div>
+                        <div class="invest-data-ck">
+                            <canvas class="iv-data-chart" id="totalDeposit"></canvas>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="nk-tb-col tb-col-md">
-                <span class="tb-sub">02/11/2020</span>
-              </div>
-              <div class="nk-tb-col tb-col-lg">
-                <span class="tb-sub text-primary">SUB-2309232</span>
-              </div>
-              <div class="nk-tb-col">
-                <span class="tb-sub tb-amount">4,596.75 <span>USD</span></span>
-              </div>
-              <div class="nk-tb-col">
-                <span class="badge badge-dot badge-dot-xs badge-success">Paid</span>
-              </div>
-              <div class="nk-tb-col nk-tb-col-action">
-                <div class="dropdown">
-                  <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
-                    <ul class="link-list-plain">
-                      <li><a href="#">View</a></li>
-                      <li><a href="#">Invoice</a></li>
-                      <li><a href="#">Print</a></li>
-                    </ul>
-                  </div>
+            </div><!-- .card -->
+        </div><!-- .col -->
+        <div class="col-md-4">
+            <div class="card card-bordered card-full">
+                <div class="card-inner">
+                    <div class="card-title-group align-start mb-0">
+                        <div class="card-title">
+                            <h6 class="subtitle">Total Barang Masuk</h6>
+                        </div>
+                        <div class="card-tools">
+                            <em class="card-hint icon ni ni-help-fill" data-toggle="tooltip" data-placement="left" title="Total Barang di Retail & Grosir"></em>
+                        </div>
+                    </div>
+                    <div class="card-amount">
+                        <span class="amount">{{$barang}}<span class="currency currency-usd"> Item</span>
+                        </span>
+                    </div>
+                    <div class="invest-data">
+                        <div class="invest-data-amount g-2">
+                            <div class="invest-data-history">
+                                <div class="title">Jumlah Kategori</div>
+                                <div class="amount">{{$kategori}}</div>
+                            </div>
+                        </div>
+                        <div class="invest-data-ck">
+                            <canvas class="iv-data-chart" id="totalDeposit"></canvas>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div class="nk-tb-item">
-              <div class="nk-tb-col">
-                <span class="tb-lead"><a href="#">#95850</a></span>
-              </div>
-              <div class="nk-tb-col tb-col-sm">
-                <div class="user-card">
-                  <div class="user-avatar user-avatar-sm bg-azure">
-                    <span>DE</span>
-                  </div>
-                  <div class="user-name">
-                    <span class="tb-lead">Desiree Edwards</span>
-                  </div>
+            </div><!-- .card -->
+        </div><!-- .col -->
+        <div class="col-md-4">
+            <div class="card card-bordered  card-full">
+                <div class="card-inner">
+                    <div class="card-title-group align-start mb-0">
+                        <div class="card-title">
+                            <h6 class="subtitle">Seluruh Transaksi</h6>
+                        </div>
+                        <div class="card-tools">
+                            <em class="card-hint icon ni ni-help-fill" data-toggle="tooltip" data-placement="left" title="Total Transaksi di Retail & Grosir"></em>
+                        </div>
+                    </div>
+                    <div class="card-amount">
+                        <span class="amount">@currency($total_retail + $total_grosir)</span>
+                    </div>
+                    <div class="invest-data">
+                        <div class="invest-data-amount g-2">
+                            <div class="invest-data-history">
+                                <div class="title">Retail</div>
+                                <span class="amount">@currency($total_retail)</span>
+                            </div>
+                            <div class="invest-data-history">
+                                <div class="title">Grosir</div>
+                                 <span class="amount">@currency($total_grosir)</span>
+                            </div>
+                        </div>
+                        <div class="invest-data-ck">
+                            <canvas class="iv-data-chart" id="totalDeposit"></canvas>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="nk-tb-col tb-col-md">
-                <span class="tb-sub">02/02/2020</span>
-              </div>
-              <div class="nk-tb-col tb-col-lg">
-                <span class="tb-sub text-primary">SUB-2309154</span>
-              </div>
-              <div class="nk-tb-col">
-                <span class="tb-sub tb-amount">596.75 <span>USD</span></span>
-              </div>
-              <div class="nk-tb-col">
-                <span class="badge badge-dot badge-dot-xs badge-danger">Canceled</span>
-              </div>
-              <div class="nk-tb-col nk-tb-col-action">
-                <div class="dropdown">
-                  <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
-                    <ul class="link-list-plain">
-                      <li><a href="#">View</a></li>
-                      <li><a href="#">Remove</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="nk-tb-item">
-              <div class="nk-tb-col">
-                <span class="tb-lead"><a href="#">#95135</a></span>
-              </div>
-              <div class="nk-tb-col tb-col-sm">
-                <div class="user-card">
-                  <div class="user-avatar user-avatar-sm bg-success">
-                    <span>CH</span>
-                  </div>
-                  <div class="user-name">
-                    <span class="tb-lead">Cassandra Hogan</span>
-                  </div>
-                </div>
-              </div>
-              <div class="nk-tb-col tb-col-md">
-                <span class="tb-sub">01/29/2020</span>
-              </div>
-              <div class="nk-tb-col tb-col-lg">
-                <span class="tb-sub text-primary">SUB-2305564</span>
-              </div>
-              <div class="nk-tb-col">
-                <span class="tb-sub tb-amount">1099.99 <span>USD</span></span>
-              </div>
-              <div class="nk-tb-col">
-                <span class="badge badge-dot badge-dot-xs badge-warning">Due</span>
-              </div>
-              <div class="nk-tb-col nk-tb-col-action">
-                <div class="dropdown">
-                  <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
-                    <ul class="link-list-plain">
-                      <li><a href="#">View</a></li>
-                      <li><a href="#">Invoice</a></li>
-                      <li><a href="#">Notify</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card-inner-sm border-top text-center d-sm-none">
-          <a href="#" class="btn btn-link btn-block">See History</a>
-        </div>
-      </div><!-- .card -->
-    </div><!-- .col -->
-  </div><!-- .row -->
-</div><!-- .nk-block -->
+            </div><!-- .card -->
+        </div><!-- .col -->
+    </div>
+</div>
 
 @endsection
