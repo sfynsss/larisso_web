@@ -167,8 +167,8 @@
 <script src="{{url('assets/js/bundle.js?ver=1.4.0')}}"></script>
 <script src="{{url('assets/js/scripts.js?ver=1.4.0')}}"></script>
 <script src="{{url('assets/js/charts/gd-general.js?ver=1.4.0')}}"></script>
-<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-messaging.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-messaging.js"></script>
 
 <script>
     function setKategori($a, $b, $c, $d) {
