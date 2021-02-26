@@ -208,7 +208,7 @@
       }
     }).catch((err) => {
       console.log('An error occurred while retrieving token. ', err);
-      showToken('Error retrieving registration token. ', err);
+      // showToken('Error retrieving registration token. ', err);
       // setTokenSentToServer(false);
     });
 
