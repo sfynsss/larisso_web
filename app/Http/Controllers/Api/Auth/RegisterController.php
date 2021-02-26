@@ -100,5 +100,18 @@ class RegisterController extends Controller
 		}
 	}
 
-	
+	public function aktifasiGrosir(Request $request)
+	{
+		$user = User::where('id', '=', $request->id)->where('grosir_token', '=', $request->token)->update([
+			'email_activation'		=> '1',
+			'otoritas'				=> 'GROSIR'
+		]);
+
+		if ($user) {
+			return response()->json(['message' => 'Aktifasi Berhasil'], 200);
+		} else {
+			return response()->json(['message' => 'Aktifasi Gagal, silahkan perikasa kembali kode aktifasi Anda'], 401);
+		}
+	}
+
 }
