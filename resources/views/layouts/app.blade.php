@@ -167,8 +167,8 @@
 <script src="{{url('assets/js/bundle.js?ver=1.4.0')}}"></script>
 <script src="{{url('assets/js/scripts.js?ver=1.4.0')}}"></script>
 <script src="{{url('assets/js/charts/gd-general.js?ver=1.4.0')}}"></script>
-<script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-messaging.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-messaging.js"></script>
 
 <script>
     function setKategori($a, $b, $c, $d) {
@@ -192,24 +192,25 @@
 
     const messaging = firebase.messaging();
 
-    messaging.usePublicVapidKey("BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0");
-    // messaging.getToken({vapidKey: 'BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0'}).then((currentToken) => {
-    //   if (currentToken) {
-    //     // sendTokenToServer(currentToken);
-    //     // updateUIForPushEnabled(currentToken);
-    //     console.log(currentToken);
-    //   } else {
-    //     // Show permission request.
-    //     console.log('No registration token available. Request permission to generate one.');
-    //     // Show permission UI.
-    //     // updateUIForPushPermissionRequired();
-    //     // setTokenSentToServer(false);
-    //   }
-    // }).catch((err) => {
-    //   console.log('An error occurred while retrieving token. ', err);
-    //   showToken('Error retrieving registration token. ', err);
-    //   // setTokenSentToServer(false);
-    // });
+    // messaging.getToken({vapidKey: "BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0"});
+    // messaging.usePublicVapidKey("BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0");
+    messaging.getToken({vapidKey: 'BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0'}).then((currentToken) => {
+      if (currentToken) {
+        // sendTokenToServer(currentToken);
+        // updateUIForPushEnabled(currentToken);
+        console.log(currentToken);
+      } else {
+        // Show permission request.
+        console.log('No registration token available. Request permission to generate one.');
+        // Show permission UI.
+        // updateUIForPushPermissionRequired();
+        // setTokenSentToServer(false);
+      }
+    }).catch((err) => {
+      console.log('An error occurred while retrieving token. ', err);
+      showToken('Error retrieving registration token. ', err);
+      // setTokenSentToServer(false);
+    });
 
 </script>
 @yield('script')
