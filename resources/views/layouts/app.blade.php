@@ -167,8 +167,6 @@
 <script src="{{url('assets/js/bundle.js?ver=1.4.0')}}"></script>
 <script src="{{url('assets/js/scripts.js?ver=1.4.0')}}"></script>
 <script src="{{url('assets/js/charts/gd-general.js?ver=1.4.0')}}"></script>
-<script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-messaging.js"></script>
 
 <script>
     function setKategori($a, $b, $c, $d) {
@@ -177,36 +175,6 @@
         $('#status').select2('val', $c);
         $("#kd_outlet").val($d).trigger('change');
     }
-
-    var firebaseConfig = {
-        apiKey: "AIzaSyCwfKykRoJ1HtDrJjD6wIjY-ccuAgTTgjY",
-        authDomain: "asrilarisso.firebaseapp.com",
-        databaseURL: "https://asrilarisso.firebaseio.com",
-        projectId: "asrilarisso",
-        storageBucket: "asrilarisso.appspot.com",
-        messagingSenderId: "1013043778047",
-        appId: "1:1013043778047:web:42c18ea63bee5967dc57ca"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-
-    const messaging = firebase.messaging();
-
-    // messaging.getToken({vapidKey: "BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0"});
-    messaging.usePublicVapidKey("BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0");
-    function sendTokenToServer(token){
-        console.log(token);
-    }
-
-    messaging.getToken().then((currentToken) => {
-        if (currentToken) {
-            sendTokenToServer(currentToken);
-        } else {
-
-        }
-    }).catch((err) => {
-        console.log("error", err);
-    });
 
 </script>
 @yield('script')
