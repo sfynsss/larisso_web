@@ -15,6 +15,12 @@
     <link rel="stylesheet" href="{{url('/assets/css/dashlite.css?ver=1.4.0')}}">
     <link id="skin-default" rel="stylesheet" href="{{url('assets/css/theme.css?ver=1.4.0')}}">
 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
+
 </head>
 
 <body class="nk-body bg-lighter npc-general has-sidebar">
@@ -46,7 +52,7 @@
                                                     <em class="icon ni ni-user-alt"></em>
                                                 </div>
                                                 <div class="user-info d-none d-md-block">
-                                                    <div class="user-status">Administrator</div>
+                                                    <div class="user-status">{{Auth::user()->otoritas}}</div>
                                                     <div class="user-name dropdown-indicator">{{Auth::user()->name}}</div>
                                                 </div>
                                             </div>
@@ -70,6 +76,27 @@
                                                         @csrf
                                                     </form>
                                                 </ul>
+                                            </div>
+                                        </div>
+                                    </li><!-- .dropdown -->
+                                    <li class="dropdown notification-dropdown mr-n1">
+                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
+                                            <div class="icon-status icon-status-info">
+                                                <em class="icon ni ni-bell"></em>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right dropdown-menu-s1">
+                                            <div class="dropdown-head">
+                                                <span class="sub-title nk-dropdown-title">Notifications</span>
+                                                <a href="#">Mark All as Read</a>
+                                            </div>
+                                            <div class="dropdown-body">
+                                                <div class="nk-notification">
+
+                                                </div><!-- .nk-notification -->
+                                            </div><!-- .nk-dropdown-body -->
+                                            <div class="dropdown-foot center">
+                                                <a href="#">View All</a>
                                             </div>
                                         </div>
                                     </li><!-- .dropdown -->
@@ -154,6 +181,64 @@
         $('#status').select2('val', $c);
         $("#kd_outlet").val($d).trigger('change');
     }
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCwfKykRoJ1HtDrJjD6wIjY-ccuAgTTgjY",
+      authDomain: "asrilarisso.firebaseapp.com",
+      databaseURL: "https://asrilarisso.firebaseio.com",
+      projectId: "asrilarisso",
+      storageBucket: "asrilarisso.appspot.com",
+      messagingSenderId: "1013043778047",
+      appId: "1:1013043778047:web:42c18ea63bee5967dc57ca"
+    };
+
+    // var firebaseConfig = {
+    //     apiKey: "AIzaSyCwfKykRoJ1HtDrJjD6wIjY-ccuAgTTgjY",
+    //     authDomain: "asrilarisso.firebaseapp.com",
+    //     databaseURL: "https://asrilarisso.firebaseio.com",
+    //     projectId: "asrilarisso",
+    //     storageBucket: "asrilarisso.appspot.com",
+    //     messagingSenderId: "1013043778047",
+    //     appId: "1:1013043778047:web:42c18ea63bee5967dc57ca"
+    // };
+    // // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    const messaging = firebase.messaging();
+    messaging.onMessage((payload) => {
+        console.log('Message received. ', payload);
+        // Update the UI to include the received message.
+        appendMessage(payload);
+    });
+
+    // messaging.setBackgroundMessageHandler(function(payload) {
+    //     console.log(
+    //         "[firebase-messaging-sw.js] Received background message ",
+    //         payload,
+    //     );
+    //     // Customize notification here
+    //     const notificationTitle = "Background Message Title";
+    //     const notificationOptions = {
+    //         body: "Background Message body.",
+    //         icon: "/itwonders-web-logo.png",
+    //     };
+
+    //     return self.registration.showNotification(
+    //         notificationTitle,
+    //         notificationOptions,
+    //     );
+    // });
+    // messaging.requestPermission().then(function() {
+    //     console.log("Notifications permission granted");
+
+    //     return messaging.getToken();
+    // }).then(function(token){
+    //     console.log(token);
+    // }).catch(function(err){
+    //     console.log("Unable to get permission to notify", err);
+    // });
+
+
 </script>
 @yield('script')
 </body>
