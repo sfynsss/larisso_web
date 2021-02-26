@@ -193,23 +193,19 @@
     const messaging = firebase.messaging();
 
     // messaging.getToken({vapidKey: "BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0"});
-    // messaging.usePublicVapidKey("BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0");
-    messaging.getToken({vapidKey: 'BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0'}).then((currentToken) => {
-      if (currentToken) {
-        // sendTokenToServer(currentToken);
-        // updateUIForPushEnabled(currentToken);
-        console.log(currentToken);
-      } else {
-        // Show permission request.
-        console.log('No registration token available. Request permission to generate one.');
-        // Show permission UI.
-        // updateUIForPushPermissionRequired();
-        // setTokenSentToServer(false);
-      }
+    messaging.usePublicVapidKey("BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0");
+    function sendTokenToServer(token){
+        console.log(token);
+    }
+
+    messaging.getToken().then((currentToken) => {
+        if (currentToken) {
+            sendTokenToServer(currentToken);
+        } else {
+
+        }
     }).catch((err) => {
-      console.log('An error occurred while retrieving token. ', err);
-      // showToken('Error retrieving registration token. ', err);
-      // setTokenSentToServer(false);
+        console.log("error", err);
     });
 
 </script>
