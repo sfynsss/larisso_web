@@ -192,8 +192,8 @@
 
     const messaging = firebase.messaging();
 
-    // messaging.getToken({vapidKey: "BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0"});
-    messaging.usePublicVapidKey("BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0");
+    messaging.getToken({vapidKey: "BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0"});
+    // messaging.usePublicVapidKey("BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0");
     function sendTokenToServer(token){
         console.log(token);
     }
