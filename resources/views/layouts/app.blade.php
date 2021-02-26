@@ -192,15 +192,6 @@
 
     const messaging = firebase.messaging();
 
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('firebase-messaging-sw.js')
-        .then(function(registration) {
-            console.log('Registration successful, scope is:', registration.scope);
-        }).catch(function(err) {
-            console.log('Service worker registration failed, error:', err);
-        });
-    }
-
     // messaging.getToken({vapidKey: "BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0"});
     messaging.usePublicVapidKey("BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0");
     function sendTokenToServer(token){
