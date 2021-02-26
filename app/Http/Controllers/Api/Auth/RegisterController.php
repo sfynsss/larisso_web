@@ -49,7 +49,8 @@ class RegisterController extends Controller
 			'firebase_token' => $request->firebase_token,
 			'email_activation' => '0', 
 			'otoritas'	=> $request->kd_kat,
-			'activation_token' => substr(str_shuffle("0123456789"), 0, 4)
+			'activation_token' => substr(str_shuffle("0123456789"), 0, 4),
+			'grosir_token' => substr(str_shuffle("0123456789"), 0, 4)
 		]);
 
 		if ($user > 0) {
