@@ -15,12 +15,6 @@
     <link rel="stylesheet" href="{{url('/assets/css/dashlite.css?ver=1.4.0')}}">
     <link id="skin-default" rel="stylesheet" href="{{url('assets/css/theme.css?ver=1.4.0')}}">
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
-    <!-- Firebase App is always required and must be first -->
-    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-messaging.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
-
 </head>
 
 <body class="nk-body bg-lighter npc-general has-sidebar">
@@ -173,6 +167,8 @@
 <script src="{{url('assets/js/bundle.js?ver=1.4.0')}}"></script>
 <script src="{{url('assets/js/scripts.js?ver=1.4.0')}}"></script>
 <script src="{{url('assets/js/charts/gd-general.js?ver=1.4.0')}}"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.1/firebase-messaging.js"></script>
 
 <script>
     function setKategori($a, $b, $c, $d) {
@@ -182,62 +178,38 @@
         $("#kd_outlet").val($d).trigger('change');
     }
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyCwfKykRoJ1HtDrJjD6wIjY-ccuAgTTgjY",
-      authDomain: "asrilarisso.firebaseapp.com",
-      databaseURL: "https://asrilarisso.firebaseio.com",
-      projectId: "asrilarisso",
-      storageBucket: "asrilarisso.appspot.com",
-      messagingSenderId: "1013043778047",
-      appId: "1:1013043778047:web:42c18ea63bee5967dc57ca"
+    var firebaseConfig = {
+        apiKey: "AIzaSyCwfKykRoJ1HtDrJjD6wIjY-ccuAgTTgjY",
+        authDomain: "asrilarisso.firebaseapp.com",
+        databaseURL: "https://asrilarisso.firebaseio.com",
+        projectId: "asrilarisso",
+        storageBucket: "asrilarisso.appspot.com",
+        messagingSenderId: "1013043778047",
+        appId: "1:1013043778047:web:42c18ea63bee5967dc57ca"
     };
-
-    // var firebaseConfig = {
-    //     apiKey: "AIzaSyCwfKykRoJ1HtDrJjD6wIjY-ccuAgTTgjY",
-    //     authDomain: "asrilarisso.firebaseapp.com",
-    //     databaseURL: "https://asrilarisso.firebaseio.com",
-    //     projectId: "asrilarisso",
-    //     storageBucket: "asrilarisso.appspot.com",
-    //     messagingSenderId: "1013043778047",
-    //     appId: "1:1013043778047:web:42c18ea63bee5967dc57ca"
-    // };
-    // // Initialize Firebase
+    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
 
     const messaging = firebase.messaging();
-    messaging.onMessage((payload) => {
-        console.log('Message received. ', payload);
-        // Update the UI to include the received message.
-        appendMessage(payload);
-    });
 
-    // messaging.setBackgroundMessageHandler(function(payload) {
-    //     console.log(
-    //         "[firebase-messaging-sw.js] Received background message ",
-    //         payload,
-    //     );
-    //     // Customize notification here
-    //     const notificationTitle = "Background Message Title";
-    //     const notificationOptions = {
-    //         body: "Background Message body.",
-    //         icon: "/itwonders-web-logo.png",
-    //     };
-
-    //     return self.registration.showNotification(
-    //         notificationTitle,
-    //         notificationOptions,
-    //     );
+    messaging.usePublicVapidKey("BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0");
+    // messaging.getToken({vapidKey: 'BL9OwkXMXjSAH8G-ljflgvJGUafVSLs64lWmqATRknDo_NixZSpqdCG3ZoBtmg2mMCAcln8YMUhViflwgXqLuL0'}).then((currentToken) => {
+    //   if (currentToken) {
+    //     // sendTokenToServer(currentToken);
+    //     // updateUIForPushEnabled(currentToken);
+    //     console.log(currentToken);
+    //   } else {
+    //     // Show permission request.
+    //     console.log('No registration token available. Request permission to generate one.');
+    //     // Show permission UI.
+    //     // updateUIForPushPermissionRequired();
+    //     // setTokenSentToServer(false);
+    //   }
+    // }).catch((err) => {
+    //   console.log('An error occurred while retrieving token. ', err);
+    //   showToken('Error retrieving registration token. ', err);
+    //   // setTokenSentToServer(false);
     // });
-    // messaging.requestPermission().then(function() {
-    //     console.log("Notifications permission granted");
-
-    //     return messaging.getToken();
-    // }).then(function(token){
-    //     console.log(token);
-    // }).catch(function(err){
-    //     console.log("Unable to get permission to notify", err);
-    // });
-
 
 </script>
 @yield('script')
