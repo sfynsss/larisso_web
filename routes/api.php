@@ -23,6 +23,7 @@ Route::post('aktifasiGrosir', 'Api\Auth\RegisterController@aktifasiGrosir');
 Route::post('forgetPassword', 'Api\Auth\UserController@forgetPassword');
 //resend kode aktifasi
 Route::post('resendAktifasi', 'Api\Auth\UserController@resendAktifasi');
+Route::post('generateGrosirToken', 'Api\Auth\UserController@generateGrosirToken');
 Route::post('getOtp', 'Api\Auth\UserController@getOtp');
 
 Route::put('putStatusMstJual/{no_ent}', 'Api\PenjualanController@putStatusMstJual');

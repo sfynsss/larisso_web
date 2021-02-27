@@ -127,6 +127,19 @@ class UserController extends Controller
 		}
 	}
 
+	public function generateGrosirToken(Request $request)
+	{
+		$user = tap(DB::table('users')->where('email', '=', $request->email))->update([
+			'grosir_token' => substr(str_shuffle("0123456789"), 0, 4)
+		])->first();
+
+		if ($user) {
+			return response()->json(['message' => 'Generate Token Berhasil'], 200);
+		} else {
+			return response()->json(['message' => 'Generate Token gagal'], 401);
+		}
+	}
+
 	public function getOtp(Request $request)
 	{
 		$user = User::where('email', '=', $request->email)->first();
