@@ -30,6 +30,7 @@
                     <th scope="col">Point</th>
                     <th scope="col">Kategori</th>
                     <th scope="col">OTP</th>
+                    <th scope="col">Grosir Token</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -50,6 +51,7 @@
                     @elseif($data->email_activation == 0)
                     <td class="tb-status text-danger">{{$data->activation_token}}</td>
                     @endif
+                    <td>{{$data->grosir_token}}</td>
                     <td>
                         <a class="label label-info m-r-10" href="{{url('aktifasiAkun')}}/{{$data->E_MAIL}}"><i class="icon ni ni-unlock"></i></a>
                         <a class="label label-primary m-r-10" href="" data-toggle="modal"  data-target=".bs-example-modal-lg" onclick="setIsi('{{$data->KD_CUST}}', '{{$data->E_MAIL}}', '{{$data->id}}');"><i class="icon ni ni-pen-alt-fill"></i></a>
