@@ -115,4 +115,17 @@ class RegisterController extends Controller
 		}
 	}
 
+	public function generateGrosirToken(Request $request)
+	{
+		$user = User::where('id', '=', $request->id)->update([
+			'grosir_token' => substr(str_shuffle("0123456789"), 0, 4)
+		]);
+
+		if ($user) {
+			return response()->json(['message' => 'Aktifasi Berhasil'], 200);
+		} else {
+			return response()->json(['message' => 'Aktifasi Gagal, silahkan perikasa kembali'], 401);
+		}
+	}
+
 }

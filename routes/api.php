@@ -20,6 +20,7 @@ Route::post('registrasi', 'Api\RegistrasiController@registrasi');
 Route::post('validator', 'Api\Auth\RegisterController@validator');
 Route::post('aktifasi', 'Api\Auth\RegisterController@aktifasi');
 Route::post('aktifasiGrosir', 'Api\Auth\RegisterController@aktifasiGrosir');
+Route::post('generateGrosirToken', 'Api\Auth\RegisterController@generateGrosirToken');
 Route::post('forgetPassword', 'Api\Auth\UserController@forgetPassword');
 //resend kode aktifasi
 Route::post('resendAktifasi', 'Api\Auth\UserController@resendAktifasi');
