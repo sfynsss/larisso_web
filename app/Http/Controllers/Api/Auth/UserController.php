@@ -134,7 +134,7 @@ class UserController extends Controller
 		])->first();
 
 		if ($user) {
-			return response()->json(['message' => 'Generate Token Berhasil'], 200);
+			return response()->json(['message' => 'Generate Token Berhasil', 'data' => $user->grosir_token], 200);
 		} else {
 			return response()->json(['message' => 'Generate Token gagal'], 401);
 		}
