@@ -7,6 +7,7 @@ use Larisso\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Larisso\Customer;
 use Larisso\KategoriCustomer;
+use Larisso\User;
 
 class CustomerController extends Controller
 {
@@ -54,5 +55,22 @@ class CustomerController extends Controller
 			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
 		}
 	}
+
+	public function getUser(Request $request)
+	{
+		$data = User::where('name', 'like', '%'.$request->name.'%')
+			->where('otoritas', '=', 'RETAIL')
+			->where('email_activation', '=', '0')
+			->orderBy('id', 'desc')
+			->get();
+
+		if ($data) {
+			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
+		} else {
+			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
+		}	
+	}
+
+
 
 }

@@ -41,7 +41,8 @@ Route::middleware('auth:api')->group(function () {
 	//customer
 	Route::post('tambahCustomer', 'Api\CustomerController@tambahCustomer');	
 	Route::post('getCustomer', 'Api\CustomerController@getCustomer');	
-	Route::post('getKodeCust', 'Api\CustomerController@getKodeCust');	
+	Route::post('getKodeCust', 'Api\CustomerController@getKodeCust');
+	Route::post('getUser', 'Api\CustomerController@getUser');	
 	//endOfCustomer
 
 	//Kunjungan
