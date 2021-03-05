@@ -122,6 +122,7 @@ Route::middleware('auth:api')->group(function () {
 
 	//Notification
 	Route::post('getNotif', 'Api\NotificationController@getNotif');
+	Route::post('sendNotif', 'Api\NotificationController@sendNotif');
 	//endOfNotification
 
 	//OngkirCod

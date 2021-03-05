@@ -62,6 +62,7 @@ class CustomerController extends Controller
 			->where('otoritas', '=', 'RETAIL')
 			->where('email_activation', '=', '0')
 			->orderBy('id', 'desc')
+			->take(100)
 			->get();
 
 		if ($data) {
