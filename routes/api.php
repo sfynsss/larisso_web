@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::post('login', 'Api\Auth\LoginController@login');
+Route::post('loginSales', 'Api\Auth\LoginController@loginSales');
 Route::post('register', 'Api\Auth\RegisterController@register');
 Route::post('cekRegis', 'Api\RegistrasiController@cekRegis');
 Route::post('registrasi', 'Api\RegistrasiController@registrasi');

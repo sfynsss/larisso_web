@@ -144,6 +144,7 @@ class PenjualanController extends Controller
         $mst = MstJual::insertGetId([
             'no_ent'            => $tmp,
             'id_user'           => $request->id,
+            'transaction_id'    => "",
             'kd_cust'           => $mst_order[0]->KD_CUST,
             'nm_penerima'       => $kd_cust[0]->NM_CUST,
             'alm_penerima'      => $kd_cust[0]->ALM_CUST,
