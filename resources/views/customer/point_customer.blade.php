@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@include('customer.edit_point')
 
 <div class="nk-block nk-block-lg">
     <div class="nk-block-head nk-block-head-sm">
@@ -18,12 +19,13 @@
     <table class="table table-orders">
         <thead class="tb-odr-head">
             <tr class="tb-odr-item">
-                <th>No</th>
-                <th>Nama</th>
-                <th>Alamat</th>
-                <th>No Hp</th>
-                <th>Kategori</th>
-                <th>Jumlah Point</th>
+                <th style="width:5%">No</th>
+                <th style="width:25%">Nama</th>
+                <th style="width:30%">Alamat</th>
+                <th style="width:10%">No Hp</th>
+                <th style="width:10%">Kategori</th>
+                <th style="width:10%">Jumlah Point</th>
+                <th style="width:20%">Aksi</th>
             </tr>
         </thead>
         <tbody class="tb-odr-body">
@@ -35,7 +37,11 @@
                 <td>{{$data->ALM_CUST}}</td>
                 <td>{{$data->HP}}</td>
                 <td>{{$data->KATEGORI}}</td>
-                <td>{{$data->POINT_BL_INI}}</td>
+                <td><span style="font-weight:bold">{{$data->POINT_BL_INI}}</span></td>
+                <td><button type="submit" class="btn btn-warning waves-effect text-left" 
+                    onclick="setIsi('{{$data->KD_CUST}}','{{$data->NM_CUST}}', '{{$data->POINT_BL_INI}}', '{{$data->id}}');" 
+                    data-toggle="modal"  data-target=".bs-example-modal-lg">Edit</button>
+                </td>
             </tr>
             @endforeach
         </tbody>
@@ -43,4 +49,32 @@
 </div><!-- .card-preview -->
 </div><!-- nk-block -->
 
+@endsection
+@section('script')
+<script>
+
+    function setKdCust() {
+        $.ajax({
+         type:'POST',
+         url:'/api/getKodeCust',
+         headers: {
+            "Accept":"application/json",
+            "Authorization":"Bearer {{Auth::user()->api_token}}"
+        },
+        success:function(data){
+          $("input[name=kode_cust]").val(data);
+              // alert(data);
+          }
+        });
+    }
+
+    function setIsi($kd_cust, $nm_cust, $point, $id) {
+        $("#kode_cust").val($kd_cust);
+        $("#nm_cust").val($nm_cust);
+        $("#point").val($point);
+        $("#id_user").val($id);
+    }
+
+
+</script>
 @endsection

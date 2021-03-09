@@ -62,6 +62,21 @@ class CustomerController extends Controller
         return view('customer.point_customer', compact('data', 'outlet'));
     }
 
+    public function editPointCustomer(Request $request)
+    {
+        $data = Customer::where('id', $request->id_user)->update([
+                    'POINT_BL_INI' => $request->point
+            ]);
+
+            if ($data) {
+                Session::flash('success', "Point Berhasil Dirubah");
+                return Redirect::back();
+            } else {
+                Session::flash('error', "Point Gagal Dirubah");
+                return Redirect::back();
+            }
+    }
+
     public function tambahCustomer(Request $request)
     {
         // print_r($request->tgl_lahir."<br>");

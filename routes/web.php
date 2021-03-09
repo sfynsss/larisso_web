@@ -81,6 +81,7 @@ Route::get('/sinkronisasi', 'CustomerController@sinkronisasi');
 Route::get('/downloadCustomer', 'CustomerController@downloadCustomer');
 Route::get('/pointCustomer', 'CustomerController@pointCustomer');
 Route::get('/aktifasiAkun/{id}', 'CustomerController@aktifasiAkun');
+Route::post('/editPointCustomer', 'CustomerController@editPointCustomer');
 //endOfCustomer
 
 //voucher
