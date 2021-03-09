@@ -81,7 +81,7 @@
 							@else
 							<img src="{{asset('storage')}}/{{$data->gambar}}" width="100" height="100">
 							@endif
-						</td>
+						</td>					
 						<td class="tb-odr-action">
 							<div class="dropdown">
 								<a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown" data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>
@@ -114,14 +114,32 @@
 		const source = document.getElementById('disc_brg_edit');
 		const result = document.getElementById('harga_disc_brg_edit');
 
+		const source2 = document.getElementById('harga_disc_brg_edit');
+		const result2 = document.getElementById('disc_brg_edit');
+
 		const inputHandler = function(e) {
 			var disc = document.getElementById('hrg_brg_edit').value * (e.target.value/100);
+			//var disc = Math.ceil(document.getElementById('hrg_brg_edit').value * (e.target.value/100));
 			$('#harga_disc_brg_edit').val(disc);
+		}
+
+		const inputHandler2 = function(e) {
+			var hrg = document.getElementById('hrg_brg_edit').value;
+			var dsc = e.target.value;
+			var ptg = (dsc/hrg) * 100;
+			ptg = ptg.toFixed(0);
+			$('#disc_brg_edit').val(ptg);
 		}
 
 		source.addEventListener('input', inputHandler);
 		source.addEventListener('propertychange', inputHandler);
+
+		source2.addEventListener('input', inputHandler2);
+		source2.addEventListener('propertychange', inputHandler2);
+
+
 	});
+
 
 	function editBarang($nm_brg, $id, $hrg, $disc, $harga_disc, $kd_kat_android) {
 		$('#nm_brg_edit').val($nm_brg);
