@@ -69,16 +69,16 @@
               <div class="form-group">
                 <label class="form-label" for="default-01">Diskon</label>
                 <div class="form-control-wrap">
-                  <input type="number" class="form-control" id="disc_brg_edit" name="disc_brg_edit" max="100" min="0" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type = "number" maxlength = "2">
+                  <input type="number" class="form-control" id="disc_brg_edit" name="disc_brg_edit" max="100">
                 </div>
               </div>
             </div>
 
             <div class="col-sm-6">
               <div class="form-group">
-                <label class="form-label" for="default-01">Harga Potongan Diskon</label>
+                <label class="form-label" for="default-01">Harga Diskon</label>
                 <div class="form-control-wrap">
-                  <input type="number" class="form-control" id="harga_disc_brg_edit" name="harga_disc_brg_edit" max="100" min="0">
+                  <input type="number" class="form-control" id="harga_disc_brg_edit" name="harga_disc_brg_edit">
                 </div>
               </div>
             </div>
