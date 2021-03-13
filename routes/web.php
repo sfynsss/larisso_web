@@ -128,6 +128,10 @@ Route::post('/updatePenawaran', 'PenawaranController@updatePenawaran');
 Route::get('/deletePenawaran/{id}', 'PenawaranController@deletePenawaran');
 //endofSetting
 
+//promo
+Route::get('/promo', 'PromoController@index');
+Route::post('/updatePromo', 'PromoController@updatePromo');
+
 //ongkir cod
 Route::get('/ongkircod', 'OngkirCodController@index');
 Route::post('/tambahOngkirCod', 'OngkirCodController@tambahOngkirCod');

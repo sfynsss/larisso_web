@@ -129,6 +129,9 @@ Route::middleware('auth:api')->group(function () {
 	//OngkirCod
 	Route::get('getOngkirCod', 'Api\OngkirCodController@getOngkirCod');
 
+	//Promo
+	Route::get('getPromo', 'Api\PromoController@getPromo');
+
 	//Penawaran
 	Route::get('getPenawaran', 'Api\PenawaranController@index');
 	//endOfPenawaran

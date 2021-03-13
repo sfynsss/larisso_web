@@ -123,6 +123,9 @@
                             <li class="nk-menu-item">
                                 <a href="{{url('penawaran')}}" class="nk-menu-link"><span class="nk-menu-text">Penawaran</span></a>
                             </li>
+                            <li class="nk-menu-item">
+                                <a href="{{url('promo')}}" class="nk-menu-link"><span class="nk-menu-text">Periode Promo</span></a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nk-menu-item has-sub">
@@ -147,7 +150,6 @@
                             </li>
                         </ul>
                     </li>
-
 
 
                 </ul><!-- .nk-menu -->
