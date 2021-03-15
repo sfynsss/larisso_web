@@ -101,7 +101,7 @@ class CustomerController extends Controller
 
     public function recordPointEdit()
     {
-        $data = RecordPointEdit::all();
+        $data = RecordPointEdit::orderby('id', 'desc')->get();
         return view('customer.record_point_edit', compact('data'));
     }
 

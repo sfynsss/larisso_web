@@ -53,12 +53,6 @@
                             <li class="nk-menu-item">
                                 <a href="{{url('customer')}}" class="nk-menu-link"><span class="nk-menu-text">Customer</span></a>
                             </li>
-                            <li class="nk-menu-item">
-                                <a href="{{url('pointCustomer')}}" class="nk-menu-link"><span class="nk-menu-text">Perolehan Point</span></a>
-                            </li>
-                            <li class="nk-menu-item">
-                                <a href="{{url('recordPointEdit')}}" class="nk-menu-link"><span class="nk-menu-text">Record Perubahan Point</span></a>
-                            </li>
                         </ul>
                     </li>
 
@@ -70,9 +64,20 @@
                         <ul class="nk-menu-sub">
                             <li class="nk-menu-item">
                                 <a href="{{url('settingVoucher')}}" class="nk-menu-link"><span class="nk-menu-text">Setting Voucher</span></a>
-                                <a href="{{url('settingPoint')}}" class="nk-menu-link"><span class="nk-menu-text">Setting Poin</span></a>
                                 <a href="{{url('voucherGlobal')}}" class="nk-menu-link"><span class="nk-menu-text">Voucher</span></a>
                             </li>
+                        </ul>
+                    </li>
+
+                    <li class="nk-menu-item has-sub">
+                        <a href="#" class="nk-menu-link nk-menu-toggle">
+                            <span class="nk-menu-icon"><em class="icon ni ni-coin-alt-fill"></em></span>
+                            <span class="nk-menu-text">Point</span>
+                        </a>
+                        <ul class="nk-menu-sub">
+                            <a href="{{url('pointCustomer')}}" class="nk-menu-link"><span class="nk-menu-text">Perolehan Point</span></a>
+                            <a href="{{url('settingPoint')}}" class="nk-menu-link"><span class="nk-menu-text">Setting Point</span></a>
+                            <a href="{{url('recordPointEdit')}}" class="nk-menu-link"><span class="nk-menu-text">Record Perubahan Point</span></a>
                         </ul>
                     </li>
 

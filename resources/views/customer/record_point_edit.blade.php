@@ -110,8 +110,12 @@
                                 <td class="tb-tnx-info"><span>{{$v_data->nm_cust}}</span></td>
                                 <td class="tb-tnx-info"><span>{{$v_data->tanggal}}</span></td>
                                 <td class="tb-tnx-info"><span>{{$v_data->point_awal}}</span></td>
-                                <td class="tb-tnx-info"><span>{{$v_data->point_akhir - $v_data->point_awal}}</span></td>
-                                <td class="tb-tnx-info"><span>{{$v_data->point_akhir}}</span></td>
+                                @if($v_data->point_akhir - $v_data->point_awal >= 0)
+                                <td class="tb-tnx-info"><span class="badge badge-dot badge-dot-xs badge-success">+{{$v_data->point_akhir - $v_data->point_awal}}</span></td>
+                                @else
+                                <td class="tb-tnx-info"><span class="badge badge-dot badge-dot-xs badge-success">{{$v_data->point_akhir - $v_data->point_awal}}</span></td>
+                                @endif
+                                <td class="tb-tnx-info"><span style="font-weight:bold">{{$v_data->point_akhir}}</span></td>
                             </tr>
                             @endforeach
                         </tbody>

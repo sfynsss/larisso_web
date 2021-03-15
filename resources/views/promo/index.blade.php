@@ -123,13 +123,13 @@
                                     </div>
                                 </td>
                                 <td class="tb-tnx-amount is-alt">
-{{--                                     <div class="tb-tnx-desc">
+                                    <!-- <div class="tb-tnx-desc">
                                         @if($v_data->sts_aktif == 1)
                                         <span class="badge badge-dot badge-success">Aktif</span>
                                         @elseif($v_data->sts_aktif == 0)
                                         <span class="badge badge-dot badge-danger">Tidak Aktif</span>
                                         @endif
-                                    </div> --}}
+                                    </div> -->
                                     <div class="tb-tnx-status">
                                     <button type="submit" class="btn btn-warning" data-toggle="modal" data-target=".modal_input" onclick="updatePromo('{{$v_data->nama_promo}}','{{$v_data->tgl_mulai}}', '{{$v_data->tgl_akhir}}');">Ubah Promo</button>
                                     </div>
@@ -141,6 +141,49 @@
                 </div>
                 <br>
                 <div class="form-note">Barang berdiskon yang sebelum atau melewati masa promo, tidak dimunculkan di Apps</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-bordered card-preview">
+        <div class="card-inner">
+            <div class="preview-block">
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h3 class="nk-block-title page-title">Daftar Barang Diskon</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-bordered card-preview">
+                    <table class="table table-tranx">
+                    <thead>
+                            <tr class="tb-tnx-head">
+                                <th class="tb-tnx-info"><span>No</span></th>
+                                <th class="tb-tnx-info"><span>Kode Barang</span></th>
+                                <th class="tb-tnx-info"><span>Nama Barang</span></th>
+                                <th class="tb-tnx-info"><span>Kategori</span></th>
+                                <th class="tb-tnx-info"><span>Diskon</span></th>
+                                <th class="tb-tnx-info"><span>Harga Jual</span></th>
+                                <th class="tb-tnx-info"><span>Harga Diskon</span></th>
+                            </tr>
+                    </thead>
+                    <tbody class="tb-odr-body">
+                        @php($j = 1)
+                        @foreach($data2 as $v_data2)
+                        <tr class="tb-odr-item">
+                            <td>{{$j++}}</td>
+                            <td class="tb-odr-info"><span class="tb-odr-id"><a href="#">{{$v_data2->kd_brg}}</a></span></td>
+                            <td><span class="tb-odr-date">{{$v_data2->nm_brg}}</span></td>
+                            <td class="edit">{{$v_data2->nm_kat_android}}</td>
+                            <td><span class="tb-odr-date">{{$v_data2->disc}}%</span></td>
+                            <td><span class="tb-odr-status"><span class="badge badge-dot badge-success">@currency($v_data2->harga_jl)</span></span></td>
+                            <td><span class="tb-odr-status"><span class="badge badge-dot badge-primary">@currency($v_data2->harga_jl - $v_data2->harga_disc)</span></span></td>					
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
