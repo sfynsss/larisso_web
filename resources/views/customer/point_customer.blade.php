@@ -25,9 +25,8 @@
                 <th style="width:10%">No Hp</th>
                 <th style="width:10%">Kategori</th>
                 <th style="width:10%">Jumlah Point</th>
-                <!-- 
                 <th style="width:20%">Aksi</th>
-                -->
+               
             </tr>
         </thead>
         <tbody class="tb-odr-body">
@@ -40,12 +39,10 @@
                 <td>{{$data->HP}}</td>
                 <td>{{$data->KATEGORI}}</td>
                 <td><span style="font-weight:bold">{{$data->POINT_BL_INI}}</span></td>
-                <!-- 
                 <td><button type="submit" class="btn btn-warning waves-effect text-left" 
-                    onclick="setIsi('{{$data->KD_CUST}}','{{$data->NM_CUST}}', '{{$data->POINT_BL_INI}}', '{{$data->id}}');" 
+                    onclick="setIsi('{{$data->KD_CUST}}','{{$data->NM_CUST}}', '{{$data->POINT_BL_INI}}', '{{$data->POINT_BL_INI}}', '{{$data->id}}');" 
                     data-toggle="modal"  data-target=".bs-example-modal-lg">Edit</button>
                 </td>
-                -->
             </tr>
             @endforeach
         </tbody>
@@ -72,10 +69,11 @@
         });
     }
 
-    function setIsi($kd_cust, $nm_cust, $point, $id) {
+    function setIsi($kd_cust, $nm_cust, $point_awal, $point_akhir, $id) {
         $("#kode_cust").val($kd_cust);
         $("#nm_cust").val($nm_cust);
-        $("#point").val($point);
+        $("#point_awal").val($point_awal);
+        $("#point_akhir").val($point_akhir);
         $("#id_user").val($id);
     }
 

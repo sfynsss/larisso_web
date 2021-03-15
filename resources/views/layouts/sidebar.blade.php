@@ -56,6 +56,9 @@
                             <li class="nk-menu-item">
                                 <a href="{{url('pointCustomer')}}" class="nk-menu-link"><span class="nk-menu-text">Perolehan Point</span></a>
                             </li>
+                            <li class="nk-menu-item">
+                                <a href="{{url('recordPointEdit')}}" class="nk-menu-link"><span class="nk-menu-text">Record Perubahan Point</span></a>
+                            </li>
                         </ul>
                     </li>
 

@@ -13,6 +13,8 @@ use Larisso\User;
 use Larisso\SettingVoucher;
 use Larisso\Voucher;
 use Larisso\Outlet;
+use Larisso\RecordPointEdit;
+use Carbon\Carbon;
 use Validator;
 use Session;
 use Redirect;
@@ -64,8 +66,19 @@ class CustomerController extends Controller
 
     public function editPointCustomer(Request $request)
     {
+        date_default_timezone_set("Asia/Jakarta");
+
         $data = Customer::where('id', $request->id_user)->update([
-                    'POINT_BL_INI' => $request->point
+                    'POINT_BL_INI' => $request->point_akhir
+            ]);
+
+            $user = RecordPointEdit::insertGetId([
+                'nm_user' => Auth::user()->name,
+                'kd_cust' => $request->kode_cust,
+                'nm_cust' => $request->nm_cust,
+                'tanggal' => Carbon::now(),
+                'point_awal' => $request->point_awal,
+                'point_akhir' => $request->point_akhir
             ]);
 
             if ($data) {
@@ -75,6 +88,21 @@ class CustomerController extends Controller
                 Session::flash('error', "Point Gagal Dirubah");
                 return Redirect::back();
             }
+
+            if ($user) {
+                Session::flash('success', "Point Berhasil Dirubah");
+                return Redirect::back();
+            } else {
+                Session::flash('error', "Point Gagal Dirubah");
+                return Redirect::back();
+            }
+
+    }
+
+    public function recordPointEdit()
+    {
+        $data = RecordPointEdit::all();
+        return view('customer.record_point_edit', compact('data'));
     }
 
     public function tambahCustomer(Request $request)

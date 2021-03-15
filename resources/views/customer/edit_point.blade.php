@@ -32,9 +32,17 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group row">
-                                        <label class="control-label text-left col-md-4">Point</label>
+                                        <label class="control-label text-left col-md-4">Point Awal</label>
                                         <div class="col-md-8">
-                                            <input type="number" id="point" name="point" class="form-control">
+                                            <input type="number" id="point_awal" name="point_awal" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group row">
+                                        <label class="control-label text-left col-md-4">Point Akhir</label>
+                                        <div class="col-md-8">
+                                            <input type="number" id="point_akhir" name="point_akhir" class="form-control">
                                         </div>
                                     </div>
                                 </div>
