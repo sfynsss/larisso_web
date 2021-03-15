@@ -117,8 +117,6 @@
                         </tbody>
                     </table>
                 </div>
-                <br>
-                <div class="form-note">Barang berdiskon yang sebelum atau melewati masa promo, tidak dimunculkan di Apps</div>
             </div>
         </div>
     </div>
