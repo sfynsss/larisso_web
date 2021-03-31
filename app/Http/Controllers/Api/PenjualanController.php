@@ -39,6 +39,8 @@ class PenjualanController extends Controller
 					"satuan1"			=> $request->satuan1,
 					"harga_jl"			=> str_replace(",", "", number_format($request->harga_jl)),
 					"qty"				=> $request->qty,
+					"berat"				=> $request->berat,
+					"volume"			=> $request->volume,
 					"gambar"			=> "",
 					"kategori_barang"	=> $request->kategori, 
 					"kd_outlet"			=> $request->kd_outlet
@@ -51,6 +53,8 @@ class PenjualanController extends Controller
 					"satuan1"			=> $request->satuan1,
 					"harga_jl"			=> str_replace(",", "", number_format($request->harga_jl)),
 					"qty"				=> $request->qty,
+					"berat"				=> $request->berat,
+					"volume"			=> $request->volume,
 					"gambar"			=> $request->gambar,
 					"kategori_barang"	=> $request->kategori, 
 					"kd_outlet"			=> $request->kd_outlet
@@ -113,6 +117,8 @@ class PenjualanController extends Controller
 				"nm_brg"			=> $request->nm_brg,
 				"satuan1"			=> $request->satuan1,
 				"harga_jl"			=> $request->harga_jl,
+				"berat"				=> $request->berat,
+				"volume"			=> $request->volume,
 				"gambar"			=> $request->gambar,
 				"kategori_barang"	=> $request->kategori
 			]);

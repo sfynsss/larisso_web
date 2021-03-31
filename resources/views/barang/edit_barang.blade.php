@@ -82,6 +82,24 @@
                 </div>
               </div>
             </div>
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="form-label" for="default-01">Berat Barang (gram)</label>
+                <div class="form-control-wrap">
+                  <input type="number" class="form-control" id="berat_edit" name="berat_edit" min="1" max="10000">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="form-label" for="default-01">Volume (m3)</label>
+                <div class="form-control-wrap">
+                  <input type="number" class="form-control" id="volume_edit" name="volume_edit" min="1" max="10000">
+                </div>
+              </div>
+            </div>
           </div>
           <br>
 

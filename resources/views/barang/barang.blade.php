@@ -30,11 +30,11 @@
 						<th>
 							<span class="tb-odr-date d-none d-md-inline-block">Kategori Barang</span>
 						</th>
-						<th>
-							<span class="tb-odr-date d-none d-md-inline-block">Nama Barang</span>
+												<th>
+							<span class="tb-odr-date d-none d-md-inline-block">Outlet</span>
 						</th>
 						<th>
-							<span class="tb-odr-total">Stok</span>
+							<span class="tb-odr-date d-none d-md-inline-block">Nama Barang</span>
 						</th>
 						<th>
 							<span class="tb-odr-status d-none d-md-inline-block">Harga Beli</span>
@@ -43,9 +43,9 @@
 							<span class="tb-odr-status d-none d-md-inline-block">Harga Jual</span>
 						</th>
 						<th>
-							<span class="tb-odr-status d-none d-md-inline-block">Gambar</span>
+							<span class="tb-odr-status d-none d-md-inline-block">Kesediaan Gambar</span>
 						</th>
-						<th class="tb-odr-action">&nbsp;</th>
+						<th class="tb-odr-action">Aksi</th>
 					</tr>
 				</thead>
 				<tbody class="tb-odr-body">
@@ -57,14 +57,15 @@
 							<span class="tb-odr-id"><a href="#">{{$data->kd_brg}}</a></span>
 						</td>
 						<td class="edit">{{$data->nm_kat_android}}</td>
+						<td class="edit">{{$data->kd_outlet}}</td>
 						<td>
 							<span class="tb-odr-date">{{$data->nm_brg}}</span>
 						</td>
-						<td>
+						{{-- <td>
 							<span class="tb-odr-total">
-								<span class="amount">{{$data->stok}}</span>
+								<span class="amount">{{$data->berat}} gram</span>
 							</span>
-						</td>
+						</td> --}}
 						<td>
 							<span class="tb-odr-status">
 								<span class="badge badge-dot badge-success">@currency($data->harga_bl)</span>
@@ -77,23 +78,15 @@
 						</td>
 						<td>
 							@if($data->gambar == "" or $data->gambar == "kosong")
-							<span class="badge badge-danger">Data Kosong</span>
+							<span class="badge badge-danger">Kosong</span>
 							@else
-							<img src="{{asset('storage')}}/{{$data->gambar}}" width="100" height="100">
+							<span class="badge badge-success">Tersedia</span>
 							@endif
-						</td>					
-						<td class="tb-odr-action">
-							<div class="dropdown">
-								<a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown" data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>
-								<div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
-									<ul class="link-list-plain">
-										<li><a onclick="editBarang('{{$data->nm_brg}}', '{{$data->kd_brg}}', '{{$data->harga_jl}}', '{{$data->disc}}', '{{$data->harga_disc}}', '{{$data->kd_kat_android}}')" class="text-primary" data-toggle="modal" data-target=".modal_edit">Edit</a></li>
-										<li><a href="{{url('detail_barang')}}/{{$data->kd_brg}}" class="text-primary">View</a></li>
-										<li><a href="#" class="text-danger">Remove</a></li>
-									</ul>
-								</div>
-							</div>
-						</td>
+						</td>				
+						<td>
+                    		<a onclick="editBarang('{{$data->nm_brg}}', '{{$data->kd_brg}}', '{{$data->harga_jl}}', '{{$data->disc}}', '{{$data->harga_disc}}', '{{$data->kd_kat_android}}', '{{$data->berat}}', '{{$data->volume}}')" class="btn btn-warning" data-toggle="modal" data-target=".modal_edit">Ubah</a>
+                    		<a href="{{url('detail_barang')}}/{{$data->kd_brg}}" class="btn btn-success">Detail</a>
+                		</td>
 					</tr>
 					@endforeach
 				</tbody>
@@ -141,13 +134,16 @@
 	});
 
 
-	function editBarang($nm_brg, $id, $hrg, $disc, $harga_disc, $kd_kat_android) {
+	function editBarang($nm_brg, $id, $hrg, $disc, $harga_disc, $kd_kat_android, $berat, $volume) {
 		$('#nm_brg_edit').val($nm_brg);
 		$('#kd_brg_edit').val($id);
 		$('#hrg_brg_edit').val($hrg);
 		$('#disc_brg_edit').val($disc);
 		$('#harga_disc_brg_edit').val($harga_disc);
 		$("#kat_barang").val($kd_kat_android).trigger('change');
+		$('#berat_edit').val($berat);
+		$('#volume_edit').val($volume);
+
 	}
 
 	var uploadField = document.getElementById("customFile");

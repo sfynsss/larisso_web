@@ -45,6 +45,7 @@ Route::get('/downloadData', 'HomeController@downloadData');
 
 //Barang
 Route::get('barang', 'BarangController@barang');
+Route::get('barang/json', 'BarangController@datajson');
 Route::get('detail_barang/{kd_brg}', 'BarangController@detail_barang');
 Route::post('barang/import', 'BarangController@import');
 Route::get('kategori_barang', 'BarangController@kategori_barang');

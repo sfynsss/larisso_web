@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Larisso\KategoriAndroid;
 use Larisso\Barang;
 use Larisso\Outlet;
+use Larisso\User;
 use Excel;
 
 class BarangController extends Controller
@@ -51,6 +52,8 @@ class BarangController extends Controller
 					"kd_kat_android"	=> $request->kat_barang,
 					"nm_brg"			=> $request->nm_brg_edit,
 					"harga_jl"			=> $request->hrg_brg_edit,
+					"berat"				=> $request->berat_edit,
+					"volume"			=> $request->volume_edit,
 					"disc"				=> $request->disc_brg_edit,
 					"harga_disc"		=> $request->harga_disc_brg_edit
 				]);
@@ -68,6 +71,8 @@ class BarangController extends Controller
 				"kd_kat_android"	=> $request->kat_barang,
 				"nm_brg"			=> $request->nm_brg_edit,
 				"harga_jl"			=> $request->hrg_brg_edit,
+				"berat"				=> $request->berat_edit,
+				"volume"			=> $request->volume_edit,
 				"disc"				=> $request->disc_brg_edit,
 				"harga_disc"		=> $request->harga_disc_brg_edit
 			]);
@@ -82,9 +87,10 @@ class BarangController extends Controller
 
 	public function detail_barang($kd_brg)
 	{
-		$data = Barang::where('kd_brg', '=', $kd_brg)->get();
+		$data = Barang::LeftJoin('kat_android', 'barang.kd_kat_android', '=', 'kat_android.kd_kat_android')->where('kd_brg', '=', $kd_brg)->get();
+		$kat_barang = KategoriAndroid::all();
 
-		return view('barang.detail_barang', compact('data'));
+		return view('barang.detail_barang', compact('data', 'kat_barang'));
 	}
 
 	public function kategori_barang()
