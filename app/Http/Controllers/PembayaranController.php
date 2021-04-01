@@ -6,6 +6,14 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Larisso\MstJual;
+use LaravelFCM\Message\OptionsBuilder;
+use LaravelFCM\Message\PayloadDataBuilder;
+use LaravelFCM\Message\PayloadNotificationBuilder;
+use FCM;
+use Larisso\User;
+use Larisso\Customer;
+use Larisso\Notif;
+use Larisso\DetNotif;
 
 class PembayaranController extends Controller
 {
@@ -14,7 +22,7 @@ class PembayaranController extends Controller
 		$this->request = $request;
         // Set your Merchant Server Key
 		//\Midtrans\Config::$serverKey = 'Mid-server-xTaMzZDeY2QEujZxMmpTXxIW';
-		\Midtrans\Config::$serverKey = 'SB-Mid-client-5ybRjah4KcDwTK_c';
+		\Midtrans\Config::$serverKey = 'SB-Mid-server-fQhLQ_KX1fnc33JY51LS8Il0';
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
 		\Midtrans\Config::$isProduction = false;
 		//\Midtrans\Config::$isProduction = true;
@@ -32,46 +40,47 @@ class PembayaranController extends Controller
 		$orderId = $paymentNotification->transaction_id;
 
 		if ($transaction == 'settlement') {			
-			// $firebase_token = MstJual::join('users', 'mst_jual.id_user', '=', 'users.id')->where('transaction_id', '=', $orderId)->first();			
+			$firebase_token = MstJual::join('users', 'mst_jual.id_user', '=', 'users.id')->where('transaction_id', '=', $orderId)->first();			
 			$update = MstJual::where('transaction_id', '=', $orderId)->update([
 				'sts_byr'	=> 1
 			]);
 
+			print_r($firebase_token->firebase_token);
 			if ($update) {
 				return 'berhasil';
 
-				// $title = "Larisso Apps";
-				// $notif = "Pembayaran dengan no. Transaksi ".$firebase_token->no_ent." berhasil";
-				// $jenis_notif = "Informasi";
+				$title = "Larisso Apps";
+				$notif = "Pembayaran dengan no. Transaksi ".$firebase_token->no_ent." berhasil";
+				$jenis_notif = 2;
 
-				// $save = Notif::insertGetId([
-				// 	"judul"			=> $title,
-				// 	"notif"			=> $notif,
-				// 	"jenis_notif"	=> $jenis_notif
-				// ]);
+				$save = Notif::insertGetId([
+					"judul"			=> $title,
+					"notif"			=> $notif,
+					"jenis_notif"	=> $jenis_notif
+				]);
 
-				// $optionBuilder = new OptionsBuilder();
-				// $optionBuilder->setTimeToLive(60*20);
+				$optionBuilder = new OptionsBuilder();
+				$optionBuilder->setTimeToLive(60*20);
 
-				// $notificationBuilder = new PayloadNotificationBuilder($title);
-				// $notificationBuilder->setBody($notif)
-				// ->setSound('default')
-				// ->setClickAction('act_home')
-				// ->setBadge(1);
+				$notificationBuilder = new PayloadNotificationBuilder($title);
+				$notificationBuilder->setBody($notif)
+				->setSound('default')
+				->setClickAction('act_home')
+				->setBadge(1);
 
-				// $dataBuilder = new PayloadDataBuilder();
-				// $option = $optionBuilder->build();
-				// $notification = $notificationBuilder->build();
-				// $data = $dataBuilder->build();
+				$dataBuilder = new PayloadDataBuilder();
+				$option = $optionBuilder->build();
+				$notification = $notificationBuilder->build();
+				$data = $dataBuilder->build();
 
-				// $downstreamResponse = FCM::sendTo($firebase_token->firebase_token, $option, $notification, $data);
-				// $downstreamResponse->numberSuccess();
-				// $downstreamResponse->numberFailure();
-				// $downstreamResponse->numberModification();
-				// $downstreamResponse->tokensToDelete();
-				// $downstreamResponse->tokensToModify();
-				// $downstreamResponse->tokensToRetry();
-				// $downstreamResponse->tokensWithError();
+				$downstreamResponse = FCM::sendTo($firebase_token->firebase_token, $option, $notification, $data);
+				$downstreamResponse->numberSuccess();
+				$downstreamResponse->numberFailure();
+				$downstreamResponse->numberModification();
+				$downstreamResponse->tokensToDelete();
+				$downstreamResponse->tokensToModify();
+				$downstreamResponse->tokensToRetry();
+				$downstreamResponse->tokensWithError();
 			} else {
 				return 'error';
 			}
