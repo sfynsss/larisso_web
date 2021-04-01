@@ -40,7 +40,7 @@ class PembayaranController extends Controller
 		$orderId = $paymentNotification->transaction_id;
 
 		if ($transaction == 'settlement') {			
-			$firebase_token = MstJual::where('transaction_id', '=', $orderId)->first();			
+			$firebase_token = MstJual::join('users', 'mst_jual.id_user', '=', 'users.id')->where('transaction_id', '=', $orderId)->first();			
 			$update = MstJual::where('transaction_id', '=', $orderId)->update([
 				'sts_byr'	=> 1
 			]);
