@@ -40,15 +40,13 @@ class PembayaranController extends Controller
 		$orderId = $paymentNotification->transaction_id;
 
 		if ($transaction == 'settlement') {			
-			$firebase_token = MstJual::join('users', 'mst_jual.id_user', '=', 'users.id')->where('transaction_id', '=', $orderId)->first();			
+			$firebase_token = MstJual::where('transaction_id', '=', $orderId)->first();			
 			$update = MstJual::where('transaction_id', '=', $orderId)->update([
 				'sts_byr'	=> 1
 			]);
 
-			print_r($firebase_token->firebase_token);
+			// print_r($firebase_token->firebase_token);
 			if ($update) {
-				return 'berhasil';
-
 				$title = "Larisso Apps";
 				$notif = "Pembayaran dengan no. Transaksi ".$firebase_token->no_ent." berhasil";
 				$jenis_notif = 2;
@@ -58,6 +56,17 @@ class PembayaranController extends Controller
 					"notif"			=> $notif,
 					"jenis_notif"	=> $jenis_notif
 				]);
+
+				$save2 = DetNotif::insert([
+					"kd_cust"	=> $firebase_token->kd_cust,
+					"id_notif"	=> $save
+				]);
+
+				if ($save) {
+					return "berhasil";
+				} else {
+					return "error send notif";
+				}
 
 				$optionBuilder = new OptionsBuilder();
 				$optionBuilder->setTimeToLive(60*20);
