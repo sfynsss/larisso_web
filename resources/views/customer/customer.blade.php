@@ -53,8 +53,8 @@
                     @endif
                     <td>{{$data->grosir_token}}</td>
                     <td>
-                        <a class="label label-info m-r-10" href="{{url('aktifasiAkun')}}/{{$data->E_MAIL}}"><i class="icon ni ni-unlock"></i></a>
-                        <a class="label label-primary m-r-10" href="" data-toggle="modal"  data-target=".bs-example-modal-lg" onclick="setIsi('{{$data->KD_CUST}}', '{{$data->E_MAIL}}', '{{$data->id}}');"><i class="icon ni ni-pen-alt-fill"></i></a>
+                        <a class="btn btn-success m-r-10" href="{{url('aktifasiAkun')}}/{{$data->E_MAIL}}"><i class="icon ni ni-unlock"></i>&nbsp;Aktivasi</a>
+                        <a class="btn btn-warning m-r-10" href="" data-toggle="modal"  data-target=".bs-example-modal-lg" onclick="setIsi('{{$data->KD_CUST}}', '{{$data->E_MAIL}}', '{{$data->id}}', '{{$data->password}}',);"><i class="icon ni ni-pen-alt-fill"></i>&nbsp;Ubah</a>
                     </td>
                 </tr>
                 @endforeach
@@ -82,10 +82,11 @@
         });
     }
 
-    function setIsi($kd_cust, $email, $id) {
+    function setIsi($kd_cust, $email, $id, $password) {
         $("#kode_cust").val($kd_cust);
         $("#email").val($email);
         $("#id_user").val($id);
+        $("#password").val($id);
     }
 
     // window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;//compatibility for Firefox and chrome

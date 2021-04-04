@@ -30,6 +30,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label text-left col-md-4">Password</label>
+                                        <div class="col-md-8">
+                                            <input type="Password" id="password" name="password" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
                                 <!--/span-->
                             </div>
                         </div>

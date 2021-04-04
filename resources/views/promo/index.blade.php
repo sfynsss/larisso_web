@@ -175,7 +175,7 @@
                             <td>{{$j++}}</td>
                             <td class="tb-odr-info"><span class="tb-odr-id"><a href="#">{{$v_data2->kd_brg}}</a></span></td>
                             <td><span class="tb-odr-date">{{$v_data2->nm_brg}}</span></td>
-                            <td class="edit">{{$v_data2->nm_kat_android}}</td>
+                            <td><span class="tb-odr-date">{{$v_data2->nm_kat_android}}</span></td>
                             <td><span class="tb-odr-date">{{$v_data2->disc}}%</span></td>
                             <td><span class="tb-odr-status"><span class="badge badge-dot badge-success">@currency($v_data2->harga_jl)</span></span></td>
                             <td><span class="tb-odr-status"><span class="badge badge-dot badge-primary">@currency($v_data2->harga_jl - $v_data2->harga_disc)</span></span></td>					

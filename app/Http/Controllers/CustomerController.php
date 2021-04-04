@@ -38,7 +38,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-    	$data = Customer::join('users', 'users.id', '=', 'customer.id')->orderby('customer.KD_CUST', 'desc')->get();
+    	//$data = Customer::join('users', 'users.id', '=', 'customer.id')->orderby('customer.KD_CUST', 'desc')->get();
+    	$data = Customer::join('users', 'users.id', '=', 'customer.id')->where('customer.KD_CUST', '=', '99000011')->get();
         if (Auth::user()->kd_outlet == "") {
             $outlet = Outlet::all();
         } else {
@@ -163,24 +164,37 @@ class CustomerController extends Controller
 
     public function editCustomer(Request $request)
     {
-        $cek = User::where('email', $request->email)->get();
+        //$cek = User::where('email', $request->email)->get();
+        // if (count($cek) > 0) {
+        //     Session::flash('error', "Alamat Email Sudah Terdaftar !!!");
+        //     return Redirect::back();
+        // } else {
+        //     $update = User::where('id', $request->id_user)->update([
+        //         'email'     => $request->email,
+        //         'password'  => bcrypt($request->password)
+        //     ]);
+        //     if ($update) {
+        //         Session::flash('success', "Data User Berhasil Diubah");
+        //         return Redirect::back();
+        //     } else {
+        //         Session::flash('error', "Data User Gagal Diubah");
+        //         return Redirect::back();
+        //     }
+        // }
 
-        if (count($cek) > 0) {
-            Session::flash('error', "Alamat Email Sudah Terdaftar !!!");
-            return Redirect::back();
-        } else {
             $update = User::where('id', $request->id_user)->update([
-                'email'     => $request->email
+                'email'     => $request->email,
+                'password'  => bcrypt($request->password)
             ]);
 
             if ($update) {
-                Session::flash('success', "Alamat Email Berhasil Dirubah !!!");
+                Session::flash('success', "Data User Berhasil Diubah");
                 return Redirect::back();
             } else {
-                Session::flash('error', "Alamat Email Gagal Dirubah !!!");
+                Session::flash('error', "Data User Gagal Diubah");
                 return Redirect::back();
             }
-        }
+        
     }
 
     public function downloadCustomer()
