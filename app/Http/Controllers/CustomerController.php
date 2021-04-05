@@ -38,8 +38,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-    	//$data = Customer::join('users', 'users.id', '=', 'customer.id')->orderby('customer.KD_CUST', 'desc')->get();
-    	$data = Customer::join('users', 'users.id', '=', 'customer.id')->where('customer.KD_CUST', '=', '99000011')->get();
+    	$data = Customer::join('users', 'users.id', '=', 'customer.id')->orderby('customer.KD_CUST', 'desc')->get();
+    	//$data = Customer::join('users', 'users.id', '=', 'customer.id')->where('customer.KD_CUST', '=', '99000011')->get();
         if (Auth::user()->kd_outlet == "") {
             $outlet = Outlet::all();
         } else {
