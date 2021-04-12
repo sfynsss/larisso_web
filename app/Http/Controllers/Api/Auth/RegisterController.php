@@ -87,6 +87,58 @@ class RegisterController extends Controller
 		}
 	}
 
+	public function registerGrosir(Request $request)
+	{
+
+		$user = User::insertGetId([
+			'name' => $request->name,
+			'tanggal_lahir' => $request->tanggal_lahir,
+			'email' => $request->email,
+			'alamat' => $request->alamat,
+			'no_telp' => $request->no_telp,
+			'password' => bcrypt($request->password),
+			'api_token' => bin2hex(openssl_random_pseudo_bytes(30)),
+			'firebase_token' => $request->firebase_token,
+			'email_activation' => '0', 
+			'otoritas'	=> $request->kd_kat,
+			'activation_token' => substr(str_shuffle("0123456789"), 0, 4),
+			'grosir_token' => substr(str_shuffle("0123456789"), 0, 4),
+			'foto' => $request->foto,
+			'foto_ktp' => $request->foto_ktp,
+		]);
+
+		if ($user > 0) {
+			$data = Customer::max('kd_cust');
+			if ($data) {
+				$data = (int) substr($data, 2) + 1;
+				$tmp = "99".sprintf("%'.06d", $data);
+			} else {
+				$tmp = "99".sprintf("%'.06d", 1);
+			}
+
+			$save = Customer::insert([
+				'kd_cust'		=> $tmp,
+				'id'			=> $user,
+				'kategori'		=> $request->kd_kat,
+				'nm_cust'		=> $request->name,
+				'alm_cust'		=> $request->alamat,
+				'e_mail'		=> $request->email,
+				'hp'			=> $request->no_telp,
+				'JNS_KELAMIN'	=> $request->jenis_kelamin
+			]);
+
+			if ($save) {
+				$register = User::select('users.*', 'customer.JNS_KELAMIN', 'customer.KD_CUST')->where('users.id', '=', $user)->join('customer', 'customer.id', '=', 'users.id')->first();
+
+				return response()->json(compact('register'), 200);
+			} else {
+				return response()->json(['error' => 'Registration Failed'], 401);
+			}
+		} else {
+			//rollback
+		}
+	}
+
 	public function aktifasi(Request $request)
 	{
 		$user = User::where('id', '=', $request->id)->where('activation_token', '=', $request->token)->update([

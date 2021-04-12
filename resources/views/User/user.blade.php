@@ -54,7 +54,8 @@
                     <td>{{$data->email}}</td>
                     <td>{{$data->no_telp}}</td>
                     <td>
-                        <button type="submit" class="btn btn-warning waves-effect text-left" onclick="setEdit('{{$data->kd_peg}}', '{{$data->name}}', '{{$data->email}}', '{{$data->tanggal_lahir}}', '{{$data->no_telp}}', '{{$data->alamat}}', '{{$data->cabang}}')" data-toggle="modal"  data-target=".bs-example-modal-lg">Edit</button>
+{{--                         <button type="submit" class="btn btn-warning waves-effect text-left" onclick="setEdit('{{$data->kd_peg}}', '{{$data->name}}', '{{$data->email}}', '{{$data->tanggal_lahir}}', '{{$data->no_telp}}', '{{$data->alamat}}', '{{$data->cabang}}')" data-toggle="modal"  data-target=".bs-example-modal-lg">Edit</button> --}}
+                    <a href="{{url('editUser')}}/{{$data->id}}" class="btn btn-success">Ubah</a>
                     </td>
                 </tr>
                 @endforeach

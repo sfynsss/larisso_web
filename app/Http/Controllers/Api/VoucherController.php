@@ -59,6 +59,19 @@ class VoucherController extends Controller
 		}
 	}
 
+	public function countPointVoucherGrosir(Request $request)
+	{
+		$kd_cust = Customer::where('id', '=', $request->id)->first();
+		$data['voucher'] = Voucher::where('kd_cust', '=', $kd_cust['KD_CUST'])->where('status_voucher', '=', "AKTIF")->count();
+		$data['point_grosir'] = $kd_cust['POINT_BL_INI_GROSIR'];
+
+		if (count($data) > 0) {
+			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
+		} else {
+			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
+		}
+	}
+
 	public function getSettingPoint()
 	{
 		$data = SettingPoint::orderBy('nmr', 'desc')->get();

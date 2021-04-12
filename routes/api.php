@@ -66,6 +66,7 @@ Route::middleware('auth:api')->group(function () {
 	//Transaksi
 	Route::post('getNoEnt', 'Api\PenjualanController@getNoEnt');
 	Route::post('inputPenjualan', 'Api\PenjualanController@inputPenjualan');
+	Route::post('inputPenjualanGrosir', 'Api\PenjualanController@inputPenjualanGrosir');
 	Route::post('getDataTransaksi', 'Api\PenjualanController@getDataTransaksi');
 	Route::post('getDataTransaksiSukses', 'Api\PenjualanController@getDataTransaksiSukses');
 	Route::post('getDataTransaksiPending', 'Api\PenjualanController@getDataTransaksiPending');
@@ -95,6 +96,7 @@ Route::middleware('auth:api')->group(function () {
 	Route::post('tambahVoucher', 'Api\VoucherController@tambahVoucher');
 	Route::post('validasi', 'Api\VoucherController@validasi');
 	Route::post('countPointVoucher', 'Api\VoucherController@countPointVoucher');
+	Route::post('countPointVoucherGrosir', 'Api\VoucherController@countPointVoucherGrosir');
 	Route::get('getSettingVoucher', 'Api\VoucherController@getSettingVoucher');
 	//getVoucher
 
@@ -143,6 +145,7 @@ Route::middleware('auth:api')->group(function () {
 
 	//offline
 	Route::post('inputPenjualanOffline', 'Api\PenjualanController@inputPenjualanOffline');
+	Route::post('inputPenjualanOfflineGrosir', 'Api\PenjualanController@inputPenjualanOfflineGrosir');
 	Route::get('getSettingPoint', 'Api\VoucherController@getSettingPoint');
 	Route::post('updateStatusVoucher', 'Api\VoucherController@updateStatusVoucher');
 	Route::get('getCustomerOffline', 'Api\CustomerController@getCustomerOffline');

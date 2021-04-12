@@ -147,6 +147,7 @@ class VoucherController extends Controller
 			"ketentuan"			=> $request->ketentuan,
 			"nilai_point"		=> $request->nilai_point,
 			"keterangan"		=> $request->keterangan,
+			"jenis_apps"		=> $request->jenis_apps
 		]);
 
 		if ($insert) {

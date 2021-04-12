@@ -19,7 +19,8 @@ class BarangController extends Controller
 			$data = Barang::LeftJoin('kat_android', 'barang.kd_kat_android', '=', 'kat_android.kd_kat_android')->get();
 			$kat_barang = KategoriAndroid::all();
 		} else {
-			$data = Barang::LeftJoin('kat_android', 'barang.kd_kat_android', '=', 'kat_android.kd_kat_android')->where('barang.kd_outlet', '=', Auth::user()->kd_outlet)->get();
+			$data = Barang::LeftJoin('kat_android', 'barang.kd_kat_android', '=', 'kat_android.kd_kat_android')
+				->where('barang.kd_outlet', '=', Auth::user()->kd_outlet)->get();
 			$kat_barang = KategoriAndroid::where('kd_outlet', '=', Auth::user()->kd_outlet)->get();
 		}
 

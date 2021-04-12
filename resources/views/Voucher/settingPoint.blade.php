@@ -49,14 +49,26 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Keterangan</label>
-                                        <textarea class="form-control" name="keterangan" id="keterangan"></textarea>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Keterangan</label>
+                                            <textarea class="form-control" name="keterangan" id="keterangan"></textarea>
+                                        </div>
                                     </div>
                                 </div>
-                                <!--/span-->
-                            </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-control-wrap">
+                                            <label>Jenis Aplikasi</label>
+                                            <select class="form-select" required id="jenis_apps" name="jenis_apps">
+                                                <option disabled="true" selected="none">Pilih Satu</option>
+                                                <option value="RETAIL">RETAIL</option>
+                                                <option value="GROSIR">GROSIR</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -79,6 +91,7 @@
                 <th>Ketentuan Point</th>
                 <th>Nilai Point</th>
                 <th>Keterangan</th>
+                <th>Jenis Apps</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -90,6 +103,7 @@
                 <td>{{$data->ketentuan}}</td>
                 <td>{{$data->nilai_point}}</td>
                 <td>{{$data->keterangan}}</td>
+                <td>{{$data->jenis_apps}}</td>
                 <td>
                     <button type="submit" class="btn btn-warning waves-effect text-left">UBAH</i></button>
                     <button type="submit" class="btn btn-danger waves-effect text-left">HAPUS</i></button>

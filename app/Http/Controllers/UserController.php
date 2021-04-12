@@ -66,4 +66,9 @@ class UserController extends Controller
 		}
 	}
 
+		public function editUser(Request $request)
+		{
+			return view('User.edit');
+		}
+
 }
