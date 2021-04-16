@@ -74,7 +74,7 @@ class PenjualanController extends Controller
 
 	public function getDataCart(Request $request)
 	{
-		$data = Cart::select('cart.*', 'barang.gambar', 'barang.sts_point')->where('id_user', '=', $request->id_user)->where('kd_outlet', '=', $request->kd_outlet)->join('barang', 'barang.kd_brg', '=', 'cart.kd_brg')->get();
+		$data = Cart::select('cart.*', 'barang.gambar', 'barang.sts_point')->where('id_user', '=', $request->id_user)->where('barang.kd_outlet', '=', $request->kd_outlet)->join('barang', 'barang.kd_brg', '=', 'cart.kd_brg')->get();
 
 		if (count($data) > 0) {
 			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
