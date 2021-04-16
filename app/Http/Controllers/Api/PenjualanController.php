@@ -26,7 +26,10 @@ class PenjualanController extends Controller
 			->first();
 
 		if ($get) {
-			$update = Cart::where('id_user', '=', $request->id_user)->where('kd_brg', '=', $request->kd_brg)->increment("qty", $request->qty);
+			$update = Cart::where('id_user', '=', $request->id_user)
+				->where('kd_brg', '=', $request->kd_brg)
+				->where('kd_outlet', '=', $request->kd_outlet) 
+				->increment("qty", $request->qty);
 
 			if ($update) {
 				return response()->json(['message' => 'Jumlah Barang ditambahkan'], 200);

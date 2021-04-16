@@ -155,9 +155,20 @@ class RegisterController extends Controller
 
 	public function aktifasiGrosir(Request $request)
 	{
+		$decode_image = base64_decode($request->foto_ktp);
+		$f = finfo_open();
+
+		$mime_type = finfo_buffer($f, $decode_image, FILEINFO_MIME_TYPE);
+		$extension = explode('/', $mime_type);
+
+		$nama_gbr = uniqid().".".$extension[1];
+
+		$p = \Storage::put('/public/gambar_grosir/' . $nama_gbr, base64_decode($request->foto_ktp), 0775);
+
 		$user = User::where('id', '=', $request->id)->where('grosir_token', '=', $request->token)->update([
 			'email_activation'		=> '1',
-			'otoritas'				=> 'GROSIR'
+			'otoritas'				=> 'GROSIR',
+			'foto_ktp'				=> $request->nama_gbr
 		]);
 
 		if ($user) {
