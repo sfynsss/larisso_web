@@ -25,7 +25,7 @@
                     <th scope="col">Kode Cust</th>
                     <th scope="col">Nama</th>
                     <th scope="col">Alamat</th>
-                    <th scope="col">Gambar</th>
+                    <th scope="col">Foto</th>
                     <th scope="col">No Hp</th>
                     <th scope="col">Email</th>
                     <th scope="col">Point</th>
@@ -43,7 +43,13 @@
                     <td class="tb-status text-success">{{$data->KD_CUST}}</td>
                     <td>{{$data->NM_CUST}}</td>
                     <td>{{$data->ALM_CUST}}</td>
-                    <td><img src="{{asset('storage\app\public\gambar_grosir')}}/{{$data->foto_ktp}}" width="100" height="100"></td>
+                    <td>
+                        @if($data->foto_ktp == "kosong")
+                        <span class="badge badge-danger">Kosong</span>
+                        @else
+                        <img src="{{asset('storage\app\public\gambar_grosir')}}/{{$data->foto_ktp}}" width="100" height="100">
+                        @endif
+                    </td>
                     <td class="tb-status text-warning">{{$data->HP}}</td>
                     <td class="tb-status text-primary">{{$data->E_MAIL}}</td>
                     <td class="tb-status text-danger">{{$data->POINT_BL_INI}}</td>
@@ -55,7 +61,7 @@
                     @endif
                     <td>{{$data->grosir_token}}</td>
                     <td>
-                        <a class="btn btn-success m-r-10" href="{{url('aktifasiAkun')}}/{{$data->E_MAIL}}"><i class="icon ni ni-unlock"></i>&nbsp;Aktivasi</a>
+                        {{-- <a class="btn btn-success m-r-10" href="{{url('aktifasiAkun')}}/{{$data->E_MAIL}}"><i class="icon ni ni-unlock"></i>&nbsp;Aktivasi</a> --}}
                         <a class="btn btn-warning m-r-10" href="" data-toggle="modal"  data-target=".bs-example-modal-lg" onclick="setIsi('{{$data->KD_CUST}}', '{{$data->E_MAIL}}', '{{$data->id}}', '{{$data->password}}',);"><i class="icon ni ni-pen-alt-fill"></i>&nbsp;Ubah</a>
                     </td>
                 </tr>
@@ -90,19 +96,6 @@
         $("#id_user").val($id);
         $("#password").val($id);
     }
-
-    // window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;//compatibility for Firefox and chrome
-    // var pc = new RTCPeerConnection({iceServers:[]}), noop = function(){};      
-    // pc.createDataChannel('');//create a bogus data channel
-    // pc.createOffer(pc.setLocalDescription.bind(pc), noop);// create offer and set local description
-    // pc.onicecandidate = function(ice) {
-    //     if (ice && ice.candidate && ice.candidate.candidate) {
-    //         var myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];  
-    //         pc.onicecandidate = noop;
-    //         // alert(myIP);
-    //         document.getElementById("link_download").setAttribute("href", '{{url('/downloadCustomer')}}/'+myIP);
-    //     }
-    // };
 
 </script>
 @endsection

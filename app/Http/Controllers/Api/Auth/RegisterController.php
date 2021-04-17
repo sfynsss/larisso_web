@@ -49,6 +49,8 @@ class RegisterController extends Controller
 			'firebase_token' => $request->firebase_token,
 			'email_activation' => '0', 
 			'otoritas'	=> $request->kd_kat,
+			'foto'	=> 'kosong',
+			'foto_ktp'	=> 'kosong',
 			'activation_token' => substr(str_shuffle("0123456789"), 0, 4),
 			'grosir_token' => substr(str_shuffle("0123456789"), 0, 4)
 		]);
@@ -156,20 +158,30 @@ class RegisterController extends Controller
 	public function aktifasiGrosir(Request $request)
 	{
 		$decode_image = base64_decode($request->foto_ktp);
+		//$decode_image2 = base64_decode($request->foto);
 		$f = finfo_open();
 
 		$mime_type = finfo_buffer($f, $decode_image, FILEINFO_MIME_TYPE);
+		//$mime_type2 = finfo_buffer($f, $decode_image2, FILEINFO_MIME_TYPE);
 		$extension = explode('/', $mime_type);
+		//$extension2 = explode('/', $mime_type2);
 
 		$nama_gbr = uniqid().".".$extension[1];
+		//$nama_gbr2 = uniqid().".".$extension2[1];
 
 		$p = \Storage::put('/public/gambar_grosir/' . $nama_gbr, base64_decode($request->foto_ktp), 0775);
+		//$p2 = \Storage::put('/public/gambar_grosir/' . $nama_gbr2, base64_decode($request->foto), 0775);
 
 		$user = User::where('id', '=', $request->id)->where('grosir_token', '=', $request->token)->update([
 			'email_activation'		=> '1',
 			'otoritas'				=> 'GROSIR',
-			'foto_ktp'				=> $request->nama_gbr
+			'foto_ktp'				=> $nama_gbr,
+			//'foto'					=> $nama_gbr2
 		]);
+
+		// $user2 = Customer::join('users', 'users.id', '=', 'customer.id')->where('users.id', '=', $request->id)->update([
+		// 	'KATEGORI'				=> 'GROSIR'
+		// ]);
 
 		if ($user) {
 			return response()->json(['message' => 'Aktifasi Berhasil'], 200);

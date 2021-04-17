@@ -76,6 +76,7 @@ Route::get('laporanPenjualan', 'PenjualanController@laporanPenjualan');
 
 //customer
 Route::get('/customer', 'CustomerController@index');
+Route::get('/customerGrosir', 'CustomerController@customerGrosir');
 Route::post('/tambahCustomer', 'CustomerController@tambahCustomer');
 Route::post('/editCustomer', 'CustomerController@editCustomer');
 Route::get('/sinkronisasi', 'CustomerController@sinkronisasi');

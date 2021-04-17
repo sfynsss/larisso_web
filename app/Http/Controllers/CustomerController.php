@@ -38,7 +38,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-    	$data = Customer::join('users', 'users.id', '=', 'customer.id')->orderby('customer.KD_CUST', 'desc')->get();
+    	$data = Customer::join('users', 'users.id', '=', 'customer.id')
+            ->where('KATEGORI', '=', 'RETAIL')
+            ->orderby('customer.KD_CUST', 'desc')->get();
     	//$data = Customer::join('users', 'users.id', '=', 'customer.id')->where('customer.KD_CUST', '=', '99000011')->get();
         if (Auth::user()->kd_outlet == "") {
             $outlet = Outlet::all();
@@ -49,6 +51,23 @@ class CustomerController extends Controller
     	// print_r($cabang);
 
         return view('customer.customer', compact('data', 'outlet'));
+    }
+
+    public function customerGrosir()
+    {
+        $data = Customer::join('users', 'users.id', '=', 'customer.id')
+            ->where('KATEGORI', '=', 'GROSIR')
+            ->orderby('customer.KD_CUST', 'desc')->get();
+        
+        if (Auth::user()->kd_outlet == "") {
+            $outlet = Outlet::all();
+        } else {
+            $outlet = Outlet::where('kd_outlet', '=', Auth::user()->kd_outlet)->get();
+        }
+        
+        // print_r($cabang);
+
+        return view('customer.customer_grosir', compact('data', 'outlet'));
     }
 
     public  function pointCustomer()
