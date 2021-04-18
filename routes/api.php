@@ -104,6 +104,7 @@ Route::middleware('auth:api')->group(function () {
 	//cart
 	Route::post('inputToCart', 'Api\PenjualanController@inputToCart');
 	Route::post('getDataCart', 'Api\PenjualanController@getDataCart');
+	Route::post('getDataCartGrosir', 'Api\PenjualanController@getDataCartGrosir');
 	Route::post('updateCart', 'Api\PenjualanController@updateCart');
 	Route::post('deleteCart', 'Api\PenjualanController@deleteCart');
 	//endOfCart

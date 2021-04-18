@@ -77,7 +77,30 @@ class PenjualanController extends Controller
 
 	public function getDataCart(Request $request)
 	{
-		$data = Cart::select('cart.*', 'barang.gambar', 'barang.sts_point')->where('id_user', '=', $request->id_user)->where('barang.kd_outlet', '=', $request->kd_outlet)->join('barang', 'barang.kd_brg', '=', 'cart.kd_brg')->get();
+		$data = Cart::select('cart.*', 'barang.gambar', 'barang.sts_point')
+				->where('id_user', '=', $request->id_user)
+				->where('barang.kd_outlet', '=', $request->kd_outlet)
+				->join('barang', 'barang.kd_brg', '=', 'cart.kd_brg')
+				->join('users', 'users.id', '=', 'cart.id_user')
+				->where('users.otorias', '=', 'RETAIL')
+				->get();
+
+		if (count($data) > 0) {
+			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
+		} else {
+			return response()->json(['message' => 'Data Tidak Ditemukan'], 401);
+		}
+	}
+
+	public function getDataCartGrosir(Request $request)
+	{
+		$data = Cart::select('cart.*', 'barang.gambar', 'barang.sts_point')
+				->where('id_user', '=', $request->id_user)
+				->where('barang.kd_outlet', '=', $request->kd_outlet)
+				->join('barang', 'barang.kd_brg', '=', 'cart.kd_brg')
+				->join('users', 'users.id', '=', 'cart.id_user')
+				->where('users.otorias', '=', 'GROSIR')
+				->get();
 
 		if (count($data) > 0) {
 			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
