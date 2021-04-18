@@ -80,6 +80,7 @@ class PenjualanController extends Controller
 		$data = Cart::select('cart.*', 'barang.gambar', 'barang.sts_point')
 				->where('id_user', '=', $request->id_user)
 				->where('barang.kd_outlet', '=', $request->kd_outlet)
+				->where('cart.harga_jl', '!=', '0')
 				->join('barang', 'barang.kd_brg', '=', 'cart.kd_brg')
 				->join('users', 'users.id', '=', 'cart.id_user')
 				->where('users.otoritas', '=', 'RETAIL')
