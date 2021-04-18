@@ -82,7 +82,7 @@ class PenjualanController extends Controller
 				->where('barang.kd_outlet', '=', $request->kd_outlet)
 				->join('barang', 'barang.kd_brg', '=', 'cart.kd_brg')
 				->join('users', 'users.id', '=', 'cart.id_user')
-				->where('users.otorias', '=', 'RETAIL')
+				->where('users.otoritas', '=', 'RETAIL')
 				->get();
 
 		if (count($data) > 0) {
@@ -99,7 +99,7 @@ class PenjualanController extends Controller
 				->where('barang.kd_outlet', '=', $request->kd_outlet)
 				->join('barang', 'barang.kd_brg', '=', 'cart.kd_brg')
 				->join('users', 'users.id', '=', 'cart.id_user')
-				->where('users.otorias', '=', 'GROSIR')
+				->where('users.otoritas', '=', 'GROSIR')
 				->get();
 
 		if (count($data) > 0) {
