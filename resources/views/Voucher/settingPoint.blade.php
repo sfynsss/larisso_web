@@ -106,7 +106,6 @@
                 <td>{{$data->jenis_apps}}</td>
                 <td>
                     <button type="submit" class="btn btn-warning waves-effect text-left">UBAH</i></button>
-                    <button type="submit" class="btn btn-danger waves-effect text-left">HAPUS</i></button>
                 </td>
             </tr>
             @endforeach
