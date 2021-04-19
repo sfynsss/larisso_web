@@ -83,6 +83,7 @@ Route::get('/sinkronisasi', 'CustomerController@sinkronisasi');
 Route::get('/downloadCustomer', 'CustomerController@downloadCustomer');
 Route::get('/pointCustomer', 'CustomerController@pointCustomer');
 Route::get('/aktifasiAkun/{id}', 'CustomerController@aktifasiAkun');
+Route::get('/deaktifasiAkun/{id}', 'CustomerController@deaktifasiAkun');
 Route::post('/editPointCustomer', 'CustomerController@editPointCustomer');
 Route::get('/recordPointEdit', 'CustomerController@recordPointEdit');
 //endOfCustomer

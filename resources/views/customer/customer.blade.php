@@ -25,7 +25,6 @@
                     <th scope="col">Kode Cust</th>
                     <th scope="col">Nama</th>
                     <th scope="col">Alamat</th>
-                    <th scope="col">Gambar</th>
                     <th scope="col">No Hp</th>
                     <th scope="col">Email</th>
                     <th scope="col">Point</th>
@@ -43,7 +42,6 @@
                     <td class="tb-status text-success">{{$data->KD_CUST}}</td>
                     <td>{{$data->NM_CUST}}</td>
                     <td>{{$data->ALM_CUST}}</td>
-                    <td><img src="{{asset('storage\app\public\gambar_grosir')}}/{{$data->foto_ktp}}" width="100" height="100"></td>
                     <td class="tb-status text-warning">{{$data->HP}}</td>
                     <td class="tb-status text-primary">{{$data->E_MAIL}}</td>
                     <td class="tb-status text-danger">{{$data->POINT_BL_INI}}</td>
