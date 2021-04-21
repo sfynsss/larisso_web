@@ -47,7 +47,7 @@
                         @if($data->foto_ktp == "kosong")
                         <span class="badge badge-danger">Kosong</span>
                         @else
-                        <img src="{{asset('storage\app\public\gambar_grosir')}}/{{$data->foto_ktp}}" width="100" height="100">
+                        <img src="{{asset('storage\gambar_grosir')}}/{{$data->foto_ktp}}" width="100" height="100">
                         @endif
                     </td>
                     <td class="tb-status text-warning">{{$data->HP}}</td>
