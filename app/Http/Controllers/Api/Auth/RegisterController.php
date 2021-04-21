@@ -179,9 +179,9 @@ class RegisterController extends Controller
 			//'foto'					=> $nama_gbr2
 		]);
 
-		// $user2 = Customer::join('users', 'users.id', '=', 'customer.id')->where('users.id', '=', $request->id)->update([
-		// 	'KATEGORI'				=> 'GROSIR'
-		// ]);
+		$user2 = Customer::join('users', 'users.id', '=', 'customer.id')->where('users.id', '=', $request->id)->update([
+			'KATEGORI'				=> 'GROSIR'
+		]);
 
 		if ($user) {
 			return response()->json(['message' => 'Aktifasi Berhasil'], 200);

@@ -61,7 +61,7 @@
                     @endif
                     <td>{{$data->grosir_token}}</td>
                     <td>
-                        {{-- <a class="btn btn-success m-r-10" href="{{url('aktifasiAkun')}}/{{$data->E_MAIL}}"><i class="icon ni ni-unlock"></i>&nbsp;Aktivasi</a> --}}
+                        <a class="btn btn-danger m-r-10" onclick="return confirm('Non-aktifkan Akun Terpilih?')" href="{{url('deaktifasiAkun')}}/{{$data->id}}"><i class="icon ni ni-unlock"></i>&nbsp;Deaktifasi</a>
                         <a class="btn btn-warning m-r-10" href="" data-toggle="modal"  data-target=".bs-example-modal-lg" onclick="setIsi('{{$data->KD_CUST}}', '{{$data->E_MAIL}}', '{{$data->id}}', '{{$data->password}}',);"><i class="icon ni ni-pen-alt-fill"></i>&nbsp;Ubah</a>
                     </td>
                 </tr>

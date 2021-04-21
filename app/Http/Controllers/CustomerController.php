@@ -370,4 +370,24 @@ class CustomerController extends Controller
             return Redirect::back();
         }
     }
+
+    public function deaktifasiAkun(Request $request)
+    {
+        $save = User::where('id', '=', $request->id)->update([
+            'otoritas'          => 'RETAIL',
+            'foto_ktp'          => 'kosong'
+        ]);
+
+        $save2 = Customer::join('users', 'users.id', '=', 'customer.id')->where('users.id', '=', $request->id)->update([
+            'KATEGORI'          => 'RETAIL'
+        ]);
+
+        if ($save) {
+            Session::flash('warning', "Akun telah di non-aktifkan");
+            return Redirect::back();
+        } else {
+            Session::flash('error', "Akun gagal di non-aktifkan");
+            return Redirect::back();
+        }
+    }
 }
