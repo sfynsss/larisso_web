@@ -52,7 +52,7 @@
                     </td>
                     <td class="tb-status text-warning">{{$data->HP}}</td>
                     <td class="tb-status text-primary">{{$data->E_MAIL}}</td>
-                    <td class="tb-status text-danger">{{$data->POINT_BL_INI}}</td>
+                    <td class="tb-status text-danger">{{$data->POINT_BL_INI_GROSIR}}</td>
                     <td>{{$data->KATEGORI}}</td>
                     @if($data->email_activation == 1)
                     <td class="tb-status text-success">Aktif</td>
