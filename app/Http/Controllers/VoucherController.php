@@ -66,7 +66,8 @@ class VoucherController extends Controller
 		// 			"kd_cust"		=> $data->KD_CUST
 		// 		]);
 				$insert = Voucher::insert([
-					"kd_voucher"		=> $request->kode_voucher.'00'.$i,
+					//"kd_voucher"		=> $request->kode_voucher.'00'.$i,
+					"kd_voucher"		=> $request->kode_voucher.$i,
 					"nama_voucher"		=> $request->nama_voucher,
 					"nilai_voucher"		=> $request->nilai_voucher,
 					"tgl_berlaku_1"		=> $request->tgl_start,
@@ -84,7 +85,8 @@ class VoucherController extends Controller
 		// 			"kd_cust"		=> $request->user[$i]
 		// 		]);
 				$insert = Voucher::insert([
-					"kd_voucher"		=> $request->kode_voucher.'00'.$i+1,
+					//"kd_voucher"		=> $request->kode_voucher.'00'.$i+1,
+					"kd_voucher"		=> $request->kode_voucher.$i+1,
 					"nama_voucher"		=> $request->nama_voucher,
 					"nilai_voucher"		=> $request->nilai_voucher,
 					"tgl_berlaku_1"		=> $request->tgl_start,
