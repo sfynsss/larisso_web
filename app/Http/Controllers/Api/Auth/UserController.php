@@ -165,4 +165,14 @@ class UserController extends Controller
 		}
 	}
 
+	public function getStatusUpdateGrosir(Request $request)
+	{
+		$data = Update::where('sts_update_grosir', $request->id)->get();
+		if (count($data) > 0) {
+			return response()->json(['message' => "not update"], 200);	
+		} else {
+			return response()->json(['message' => "update"], 200);	
+		}
+	}
+
 }
