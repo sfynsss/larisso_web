@@ -25,6 +25,11 @@ Route::get('/privacy_policy', function () {
 	return view('privacy_policy');
 });
 
+Route::get('/privacy-policy', function () {
+    // return view('welcome');
+	return view('privacy-policy');
+});
+
 Auth::routes([
 	'register' => false, // Registration Routes...
   	'reset' => false, // Password Reset Routes...
