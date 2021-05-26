@@ -124,11 +124,6 @@
 	<div class="col-xxl-12">
 		<div class="card card-bordered card-full">
 			<div class="card-inner">
-				<div class="card-title-group">
-					<div class="card-title">
-						<h6 class="title"><span class="mr-2">Transaksi Penjualan</span></h6>
-					</div>
-				</div>
 				<div class="row gy-4 mt-2">
 					<div class="col-sm-6">
 						<div class="form-group">
