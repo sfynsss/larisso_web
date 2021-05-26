@@ -129,6 +129,24 @@
 						<h6 class="title"><span class="mr-2">Transaksi Penjualan Hari Ini</span></h6>
 					</div>
 				</div>
+				<div class="row gy-4">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label">Tanggal Awal</label>
+							<div class="form-control-wrap">
+								<input type="text" name="tgl_awal" class="form-control date-picker">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="form-label">Tanggal Akhir</label>
+							<div class="form-control-wrap">
+								<input type="text" name="tgl_akhir" class="form-control date-picker">
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="card-inner p-0 border-top">
 				<div class="nk-tb-list nk-tb-orders">
