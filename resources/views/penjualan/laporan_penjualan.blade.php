@@ -125,7 +125,7 @@
 		<div class="card card-bordered card-full">
 			<div class="card-inner">
 				<div class="row gy-4 mt-2">
-					<div class="col-sm-6">
+					<div class="col-sm-5">
 						<div class="form-group">
 							<label class="form-label">Tanggal Awal</label>
 							<div class="form-control-wrap">
@@ -133,13 +133,16 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-5">
 						<div class="form-group">
 							<label class="form-label">Tanggal Akhir</label>
 							<div class="form-control-wrap">
 								<input type="text" name="tgl_akhir" class="form-control date-picker">
 							</div>
 						</div>
+					</div>
+					<div class="col-sm-2">
+						<a href="#">Cari</a>
 					</div>
 				</div>
 			</div>
