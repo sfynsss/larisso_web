@@ -126,10 +126,10 @@
 			<div class="card-inner">
 				<div class="card-title-group">
 					<div class="card-title">
-						<h6 class="title"><span class="mr-2">Transaksi Penjualan Hari Ini</span></h6>
+						<h6 class="title"><span class="mr-2">Transaksi Penjualan</span></h6>
 					</div>
 				</div>
-				<div class="row gy-4">
+				<div class="row gy-4 mt-2">
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label class="form-label">Tanggal Awal</label>
