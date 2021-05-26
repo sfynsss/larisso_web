@@ -142,7 +142,8 @@
 						</div>
 					</div>
 					<div class="col-sm-2">
-						<a href="#">Cari</a>
+						<label class="form-label">Cari</label>
+						<a href="#" class="btn btn-primary">Caro Berdasarkan Tanggal</a>
 					</div>
 				</div>
 			</div>
