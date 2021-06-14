@@ -28,7 +28,7 @@ class CustomerController extends Controller
 
 	public function getCustomer(Request $request)
 	{
-		$data = Customer::join('users', 'users.id', '=', 'customer.id')->where('NM_CUST', 'like', '%'.$request->nm_cust.'%')->where('users.otoritas', '=', 'GROSIR')->orWhere('users.otoritas', '=', 'RETAIL')->get();
+		$data = Customer::join('users', 'users.id', '=', 'customer.id')->where('NM_CUST', 'like', '%'.$request->nm_cust.'%')->where('users.otoritas', '!=', 'ADMIN')->where('users.otoritas', '!=', 'SUPER ADMIN')->get();
 
 		if ($data) {
 			return response()->json(['message' => 'Data Ditemukan', 'data' => $data], 200);
