@@ -138,6 +138,8 @@ Route::middleware('auth:api')->group(function () {
 
 	//Penawaran
 	Route::get('getPenawaran', 'Api\PenawaranController@index');
+
+	Route::get('getGambarPromo', 'Api\PenawaranController@getGambarPromo');
 	//endOfPenawaran
 
 	//Outlet

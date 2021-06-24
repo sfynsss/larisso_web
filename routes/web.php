@@ -136,6 +136,11 @@ Route::get('/penawaran', 'PenawaranController@index');
 Route::post('inputPenawaran', 'PenawaranController@inputPenawaran');
 Route::post('/updatePenawaran', 'PenawaranController@updatePenawaran');
 Route::get('/deletePenawaran/{id}', 'PenawaranController@deletePenawaran');
+
+Route::get('/gambarPromo', 'PenawaranController@gambarPromo');
+Route::post('inputGambarPromo', 'PenawaranController@inputGambarPromo');
+Route::post('/updateGambarPromo', 'PenawaranController@updateGambarPromo');
+Route::get('/deleteGambarPromo/{id}', 'PenawaranController@deleteGambarPromo');
 //endofSetting
 
 //promo
