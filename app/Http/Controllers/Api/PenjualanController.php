@@ -37,7 +37,7 @@ class PenjualanController extends Controller
 				return response()->json(['message' => 'Update Jumlah Barang Gagal'], 401);
 			}	
 		} else {
-			if ($request->gambar == "") {
+			if ($request->gambar == "" && !isset($request->sts_jual)) {
 				$insert = Cart::insert([
 					"id_user"			=> $request->id_user,
 					"kd_brg"			=> $request->kd_brg,
@@ -49,7 +49,38 @@ class PenjualanController extends Controller
 					"volume"			=> $request->volume,
 					"gambar"			=> "",
 					"kategori_barang"	=> $request->kategori, 
-					"kd_outlet"			=> $request->kd_outlet
+					"kd_outlet"			=> $request->kd_outlet,
+					"sts_jual"			=> 'RETAIL'
+				]);
+			} else if ($request->gambar == "" && $request->sts_jual == 'GROSIR'){
+				$insert = Cart::insert([
+					"id_user"			=> $request->id_user,
+					"kd_brg"			=> $request->kd_brg,
+					"nm_brg"			=> $request->nm_brg,
+					"satuan1"			=> $request->satuan1,
+					"harga_jl"			=> str_replace(",", "", number_format($request->harga_jl)),
+					"qty"				=> $request->qty,
+					"berat"				=> $request->berat,
+					"volume"			=> $request->volume,
+					"gambar"			=> "",
+					"kategori_barang"	=> $request->kategori, 
+					"kd_outlet"			=> $request->kd_outlet,
+					"sts_jual"			=> 'GROSIR'
+				]);
+			} else if (!isset($request->sts_jual)) {
+				$insert = Cart::insert([
+					"id_user"			=> $request->id_user,
+					"kd_brg"			=> $request->kd_brg,
+					"nm_brg"			=> $request->nm_brg,
+					"satuan1"			=> $request->satuan1,
+					"harga_jl"			=> str_replace(",", "", number_format($request->harga_jl)),
+					"qty"				=> $request->qty,
+					"berat"				=> $request->berat,
+					"volume"			=> $request->volume,
+					"gambar"			=> $request->gambar,
+					"kategori_barang"	=> $request->kategori, 
+					"kd_outlet"			=> $request->kd_outlet,
+					"sts_jual"			=> 'RETAIL'
 				]);
 			} else {
 				$insert = Cart::insert([
@@ -63,7 +94,8 @@ class PenjualanController extends Controller
 					"volume"			=> $request->volume,
 					"gambar"			=> $request->gambar,
 					"kategori_barang"	=> $request->kategori, 
-					"kd_outlet"			=> $request->kd_outlet
+					"kd_outlet"			=> $request->kd_outlet,
+					"sts_jual"			=> 'GROSIR'
 				]);
 			}
 
