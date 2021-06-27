@@ -170,3 +170,6 @@ Route::post('/getStatusPembayaran', 'PembayaranController@get_transaction_status
 
 // Cron job Get Paid
 Route::get('/cronjob_pembayaran', 'PembayaranController@get_paid')->name('getpaid');
+
+//Print Ticket
+Route::get('/print_ticket/{id}', 'PenjualanController@print_ticket');

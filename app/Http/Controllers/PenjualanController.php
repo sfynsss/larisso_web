@@ -14,6 +14,7 @@ use Session;
 use Redirect;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\URL;
+use PDF;
 
 class PenjualanController extends Controller
 {
@@ -186,5 +187,15 @@ class PenjualanController extends Controller
             Session::flash('error', "Data Gagal Ditambahkan !!!");
             return Redirect::back();
         }
+    }
+
+    public function print_ticket($id)
+    {
+        $mst = MstJual::join('customer', 'customer.kd_cust', '=', 'mst_jual.kd_cust')->where('no_ent', '=', str_replace('-', '/', $id))->first();
+
+        $pdf = PDF::loadView('penjualan.print_ticket', compact('mst')); //load view page
+        // return $pdf->download('Ticket '.$mst->no_ent.'.pdf'); // download pdf file
+        return $pdf->stream(); // download pdf file
+        // return view('penjualan.print_ticket', compact('mst'));
     }
 }

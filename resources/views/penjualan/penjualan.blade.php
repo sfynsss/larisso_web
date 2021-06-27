@@ -222,6 +222,11 @@
 									<ul class="link-list-plain">
 										<li><a class="dropdown-item" onclick="setId('{{$data->no_ent}}');" data-toggle="modal" data-target="#exampleModal">View</a></li>
 										@if($data->jns_pengiriman == 'cod' or $data->jns_pengiriman == 'pickup')
+
+										@if($data->jns_pengiriman == 'pickup' && $data->sts_transaksi == 'SIAP DIAMBIL')
+										<li><a class="dropdown-item" href="{{ url('print_ticket') }}/{!! str_replace('/', '-', $data->no_ent) !!}">Print Ticket</a></li>
+										@endif
+
 										@elseif($data->sts_byr == 0 && $data->jns_pengiriman != 'cod' && $data->no_resi == "")
 										<li><a class="text-primary" onclick="alert('Belum Terbayar !!!');">Resi</a></li>
 										@elseif($data->no_resi != "")
@@ -310,5 +315,6 @@
 	function setNoEnt1($id) {
 		$('#no_ent1').val($id);
 	};
+
 </script>
 @endsection
