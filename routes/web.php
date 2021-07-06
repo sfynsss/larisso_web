@@ -123,8 +123,9 @@ Route::post('/updateCabang', 'CabangController@updateCabang');
 
 //user
 Route::get('/user/{id}/{kd_outlet}', 'UserController@index');
-Route::post('/tambahUser/{id}', 'UserController@tambahUser');
+Route::post('/tambahUser/{id}', 'UsserController@tambahUser');
 Route::get('/editUser/{id}', 'UserController@editUser');
+Route::post('/updateUser', 'UserController@updateUser');
 //endOfUser
 
 //email

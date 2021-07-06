@@ -66,9 +66,30 @@ class UserController extends Controller
 		}
 	}
 
-		public function editUser(Request $request)
-		{
-			return view('User.edit');
-		}
+	public function editUser($id)
+	{
+		$outlet = Outlet::all();
+		$user = User::where('id', '=', $id)->first();
 
+		return view('User.edit', compact('outlet', 'user'));
+	}
+
+	public function updateUser(Request $request)
+	{
+		$update = User::where('id', '=', $request->id_user)->update([
+			'kd_outlet'	=> $request->kd_outlet,
+			'name'		=> $request->name,
+			'email'		=> $request->email,
+			'no_telp'	=> $request->no_telp,
+			'password'	=> bcrypt($request->password)
+		]);
+		
+		if ($update) {
+			Session::flash('success', "Data Berhasil Diubah !!!");
+			return redirect('user/admin/all');
+		} else {
+			Session::flash('error', "Data Gagal Diubah !!!");
+			return redirect('user/admin/all');
+		}
+	}
 }
