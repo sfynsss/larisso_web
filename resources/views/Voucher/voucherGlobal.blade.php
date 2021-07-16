@@ -10,7 +10,9 @@
       </div><!-- .nk-block-head-content -->
       <div class="nk-block-head-content">
         <div class="toggle-wrap nk-block-tools-toggle">
+          @if(Auth::user()->otoritas == 'SUPER ADMIN')
           <button type="button" class="btn btn-success float-right" style="margin-left: 10px;" data-toggle="modal"  data-target=".bs-example-modal-lg">TAMBAH DATA</button>
+          @endif
           <a href="{{url('notifMultiDevice')}}"><button type="button" style="margin-left: 10px;" class="btn btn-primary float-right">NOTIFIKASI</button></a>
         </div>
       </div><!-- .nk-block-head-content -->

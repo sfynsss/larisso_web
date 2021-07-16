@@ -25,8 +25,9 @@
                 <th style="width:10%">No Hp</th>
                 <th style="width:10%">Kategori</th>
                 <th style="width:10%">Jumlah Point</th>
+                @if(Auth::user()->otoritas == 'SUPER ADMIN')
                 <th style="width:20%">Aksi</th>
-               
+                @endif
             </tr>
         </thead>
         <tbody class="tb-odr-body">
