@@ -39,10 +39,12 @@
                 <td>{{$data->HP}}</td>
                 <td>{{$data->KATEGORI}}</td>
                 <td><span style="font-weight:bold">{{$data->POINT_BL_INI}}</span></td>
+                @if(Auth::user()->otoritas == 'SUPER ADMIN')
                 <td><button type="submit" class="btn btn-warning waves-effect text-left" 
                     onclick="setIsi('{{$data->KD_CUST}}','{{$data->NM_CUST}}', '{{$data->POINT_BL_INI}}', '{{$data->POINT_BL_INI}}', '{{$data->id}}');" 
                     data-toggle="modal"  data-target=".bs-example-modal-lg">Edit</button>
                 </td>
+                @endif
             </tr>
             @endforeach
         </tbody>
