@@ -34,72 +34,72 @@ class PembayaranController extends Controller
 
 	public function notification(Request $request)
 	{
-		print_r("test")	;
-		// $paymentNotification = new \Midtrans\Notification();
+		// print_r("test")	;
+		$paymentNotification = new \Midtrans\Notification();
 
-		// $transaction = $paymentNotification->transaction_status;
-		// $orderId = $paymentNotification->transaction_id;
+		$transaction = $paymentNotification->transaction_status;
+		$orderId = $paymentNotification->transaction_id;
 
-		// if ($transaction == 'settlement') {			
-		// 	$firebase_token = MstJual::join('users', 'mst_jual.id_user', '=', 'users.id')->where('transaction_id', '=', $orderId)->first();			
-		// 	$update = MstJual::where('transaction_id', '=', $orderId)->update([
-		// 		'sts_byr'	=> 1
-		// 	]);
+		if ($transaction == 'settlement') {			
+			$firebase_token = MstJual::join('users', 'mst_jual.id_user', '=', 'users.id')->where('transaction_id', '=', $orderId)->first();			
+			$update = MstJual::where('transaction_id', '=', $orderId)->update([
+				'sts_byr'	=> 1
+			]);
 
-		// 	// print_r($firebase_token->firebase_token);
-		// 	if ($update) {
-		// 		$title = "Larisso Apps";
-		// 		$notif = "Pembayaran dengan no. Transaksi ".$firebase_token->no_ent." berhasil";
-		// 		$jenis_notif = 2;
+			// print_r($firebase_token->firebase_token);
+			if ($update) {
+				$title = "Larisso Apps";
+				$notif = "Pembayaran dengan no. Transaksi ".$firebase_token->no_ent." berhasil";
+				$jenis_notif = 2;
 
-		// 		$save = Notif::insertGetId([
-		// 			"judul"			=> $title,
-		// 			"notif"			=> $notif,
-		// 			"jenis_notif"	=> $jenis_notif
-		// 		]);
+				$save = Notif::insertGetId([
+					"judul"			=> $title,
+					"notif"			=> $notif,
+					"jenis_notif"	=> $jenis_notif
+				]);
 
-		// 		$save2 = DetNotif::insert([
-		// 			"kd_cust"	=> $firebase_token->kd_cust,
-		// 			"id_notif"	=> $save
-		// 		]);
+				$save2 = DetNotif::insert([
+					"kd_cust"	=> $firebase_token->kd_cust,
+					"id_notif"	=> $save
+				]);
 
-		// 		if ($save) {
-		// 			return "berhasil";
-		// 		} else {
-		// 			return "error send notif";
-		// 		}
+				if ($save) {
+					return "berhasil";
+				} else {
+					return "error send notif";
+				}
 
-		// 		$optionBuilder = new OptionsBuilder();
-		// 		$optionBuilder->setTimeToLive(60*20);
+				$optionBuilder = new OptionsBuilder();
+				$optionBuilder->setTimeToLive(60*20);
 
-		// 		$notificationBuilder = new PayloadNotificationBuilder($title);
-		// 		$notificationBuilder->setBody($notif)
-		// 		->setSound('default')
-		// 		->setClickAction('act_home')
-		// 		->setBadge(1);
+				$notificationBuilder = new PayloadNotificationBuilder($title);
+				$notificationBuilder->setBody($notif)
+				->setSound('default')
+				->setClickAction('act_home')
+				->setBadge(1);
 
-		// 		$dataBuilder = new PayloadDataBuilder();
-		// 		$option = $optionBuilder->build();
-		// 		$notification = $notificationBuilder->build();
-		// 		$data = $dataBuilder->build();
+				$dataBuilder = new PayloadDataBuilder();
+				$option = $optionBuilder->build();
+				$notification = $notificationBuilder->build();
+				$data = $dataBuilder->build();
 
-		// 		$downstreamResponse = FCM::sendTo($firebase_token->firebase_token, $option, $notification, $data);
-		// 		$downstreamResponse->numberSuccess();
-		// 		$downstreamResponse->numberFailure();
-		// 		$downstreamResponse->numberModification();
-		// 		$downstreamResponse->tokensToDelete();
-		// 		$downstreamResponse->tokensToModify();
-		// 		$downstreamResponse->tokensToRetry();
-		// 		$downstreamResponse->tokensWithError();
-		// 	} else {
-		// 		return 'error';
-		// 	}
+				$downstreamResponse = FCM::sendTo($firebase_token->firebase_token, $option, $notification, $data);
+				$downstreamResponse->numberSuccess();
+				$downstreamResponse->numberFailure();
+				$downstreamResponse->numberModification();
+				$downstreamResponse->tokensToDelete();
+				$downstreamResponse->tokensToModify();
+				$downstreamResponse->tokensToRetry();
+				$downstreamResponse->tokensWithError();
+			} else {
+				return 'error';
+			}
 
-		// 	// $data = MstJual::where('transaction_id', '=', $orderId)->get();
-		// 	// dd($data);
-		// } else {
-		// 	return "not settlement";
-		// }
+			// $data = MstJual::where('transaction_id', '=', $orderId)->get();
+			// dd($data);
+		} else {
+			return "not settlement";
+		}
 	}
 
 	public function get_transaction_status($order_id){
