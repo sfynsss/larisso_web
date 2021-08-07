@@ -92,7 +92,7 @@
                           </div>
                       </div>
                       <div class="card-amount">
-                          <span class="amount">@currency($total_retail + $total_grosir +  $total_offline)</span>
+                          <span class="amount">@currency($total_retail + $total_grosir)</span>
                       </div>
                       <div class="invest-data">
                           <div class="invest-data-amount g-2">
@@ -104,10 +104,10 @@
                                   <div class="title">Grosir</div>
                                    <span class="amount">@currency($total_grosir)</span>
                               </div>
-                              <div class="invest-data-history">
+                              <!-- <div class="invest-data-history">
                                   <div class="title">Offline</div>
                                    <span class="amount">@currency($total_offline)</span>
-                              </div>
+                              </div> -->
                           </div>
                           <div class="invest-data-ck">
                               <canvas class="iv-data-chart" id="totalDeposit"></canvas>
