@@ -96,28 +96,34 @@ class VoucherController extends Controller
 
 	public function tambahVoucher(Request $request)
 	{
-		$insert = Voucher::insert([
-			"kd_voucher"		=> substr(str_shuffle("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 6),
-			"kd_cust"			=> $request->kd_cust,
-			"nama_voucher"		=> $request->nama_voucher,
-			"nilai_voucher"		=> $request->nilai_voucher,
-			"tgl_berlaku_1"		=> $request->tgl_start,
-			"tgl_berlaku_2"		=> $request->tgl_end,
-			"sk"				=> "Nikmati ".$request->nama_voucher." tanpa minimum pembelian di semua outlet LaRisso",
-			"gambar"			=> $request->gambar,
-			"jns_voucher"		=> "SEMUA",
-			"status_voucher"	=> "AKTIF"
-		]);
+		$get_point = Customer::select('POINT_BL_INI')->where('KD_CUST', '=', $request->kd_cust)->first();
 
-		if ($insert) {
-			$update = Customer::where('kd_cust', '=', $request->kd_cust)->decrement('POINT_BL_INI', $request->ketentuan);
-			if ($update) {	
-				return response()->json(['message' => 'Voucher Berhasil Ditambahkan'], 200);
-			} else {	
+		if($get_point->POINT_BL_INI < $request->ketentuan) {
+			return response()->json(['message' => 'Point Anda Kurang'], 401);
+		} else {
+			$insert = Voucher::insert([
+				"kd_voucher"		=> substr(str_shuffle("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 6),
+				"kd_cust"			=> $request->kd_cust,
+				"nama_voucher"		=> $request->nama_voucher,
+				"nilai_voucher"		=> $request->nilai_voucher,
+				"tgl_berlaku_1"		=> $request->tgl_start,
+				"tgl_berlaku_2"		=> $request->tgl_end,
+				"sk"				=> "Nikmati ".$request->nama_voucher." tanpa minimum pembelian di semua outlet LaRisso",
+				"gambar"			=> $request->gambar,
+				"jns_voucher"		=> "SEMUA",
+				"status_voucher"	=> "AKTIF"
+			]);
+	
+			if ($insert) {
+				$update = Customer::where('kd_cust', '=', $request->kd_cust)->decrement('POINT_BL_INI', $request->ketentuan);
+				if ($update) {	
+					return response()->json(['message' => 'Voucher Berhasil Ditambahkan'], 200);
+				} else {	
+					return response()->json(['message' => 'Voucher Gagal Ditambahkan'], 401);
+				}
+			} else {
 				return response()->json(['message' => 'Voucher Gagal Ditambahkan'], 401);
 			}
-		} else {
-			return response()->json(['message' => 'Voucher Gagal Ditambahkan'], 401);
 		}
 	}
 }
