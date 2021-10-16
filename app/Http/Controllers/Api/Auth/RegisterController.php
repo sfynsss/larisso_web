@@ -175,12 +175,14 @@ class RegisterController extends Controller
 		$user = User::where('id', '=', $request->id)->where('grosir_token', '=', $request->token)->update([
 			'email_activation'		=> '1',
 			'otoritas'				=> 'GROSIR',
-			'foto_ktp'				=> $nama_gbr,
+			'foto_ktp'				=> $nama_gbr
 			//'foto'					=> $nama_gbr2
 		]);
 
 		$user2 = Customer::join('users', 'users.id', '=', 'customer.id')->where('users.id', '=', $request->id)->update([
-			'KATEGORI'				=> 'GROSIR'
+			'KATEGORI'				=> 'GROSIR',
+			'lat'					=> $request->lat,
+			'lng'					=> $request->lng
 		]);
 
 		if ($user) {
