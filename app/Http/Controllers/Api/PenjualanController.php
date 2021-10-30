@@ -241,55 +241,111 @@ class PenjualanController extends Controller
 			$point = $request->point;
 		}
 		if ($request->jns_pengiriman == "pickup") {
-			$mst = MstJual::insertGetId([
-				'no_ent'			=> $request->no_ent,
-				'id_user'			=> $request->kd_cust,
-				'kd_cust'			=> $kd_cust[0]->KD_CUST,
-				'nm_penerima'		=> $request->nm_penerima,
-				'alm_penerima'		=> $request->alm_penerima,
-				'no_telp_penerima'	=> $request->no_telp_penerima,
-				'total'				=> $request->total,
-				'disc_pr'			=> $request->disc_pr,
-				'disc_value'		=> $request->disc_value,
-				'kd_voucher'		=> $request->kd_voucher,
-				'jns_bayar'			=> $request->jns_bayar,
-				'netto'				=> $request->netto,
-				'ongkir'			=> "0",
-				'jns_pengiriman'	=> $request->jns_pengiriman,
-				'no_resi'			=> $request->no_resi,
-				'sts_byr'			=> $request->sts_bayar,
-				'sts_jual'			=> $request->sts_jual,
-				'transaction_id'	=> $request->transaction_id,
-				'va_number'			=> $request->no_va,
-				'bank_name'			=> $request->payment_bank,
-				'payment_type'		=> $request->payment_type,
-				'point'				=> $point
-			]);
+			if (isset($request->kd_outlet)) {
+				$mst = MstJual::insertGetId([
+					'no_ent'			=> $request->no_ent,
+					'id_user'			=> $request->kd_cust,
+					'kd_cust'			=> $kd_cust[0]->KD_CUST,
+					'nm_penerima'		=> $request->nm_penerima,
+					'alm_penerima'		=> $request->alm_penerima,
+					'no_telp_penerima'	=> $request->no_telp_penerima,
+					'total'				=> $request->total,
+					'disc_pr'			=> $request->disc_pr,
+					'disc_value'		=> $request->disc_value,
+					'kd_voucher'		=> $request->kd_voucher,
+					'jns_bayar'			=> $request->jns_bayar,
+					'netto'				=> $request->netto,
+					'ongkir'			=> "0",
+					'jns_pengiriman'	=> $request->jns_pengiriman,
+					'no_resi'			=> $request->no_resi,
+					'sts_byr'			=> $request->sts_bayar,
+					'sts_jual'			=> $request->sts_jual,
+					'transaction_id'	=> $request->transaction_id,
+					'va_number'			=> $request->no_va,
+					'bank_name'			=> $request->payment_bank,
+					'payment_type'		=> $request->payment_type,
+					'point'				=> $point,
+					'kd_outlet'			=> $request->kd_outlet
+				]);
+			} else {
+				$mst = MstJual::insertGetId([
+					'no_ent'			=> $request->no_ent,
+					'id_user'			=> $request->kd_cust,
+					'kd_cust'			=> $kd_cust[0]->KD_CUST,
+					'nm_penerima'		=> $request->nm_penerima,
+					'alm_penerima'		=> $request->alm_penerima,
+					'no_telp_penerima'	=> $request->no_telp_penerima,
+					'total'				=> $request->total,
+					'disc_pr'			=> $request->disc_pr,
+					'disc_value'		=> $request->disc_value,
+					'kd_voucher'		=> $request->kd_voucher,
+					'jns_bayar'			=> $request->jns_bayar,
+					'netto'				=> $request->netto,
+					'ongkir'			=> "0",
+					'jns_pengiriman'	=> $request->jns_pengiriman,
+					'no_resi'			=> $request->no_resi,
+					'sts_byr'			=> $request->sts_bayar,
+					'sts_jual'			=> $request->sts_jual,
+					'transaction_id'	=> $request->transaction_id,
+					'va_number'			=> $request->no_va,
+					'bank_name'			=> $request->payment_bank,
+					'payment_type'		=> $request->payment_type,
+					'point'				=> $point
+				]);
+			}
 		} else {
-			$mst = MstJual::insertGetId([
-				'no_ent'			=> $request->no_ent,
-				'id_user'			=> $request->kd_cust,
-				'kd_cust'			=> $kd_cust[0]->KD_CUST,
-				'nm_penerima'		=> $request->nm_penerima,
-				'alm_penerima'		=> $request->alm_penerima,
-				'no_telp_penerima'	=> $request->no_telp_penerima,
-				'total'				=> $request->total,
-				'disc_pr'			=> $request->disc_pr,
-				'disc_value'		=> $request->disc_value,
-				'kd_voucher'		=> $request->kd_voucher,
-				'jns_bayar'			=> $request->jns_bayar,
-				'netto'				=> $request->netto,
-				'ongkir'			=> $request->ongkir,
-				'jns_pengiriman'	=> $request->jns_pengiriman,
-				'no_resi'			=> $request->no_resi,
-				'sts_byr'			=> $request->sts_bayar,
-				'sts_jual'			=> $request->sts_jual,
-				'transaction_id'	=> $request->transaction_id,
-				'va_number'			=> $request->no_va,
-				'bank_name'			=> $request->payment_bank,
-				'payment_type'		=> $request->payment_type,
-				'point'				=> $point
-			]);
+			if (isset($request->kd_outlet)) {
+				$mst = MstJual::insertGetId([
+					'no_ent'			=> $request->no_ent,
+					'id_user'			=> $request->kd_cust,
+					'kd_cust'			=> $kd_cust[0]->KD_CUST,
+					'nm_penerima'		=> $request->nm_penerima,
+					'alm_penerima'		=> $request->alm_penerima,
+					'no_telp_penerima'	=> $request->no_telp_penerima,
+					'total'				=> $request->total,
+					'disc_pr'			=> $request->disc_pr,
+					'disc_value'		=> $request->disc_value,
+					'kd_voucher'		=> $request->kd_voucher,
+					'jns_bayar'			=> $request->jns_bayar,
+					'netto'				=> $request->netto,
+					'ongkir'			=> $request->ongkir,
+					'jns_pengiriman'	=> $request->jns_pengiriman,
+					'no_resi'			=> $request->no_resi,
+					'sts_byr'			=> $request->sts_bayar,
+					'sts_jual'			=> $request->sts_jual,
+					'transaction_id'	=> $request->transaction_id,
+					'va_number'			=> $request->no_va,
+					'bank_name'			=> $request->payment_bank,
+					'payment_type'		=> $request->payment_type,
+					'point'				=> $point,
+					'kd_outlet'			=> $request->kd_outlet
+				]);
+			} else {
+				$mst = MstJual::insertGetId([
+					'no_ent'			=> $request->no_ent,
+					'id_user'			=> $request->kd_cust,
+					'kd_cust'			=> $kd_cust[0]->KD_CUST,
+					'nm_penerima'		=> $request->nm_penerima,
+					'alm_penerima'		=> $request->alm_penerima,
+					'no_telp_penerima'	=> $request->no_telp_penerima,
+					'total'				=> $request->total,
+					'disc_pr'			=> $request->disc_pr,
+					'disc_value'		=> $request->disc_value,
+					'kd_voucher'		=> $request->kd_voucher,
+					'jns_bayar'			=> $request->jns_bayar,
+					'netto'				=> $request->netto,
+					'ongkir'			=> $request->ongkir,
+					'jns_pengiriman'	=> $request->jns_pengiriman,
+					'no_resi'			=> $request->no_resi,
+					'sts_byr'			=> $request->sts_bayar,
+					'sts_jual'			=> $request->sts_jual,
+					'transaction_id'	=> $request->transaction_id,
+					'va_number'			=> $request->no_va,
+					'bank_name'			=> $request->payment_bank,
+					'payment_type'		=> $request->payment_type,
+					'point'				=> $point
+				]);
+			}
 		}
 		
 
