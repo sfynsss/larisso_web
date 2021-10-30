@@ -92,6 +92,23 @@ class RegisterController extends Controller
 	public function registerGrosir(Request $request)
 	{
 
+		// $user = User::insertGetId([
+		// 	'name' => $request->name,
+		// 	'tanggal_lahir' => $request->tanggal_lahir,
+		// 	'email' => $request->email,
+		// 	'alamat' => $request->alamat,
+		// 	'no_telp' => $request->no_telp,
+		// 	'password' => bcrypt($request->password),
+		// 	'api_token' => bin2hex(openssl_random_pseudo_bytes(30)),
+		// 	'firebase_token' => $request->firebase_token,
+		// 	'email_activation' => '0', 
+		// 	'otoritas'	=> $request->kd_kat,
+		// 	'activation_token' => substr(str_shuffle("0123456789"), 0, 4),
+		// 	'grosir_token' => substr(str_shuffle("0123456789"), 0, 4),
+		// 	'foto' => $request->foto,
+		// 	'foto_ktp' => $request->foto_ktp,
+		// ]);
+
 		$user = User::insertGetId([
 			'name' => $request->name,
 			'tanggal_lahir' => $request->tanggal_lahir,
@@ -102,7 +119,7 @@ class RegisterController extends Controller
 			'api_token' => bin2hex(openssl_random_pseudo_bytes(30)),
 			'firebase_token' => $request->firebase_token,
 			'email_activation' => '0', 
-			'otoritas'	=> $request->kd_kat,
+			'otoritas'	=> 'RETAIL',
 			'activation_token' => substr(str_shuffle("0123456789"), 0, 4),
 			'grosir_token' => substr(str_shuffle("0123456789"), 0, 4),
 			'foto' => $request->foto,
@@ -121,7 +138,7 @@ class RegisterController extends Controller
 			$save = Customer::insert([
 				'kd_cust'		=> $tmp,
 				'id'			=> $user,
-				'kategori'		=> $request->kd_kat,
+				'kategori'		=> 'RETAIL',
 				'nm_cust'		=> $request->name,
 				'alm_cust'		=> $request->alamat,
 				'e_mail'		=> $request->email,
