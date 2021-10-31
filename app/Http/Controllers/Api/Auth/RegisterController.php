@@ -192,6 +192,7 @@ class RegisterController extends Controller
 		$user = User::where('id', '=', $request->id)->where('grosir_token', '=', $request->token)->update([
 			'email_activation'		=> '1',
 			'otoritas'				=> 'GROSIR',
+			'grosir_token'			=> '',
 			'foto_ktp'				=> $nama_gbr
 			//'foto'					=> $nama_gbr2
 		]);
