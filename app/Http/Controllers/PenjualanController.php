@@ -15,15 +15,70 @@ use Redirect;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\URL;
 use PDF;
+use Yajra\DataTables\DataTables;
+use DB;
 
 class PenjualanController extends Controller
 {
 
     public function index()
     {
-    	$data = MstJual::join('customer', 'customer.id', '=', 'id_user')->where('sts_jual', '!=', 'OFFLINE')->orderBy('mst_jual.tanggal', 'desc')->limit(100)->get();
+    	// $data = MstJual::join('customer', 'customer.id', '=', 'id_user')->where('sts_jual', '!=', 'OFFLINE')->orderBy('mst_jual.tanggal', 'desc')->limit(100)->get();
     	// dd($data);
-    	return view('penjualan.penjualan', compact('data'));
+    	return view('penjualan.penjualan');
+    }
+
+    public function data_penjualan(Request $request)
+    {	
+        if ($request->ajax()) {
+            $page = ($request->start / $request->length) + 1;
+            $query = DB::table('mst_jual')
+                ->select('no_ent', 'NM_CUST', 'tanggal', 'total', 'sts_byr', 'jns_pengiriman', 'sts_transaksi', 'no_resi')
+                ->leftJoin('customer', 'customer.id', '=', 'id_user')
+                ->where('sts_jual', '!=', 'OFFLINE');
+
+            $data = $query->orderBy('mst_jual.tanggal', 'desc')
+                ->paginate($request->length, ['*'], 'page', $page);
+
+            $items = $data->items();
+
+            $result = Datatables::of($items)
+                ->filter(function ($instance) use ($request) {})
+                ->setTotalRecords($data->total())
+                ->setOffset($request->start)
+                ->setFilteredRecords($data->total())
+                ->addColumn('action', function ($row) use ($request) {
+                    $html = '
+                    <div class="dropdown">
+                        <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
+                            <ul class="link-list-plain">
+                                <li><a class="dropdown-item"  onclick="setId(`'.$row->no_ent.'`);" data-toggle="modal" data-target="#exampleModal">View</a></li>';
+                    
+                    if($row->jns_pengiriman == 'cod' or $row->jns_pengiriman == 'pickup') {
+                        if($row->jns_pengiriman == 'pickup' && $row->sts_transaksi == 'SIAP DIAMBIL') {
+                            $html .= '<li><a class="btn dropdown-item print_ticket" data-id="'.$row->no_ent.'">Print Ticket</a></li>';
+                        }
+                    } else if($row->sts_byr == 0 && $row->jns_pengiriman != 'cod' && $row->no_resi == "") {
+                        $html .= '<li><a class="text-primary" onclick="alert(`Belum Terbayar !!!`);">Resi</a></li>';
+                    } else if($row->no_resi != "") {
+                        $html .= '<li><a class="text-primary" onclick="if (confirm(`Apakah Anda akan mengganti resi?`)){return setNoEnt(`'.$row->no_ent.'`, `'.$row->jns_pengiriman.'`);;}else{event.stopPropagation(); event.preventDefault();};" data-toggle="modal" data-target=".modal_edit">Resi</a></li>';
+                    } else {
+                        $html .= '<li><a class="text-primary" onclick="setNoEnt(`'.$row->no_ent.'`, `'.$row->jns_pengiriman.'`);" data-toggle="modal" data-target=".modal_edit">Resi</a></li>';
+                    }
+
+                    $html .= '<li><a class="text-primary" onclick="setNoEnt1(`'.$row->no_ent.'`);" data-toggle="modal" data-target=".modal_edit_status">Edit Status</a></li>
+                    <li><a class="btn text-primary view_invoice" data-id="'.$row->no_ent.'">Invoice</a></li>';
+
+                    $html .= '</ul>
+                        </div>
+                    </div>';
+
+                    return $html;
+                })
+                ->toJson();
+            return $result;
+        }
     }
 
     public function penjualanPickup()

@@ -21,6 +21,7 @@
         "pusher/pusher-php-server": "~3.0",
         "simplesoftwareio/simple-qrcode": "~4",
         "steevenz/rajaongkir": "^2.2",
+        "yajra/laravel-datatables": "^1.5",
         "yajra/laravel-datatables-oracle": "^9.17"
     },
     "require-dev": {

@@ -156,92 +156,22 @@
 					</div>
 				</div>
 			</div>
-			<div class="card-inner p-0 border-top">
-				<div class="nk-tb-list nk-tb-orders">
-					<div class="nk-tb-item nk-tb-head">
-						<div class="nk-tb-col"><span>No Ent</span></div>
-						<div class="nk-tb-col tb-col-sm"><span>Customer</span></div>
-						<div class="nk-tb-col tb-col-md"><span>Date</span></div>
-						<div class="nk-tb-col"><span>Total</span></div>
-						<div class="nk-tb-col"><span class="d-none d-sm-inline">Status</span></div>
-						<div class="nk-tb-col"><span class="d-none d-sm-inline">Pengiriman</span></div>
-						<div class="nk-tb-col"><span class="d-none d-sm-inline">Resi</span></div>
-						<div class="nk-tb-col"><span>&nbsp;</span></div>
-					</div>
-					@foreach($data as $data)
-					<div class="nk-tb-item">
-						<div class="nk-tb-col">
-							<span class="tb-lead"><a href="#">{{$data->no_ent}}</a></span>
-						</div>
-						<div class="nk-tb-col tb-col-sm">
-							<div class="user-card">
-								<div class="user-name">
-									<span class="tb-lead">{{$data->NM_CUST}}</span>
-								</div>
-							</div>
-						</div>
-						<div class="nk-tb-col tb-col-md">
-							<span class="tb-sub">{{substr($data->tanggal, 0, 10)}}</span>
-						</div>
-						<div class="nk-tb-col">
-							<span class="tb-sub tb-amount">@currency($data->total)</span>
-						</div>
-						<div class="nk-tb-col">
-							@if($data->sts_byr == 0)
-							<span class="badge badge-dot badge-dot-xs badge-danger">Belum Terbayar</span>
-							@elseif($data->sts_byr == 1)
-							<span class="badge badge-dot badge-dot-xs badge-success">Terbayar</span>
-							@elseif($data->sts_byr == 2 || $data->sts_transaksi == "BATAL")
-							<span class="badge badge-dot badge-dot-xs badge-danger">Transaksi Batal</span>
-							@endif
-						</div>
-						<div class="nk-tb-col">
-							<span class="tb-sub tb-amount">{{$data->jns_pengiriman}}</span>
-						</div>
-						<div class="nk-tb-col">
-							@if($data->sts_transaksi == "BATAL")
-							<span class="badge badge-dot badge-dot-xs badge-danger">Transaksi Batal</span>
-							@elseif($data->sts_transaksi == "MASUK")
-							<span class="badge badge-dot badge-dot-xs badge-warning">Baru</span>
-							@elseif($data->sts_transaksi == "PROSES")
-							<span class="badge badge-dot badge-dot-xs badge-success">Proses</span>
-							@elseif($data->sts_transaksi == "SIAP DIAMBIL")
-							<span class="badge badge-dot badge-dot-xs badge-primary">Siap Diambil</span>
-							@elseif($data->sts_transaksi == "SELESAI")
-							<span class="badge badge-dot badge-dot-xs badge-success">Transksi Selesai</span>
-							@elseif($data->no_resi == "")
-							<span class="badge badge-dot badge-dot-xs badge-danger">Belum Dikirim</span>
-							@elseif($data->no_resi != "")
-							<span class="badge badge-dot badge-dot-xs badge-warning">{{$data->no_resi}}</span>
-							@endif
-						</div>
-						<div class="nk-tb-col nk-tb-col-action">
-							<div class="dropdown">
-								<a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-								<div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
-									<ul class="link-list-plain">
-										<li><a class="dropdown-item" onclick="setId('{{$data->no_ent}}');" data-toggle="modal" data-target="#exampleModal">View</a></li>
-										@if($data->jns_pengiriman == 'cod' or $data->jns_pengiriman == 'pickup')
-
-										@if($data->jns_pengiriman == 'pickup' && $data->sts_transaksi == 'SIAP DIAMBIL')
-										<li><a class="dropdown-item" href="{{ url('print_ticket') }}/{!! str_replace('/', '-', $data->no_ent) !!}">Print Ticket</a></li>
-										@endif
-
-										@elseif($data->sts_byr == 0 && $data->jns_pengiriman != 'cod' && $data->no_resi == "")
-										<li><a class="text-primary" onclick="alert('Belum Terbayar !!!');">Resi</a></li>
-										@elseif($data->no_resi != "")
-										<li><a class="text-primary" onclick="if (confirm('Apakah Anda akan mengganti resi?')){return setNoEnt('{{$data->no_ent}}', '{{$data->jns_pengiriman}}');;}else{event.stopPropagation(); event.preventDefault();};" data-toggle="modal" data-target=".modal_edit">Resi</a></li>
-										@else
-										<li><a class="text-primary" onclick="setNoEnt('{{$data->no_ent}}', '{{$data->jns_pengiriman}}');" data-toggle="modal" data-target=".modal_edit">Resi</a></li>
-										@endif
-										<li><a class="text-primary" onclick="setNoEnt1('{{$data->no_ent}}');" data-toggle="modal" data-target=".modal_edit_status">Edit Status</a></li>
-										<li><a class="text-primary" href="{{url('invoice')}}/{!! str_replace('/', '-', $data->no_ent) !!}">Invoice</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					@endforeach
+			<div class="card card-bordered card-preview">
+				<div class="card-inner">
+					<table class="datatable-init table" id="datatables">
+						<thead>
+							<tr>
+								<th>No Ent</th>
+								<th>Customer</th>
+								<th>Date</th>
+								<th>Total</th>
+								<th>Status</th>
+								<th>Pengiriman</th>
+								<th>Resi</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+					</table>
 				</div>
 			</div>
 			<div class="card-inner-sm border-top text-center d-sm-none">
@@ -254,67 +184,185 @@
 
 @section('script')
 <script>
-	function setId($id) {
-		var a = $id.substr(0, 8);
-		var b = $id.substr(9, 5);
-		var c = $id.substr(15, 8);
-		var view_url = "{{url('detPenjualan')}}"+"/"+a+"-"+b+"-"+c;
-		// alert(view_url);
-		$.getJSON(view_url,function(result){
-			console.log(result);
-         // console.log(result);
-         $("#isi").empty();
-         $("#isi").append("<div class='nk-tb-item nk-tb-head'>"
-         	+"<div class='nk-tb-col'><span>Kode Barang</span></div>"
-         	+"<div class='nk-tb-col'><span>Nama Barang</span></div>"
-         	+"<div class='nk-tb-col'><span>Harga Jual</span></div>"
-         	+"<div class='nk-tb-col'><span>Quantity</span></div>"
-         	+"<div class='nk-tb-col'><span>Sub Total</span></div>"
-         	+"</div>")
+    const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+        "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+    ];
+    $(document).ready(function () {
+        getData();
+    })
 
-         result.forEach(function(r){
-         	// alert(r);
-         	$("#isi").append("<div class='nk-tb-item'>"
-         		+"<div class='nk-tb-col'><span class='tb-sub'>"+r['kd_brg']+"</span></div>"
-         		+"<div class='nk-tb-col'><span class='tb-sub'>"+r['nm_brg']+"</span></div>"
-         		+"<div class='nk-tb-col'><span class='tb-sub'>"+r['harga']+"</span></div>"
-         		+"<div class='nk-tb-col'><span class='tb-sub'>"+r['jumlah']+"</span></div>"
-         		+"<div class='nk-tb-col'><span class='tb-sub'>"+r['sub_total']+"</span></div>"
-         		+"<div>");
-         });
-     });
-	};
+    function setId($id) {
+        var a = $id.substr(0, 8);
+        var b = $id.substr(9, 5);
+        var c = $id.substr(15, 8);
+        var view_url = "{{url('detPenjualan')}}" + "/" + a + "-" + b + "-" + c;
+        // alert(view_url);
+        $.getJSON(view_url, function (result) {
+            console.log(result);
+            // console.log(result);
+            $("#isi").empty();
+            $("#isi").append("<div class='nk-tb-item nk-tb-head'>" +
+                "<div class='nk-tb-col'><span>Kode Barang</span></div>" +
+                "<div class='nk-tb-col'><span>Nama Barang</span></div>" +
+                "<div class='nk-tb-col'><span>Harga Jual</span></div>" +
+                "<div class='nk-tb-col'><span>Quantity</span></div>" +
+                "<div class='nk-tb-col'><span>Sub Total</span></div>" +
+                "</div>")
 
-	function setNoEnt($id, $jns_pengiriman) {
-		$('#no_ent').val($id);
-		if ($jns_pengiriman == "cod") {
-			// alert("masuk sini");
-			// $("#input_resi").empty().append('<select class="form-select" name="status" id="status">'
-			// 	+'<option disabled="true" selected="none">Pilih Salah Satu</option>'
-			// 	+'<option value="1">Tampil</option>'
-			// 	+'<option value="0">Tidak Tampil</option>'
-			// 	+'</select>');
-			// $("#input_resi").empty().append(function() {
-			// 	return $("<select name='sopir' id='sopir'>")
-			// 	.append("<option disabled='true' selected='none'>Pilih Salah Satu</option>")
-			// 	.append("<option value='budi'>Budi</option>")
-			// 	.append("<option value='dani'>Dani</option>");
-			// });
-			// var element = document.getElementById("sopir");
-			// element.classList.add("form-group");
-			$("#judul").empty();
-			$("#judul").append("Nama Sopir");
-		} else {
-			// alert("masuk sana");
-			// $("#input_resi").empty().append("<input type='text' class='form-control' id='no_resi' name='no_resi'>");
-			$("#judul").empty();
-			$("#judul").append("No Resi");
-		}
-	};
+            result.forEach(function (r) {
+                // alert(r);
+                $("#isi").append("<div class='nk-tb-item'>" +
+                    "<div class='nk-tb-col'><span class='tb-sub'>" + r['kd_brg'] + "</span></div>" +
+                    "<div class='nk-tb-col'><span class='tb-sub'>" + r['nm_brg'] + "</span></div>" +
+                    "<div class='nk-tb-col'><span class='tb-sub'>" + r['harga'] + "</span></div>" +
+                    "<div class='nk-tb-col'><span class='tb-sub'>" + r['jumlah'] + "</span></div>" +
+                    "<div class='nk-tb-col'><span class='tb-sub'>" + r['sub_total'] + "</span></div>" +
+                    "<div>");
+            });
+        });
+    };
 
-	function setNoEnt1($id) {
-		$('#no_ent1').val($id);
-	};
+    function setNoEnt($id, $jns_pengiriman) {
+        $('#no_ent').val($id);
+        if ($jns_pengiriman == "cod") {
+            // alert("masuk sini");
+            // $("#input_resi").empty().append('<select class="form-select" name="status" id="status">'
+            // 	+'<option disabled="true" selected="none">Pilih Salah Satu</option>'
+            // 	+'<option value="1">Tampil</option>'
+            // 	+'<option value="0">Tidak Tampil</option>'
+            // 	+'</select>');
+            // $("#input_resi").empty().append(function() {
+            // 	return $("<select name='sopir' id='sopir'>")
+            // 	.append("<option disabled='true' selected='none'>Pilih Salah Satu</option>")
+            // 	.append("<option value='budi'>Budi</option>")
+            // 	.append("<option value='dani'>Dani</option>");
+            // });
+            // var element = document.getElementById("sopir");
+            // element.classList.add("form-group");
+            $("#judul").empty();
+            $("#judul").append("Nama Sopir");
+        } else {
+            // alert("masuk sana");
+            // $("#input_resi").empty().append("<input type='text' class='form-control' id='no_resi' name='no_resi'>");
+            $("#judul").empty();
+            $("#judul").append("No Resi");
+        }
+    };
+
+    function setNoEnt1($id) {
+        $('#no_ent1').val($id);
+    };
+
+	$(document).on('click', '.view_invoice', function(e) {
+		e.preventDefault();
+
+		var no_ent = $(this).data('id').replaceAll('/', '-');
+		window.location.href = baseURL + 'invoice/' + no_ent
+	})
+
+	$(document).on('click', '.print_ticket', function(e) {
+		e.preventDefault();
+
+		var no_ent = $(this).data('id').replaceAll('/', '-');
+		window.location.href = baseURL + 'print_ticket/' + no_ent
+	})
+
+    function getData() {
+        table = $("#datatables").DataTable({
+            processing: true,
+            serverSide: true,
+            stateSave: true,
+            "bDestroy": true,
+            ajax: {
+                url: baseURL + 'data_penjualan',
+                data: function (d) {
+
+                }
+            }, // memanggil route yang menampilkan data json
+            columns: [{
+                    data: 'no_ent',
+                    name: 'no_ent',
+					render: function (data) {
+						var url = '{{ url("invoice") }}';
+						return '<span class="tb-lead"><a href="'+url+'/'+data.replaceAll('/', '-')+'">'+data+'</a></span>'
+					}
+                },
+                {
+                    data: 'NM_CUST',
+                    name: 'NM_CUST',
+                },
+                {
+                    data: 'tanggal',
+                    name: 'tanggal',
+                    render: function (data) {
+                        let dt = new Date(data);
+                        return dt.getDate() + " " + monthNames[dt.getMonth()] + " " + dt.getFullYear();
+                    }
+                },
+                {
+                    data: 'total',
+                    name: 'total',
+                },
+                {
+                    data: 'sts_byr',
+                    name: 'sts_byr',
+                    render: function (data) {
+                        var html = "";
+                        if (data === 0) {
+                            html += '<span class="badge badge-dot badge-dot-xs badge-danger">Belum Terbayar</span>';
+                        } else if (data === 1) {
+                            html += '<span class="badge badge-dot badge-dot-xs badge-success">Terbayar</span>';
+                        } else {
+                            html += '<span class="badge badge-dot badge-dot-xs badge-danger">Transaksi Batal</span>';
+                        }
+
+                        return html;
+                    }
+                },
+                {
+                    data: 'jns_pengiriman',
+                    name: 'jns_pengiriman',
+                },
+                {
+                    data: 'sts_transaksi',
+                    name: 'sts_transaksi',
+                    render: function (data) {
+                        var html = "";
+                        if (data == "BATAL") {
+                            html += '<span class="badge badge-dot badge-dot-xs badge-danger">Transaksi Batal</span>';
+                        } else if (data == "MASUK") {
+                            html += '<span class="badge badge-dot badge-dot-xs badge-warning">Baru</span>';
+                        } else if (data == "PROSES") {
+                            html += '<span class="badge badge-dot badge-dot-xs badge-success">Proses</span>';
+                        } else if (data == "SIAP DIAMBIL") {
+                            html += '<span class="badge badge-dot badge-dot-xs badge-primary">Siap Diambil</span>';
+                        } else if (data == "SELESAI") {
+                            html += '<span class="badge badge-dot badge-dot-xs badge-success">Transksi Selesai</span>';
+                        }
+
+                        return html
+                    }
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                },
+            ],
+            columnDefs: [{
+                    "searchable": false,
+                    "targets": [0, 1, 2]
+                },
+                {
+                    'targets': 0,
+                    'orderable': false,
+                    'checkboxes': {
+                        selectRow: false,
+                        stateSave: false
+                    }
+                },
+            ]
+        });
+    }
 
 </script>
 @endsection

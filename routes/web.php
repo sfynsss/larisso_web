@@ -61,6 +61,7 @@ Route::post('barang/edit_barang', 'BarangController@edit_barang');
 
 //penjualan
 Route::get('penjualan', 'PenjualanController@index');
+Route::get('data_penjualan', 'PenjualanController@data_penjualan');
 Route::get('invoice/{id}', 'PenjualanController@detailJual');
 Route::get('detPenjualan/{no_ent}', 'PenjualanController@detPenjualan');
 

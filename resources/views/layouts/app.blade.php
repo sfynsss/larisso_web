@@ -169,6 +169,8 @@
 <script src="{{url('assets/js/charts/gd-general.js?ver=1.4.0')}}"></script>
 
 <script>
+    var baseURL = '//{{ $_SERVER['HTTP_HOST'] }}/';
+    
     function setKategori($a, $b, $c, $d) {
         $('#kd_kategori_edit').val($a);
         $('#nm_kategori_edit').val($b);
