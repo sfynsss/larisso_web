@@ -116,6 +116,12 @@ class VoucherController extends Controller
 	
 			if ($insert) {
 				$update = Customer::where('kd_cust', '=', $request->kd_cust)->decrement('POINT_BL_INI', $request->ketentuan);
+				$update2 = PenukaranPoint::insert([
+					'kd_cust'		=> $request->kd_cust,
+					'point_ditukar'	=> $request->ketentuan,
+					'point_sebelum'	=> $get_point->POINT_BL_INI,
+					'point_sesudah'	=> ($get_point->POINT_BL_INI - $request->ketentuan),
+				]);
 				if ($update) {	
 					return response()->json(['message' => 'Voucher Berhasil Ditambahkan'], 200);
 				} else {	
