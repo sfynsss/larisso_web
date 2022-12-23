@@ -2,15 +2,16 @@
 
 namespace Larisso\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use Larisso\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Larisso\DetVoucher;
-use Larisso\Customer;
 use Larisso\Voucher;
+use Larisso\Customer;
+use Larisso\DetVoucher;
 use Larisso\SettingPoint;
-use Larisso\SettingVoucher;
 use Illuminate\Support\Str;
+use Larisso\PenukaranPoint;
+use Larisso\SettingVoucher;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Larisso\Http\Controllers\Controller;
 
 class VoucherController extends Controller
 {
@@ -120,7 +121,7 @@ class VoucherController extends Controller
 					'kd_cust'		=> $request->kd_cust,
 					'point_ditukar'	=> $request->ketentuan,
 					'point_sebelum'	=> $get_point->POINT_BL_INI,
-					'point_sesudah'	=> ($get_point->POINT_BL_INI - $request->ketentuan),
+					'point_sesudah'	=> $get_point->POINT_BL_INI - $request->ketentuan,
 				]);
 				if ($update) {	
 					return response()->json(['message' => 'Voucher Berhasil Ditambahkan'], 200);
